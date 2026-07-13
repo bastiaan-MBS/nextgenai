@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NextGen AI: AI-educatie voor kinderen van 8 tot 15 jaar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  /* Homepage-specifieke opmaak. Algemene tokens staan in css/styles.css
+     en gelden voor de hele site. */
+
+  /* Header, footer en formulier-CSS staan sitewide in css/styles.css */
+
+  /* ---- HERO ---- */
+  .hero { padding-block: var(--space-6) var(--space-5); }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: var(--space-5); align-items: center; }
+  .hero-grid-solo { grid-template-columns: 1fr; max-width: 66ch; }
+
+  /* ---- Hero-slideshow ---- */
+  .hero-media { position: relative; }
+  .hero-slideshow {
+    position: relative; aspect-ratio: 4/3.3; border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft); overflow: hidden;
+  }
+  .hero-slideshow img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    opacity: 0; transition: opacity 1100ms ease;
+  }
+  .hero-slideshow img.is-active { opacity: 1; }
+  .hero-dots { position: absolute; left: var(--space-2); bottom: var(--space-2); display: flex; gap: 0.4em; z-index: 2; }
+  .hero-dots span {
+    width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.55);
+    transition: background var(--transition), transform var(--transition);
+  }
+  .hero-dots span.is-active { background: #fff; transform: scale(1.3); }
+  .hero h1 { margin-block: var(--space-2); }
+  .hero-lead { font-size: 1.15rem; max-width: 52ch; }
+  .hero-ctas { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-top: var(--space-3); }
+  .hero-audience { margin-top: var(--space-4); display: flex; gap: var(--space-3); flex-wrap: wrap; }
+  .audience-chip {
+    display: flex; align-items: center; gap: 0.6em;
+    background: var(--color-surface); border: 1px solid var(--color-line);
+    border-radius: var(--radius-pill); padding: 0.55em 1.1em; font-size: 0.88rem; font-weight: 500;
+  }
+  .audience-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* ---- MISSIE ---- */
+  .mission-band { padding-block: var(--space-5); border-top: 1.5px solid var(--color-line); border-bottom: 1.5px solid var(--color-line); }
+  .mission-band .container { display: grid; grid-template-columns: 0.45fr 1.55fr; gap: var(--space-4); align-items: start; }
+  .mission-band p.big { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.35rem, 1.1rem + 1.1vw, 2rem); color: var(--color-ink); line-height: 1.28; margin: 0; }
+  .mission-band .highlight { background: linear-gradient(to bottom, transparent 60%, var(--color-yellow) 60%); }
+
+  /* ---- USP ---- */
+  .usp-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--space-5); align-items: start; }
+  .usp-list { display: grid; gap: 0; border-top: 1px solid rgba(255,255,255,0.18); }
+  .usp-row { display: grid; grid-template-columns: 52px 1fr; gap: var(--space-3); padding-block: var(--space-3); border-bottom: 1px solid rgba(255,255,255,0.18); }
+  .usp-row .num { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--color-yellow); }
+  .usp-row h3 { margin-bottom: 0.3em; }
+
+  /* ---- AANBOD ---- */
+  .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); margin-top: var(--space-4); }
+  .offer-card.workshop { border-color: var(--color-cyan); }
+  .offer-card.partner  { border-color: var(--color-green); }
+  .tag-workshop { background: var(--color-cyan);  color: var(--color-navy); }
+  .tag-partner  { background: var(--color-green); color: var(--color-navy); }
+  .offer-card ul { margin: var(--space-2) 0 var(--space-3); padding-left: 1.1em; color: var(--color-ink-soft); font-size: 0.95rem; }
+  .offer-card li { margin-bottom: 0.4em; }
+
+  /* ---- IMPACT: interactieve tijdlijn ---- */
+  .impact-chart-card {
+    background: var(--color-surface); border: 2px solid var(--color-line); border-radius: var(--radius-lg);
+    padding: var(--space-4); margin-top: var(--space-4);
+  }
+  .impact-layout { display: grid; grid-template-columns: 240px 1fr; gap: var(--space-4); align-items: stretch; }
+  .impact-stats-col { display: flex; flex-direction: column; gap: var(--space-2); }
+  .impact-stats-col .stat-block { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 1.1em 1.3em; }
+  .impact-chart-col { display: flex; flex-direction: column; min-width: 0; }
+  .impact-chart-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.6em; }
+  .impact-unit { font-size: 0.8rem; font-style: italic; color: var(--color-ink-soft); }
+  .impact-date { font-family: var(--font-display); font-weight: 700; color: var(--color-navy); font-size: 0.95rem; }
+  .impact-svg { width: 100%; height: auto; display: block; overflow: visible; touch-action: none; }
+  .impact-svg .grid-line { stroke: var(--color-line); stroke-width: 1.5; stroke-dasharray: 4 4; }
+  .impact-svg .axis-label { fill: var(--color-ink-soft); font-size: 20px; font-family: var(--font-body); }
+  .impact-svg .year-label { fill: var(--color-ink-soft); font-size: 20px; font-family: var(--font-body); text-anchor: middle; }
+  .impact-svg .area-path { fill: url(#impactGradient); }
+  .impact-svg .line-path { fill: none; stroke: var(--color-green); stroke-width: 4; stroke-linecap: round; }
+  .impact-svg .indicator-line { stroke: var(--color-navy); stroke-width: 1.5; stroke-dasharray: 5 5; }
+  .impact-svg .indicator-dot { fill: var(--color-yellow); stroke: var(--color-navy); stroke-width: 3; cursor: grab; }
+  .impact-svg .indicator-hit { fill: transparent; cursor: grab; }
+  .impact-svg .indicator-dot.is-dragging, .impact-svg .indicator-hit.is-dragging { cursor: grabbing; }
+
+  .impact-slider {
+    width: 100%; margin-bottom: var(--space-3); -webkit-appearance: none; appearance: none;
+    height: 8px; border-radius: var(--radius-pill); cursor: pointer;
+    background: linear-gradient(to right, var(--color-navy), var(--color-cyan) 55%, var(--color-green));
+  }
+  .impact-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none; width: 26px; height: 26px; border-radius: 50%;
+    background: var(--color-yellow); border: 3px solid var(--color-navy); cursor: grab;
+    box-shadow: 0 2px 8px rgba(11,16,48,0.3);
+  }
+  .impact-slider::-moz-range-thumb {
+    width: 26px; height: 26px; border-radius: 50%; background: var(--color-yellow);
+    border: 3px solid var(--color-navy); cursor: grab;
+  }
+  .impact-slider::-moz-range-track { height: 8px; border-radius: var(--radius-pill); background: transparent; }
+
+  .stat-block { border-radius: var(--radius-lg); padding: 1.6em 1.5em; text-align: left; position: relative; z-index: 1; }
+  .stat-block .figure { display: block; font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 1.2rem + 1vw, 2.1rem); font-variant-numeric: tabular-nums; }
+  .stat-block .label { font-size: 0.85rem; font-weight: 500; }
+  .stat-total  { background: var(--color-navy);   color: #fff; }
+  .stat-total .figure { color: var(--color-yellow); }
+  .stat-yellow { background: var(--color-yellow); color: var(--color-navy); }
+  .stat-green  { background: var(--color-green);  color: #fff; }
+
+  @media (max-width: 760px) {
+    .impact-layout { grid-template-columns: 1fr; }
+    .impact-stats-col { flex-direction: row; flex-wrap: wrap; }
+    .impact-stats-col .stat-block { flex: 1 1 140px; }
+  }
+
+  @media (max-width: 700px) {
+    .impact-stat-row { grid-template-columns: 1fr; }
+  }
+
+  /* ---- TESTIMONIALS: carrousel ---- */
+  .testi-carousel { display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-5); }
+  .testi-arrow {
+    flex-shrink: 0; width: 46px; height: 46px; border-radius: 50%;
+    border: 2px solid var(--color-navy); background: #fff; color: var(--color-navy);
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    transition: background var(--transition), color var(--transition), transform var(--transition);
+  }
+  .testi-arrow:hover { background: var(--color-navy); color: #fff; }
+  .testi-arrow:active { transform: scale(0.94); }
+  .testi-arrow svg { width: 20px; height: 20px; }
+  .testi-viewport { flex: 1; position: relative; height: 320px; overflow: visible; touch-action: pan-y; padding-bottom: 12px; }
+  .testi-track { position: relative; width: 100%; height: 100%; }
+  .testi-slide {
+    position: absolute; bottom: 12px; left: 50%; width: min(440px, 84vw);
+    background: var(--color-navy); border-radius: var(--radius-lg); padding: var(--space-4);
+    box-shadow: var(--shadow-soft); cursor: pointer;
+    transform-origin: bottom center;
+    transition: transform 450ms cubic-bezier(.4,0,.2,1), opacity 450ms;
+  }
+  .testi-slide .quote { color: #fff; font-size: 1.0rem; }
+  .testi-meta { display: flex; align-items: center; gap: 0.7em; margin-top: var(--space-2); }
+  .testi-avatar {
+    width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--color-navy);
+  }
+  .testi-name { font-weight: 600; font-size: 0.92rem; color: #fff; }
+  .testi-role { color: rgba(255,255,255,0.65); font-size: 0.85rem; }
+
+  @media (max-width: 700px) {
+    .testi-viewport { height: 340px; }
+  }
+
+  /* ---- FAQ: vrolijker uitklapmenu ---- */
+  .faq-list { max-width: 760px; margin-top: var(--space-4); display: grid; gap: var(--space-2); }
+  details.faq-item {
+    border: 2px solid var(--color-line); border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-3); transition: border-color var(--transition), background var(--transition);
+  }
+  details.faq-item[open] { border-color: var(--color-navy); background: var(--color-bg-alt); }
+  details.faq-item summary {
+    cursor: pointer; font-family: var(--font-display); font-weight: 600; font-size: 1.02rem;
+    list-style: none; display: flex; justify-content: space-between; align-items: center; gap: var(--space-3);
+  }
+  details.faq-item summary::-webkit-details-marker { display: none; }
+  .faq-icon {
+    flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 700; font-size: 1.15rem;
+    transition: transform var(--transition);
+  }
+  details.faq-item[open] .faq-icon { transform: rotate(45deg); }
+  .faq-item:nth-of-type(4n+1) .faq-icon { background: var(--color-cyan);  color: var(--color-navy); }
+  .faq-item:nth-of-type(4n+2) .faq-icon { background: var(--color-pink);  color: #fff; }
+  .faq-item:nth-of-type(4n+3) .faq-icon { background: var(--color-green); color: var(--color-navy); }
+  .faq-item:nth-of-type(4n+4) .faq-icon { background: var(--color-yellow);color: var(--color-navy); }
+  details.faq-item p { margin-top: var(--space-2); font-size: 0.97rem; }
+
+  /* ---- FOOTER-CTA: paginaspecifieke aanvullingen ---- */
+  .footer-cta h2 { max-width: 34ch; }
+
+  @media (max-width: 960px) {
+    .hero-grid, .usp-grid, .offer-grid, .mission-band .container, .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <img class="blob-edge is-right" src="assets/blob-pink-clean.png" alt="" style="--blob-w:130px; --blob-top:20%;">
+  <div class="container nav-inner">
+    <a href="#top" class="logo-mark"><img src="assets/logo.png" alt="NextGen AI logo"></a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="workshops.html">Workshops</a></li>
+        <li><a href="partnerprogramma.html">Partnerprogramma</a></li>
+        <li><a href="inbeeld.html">In beeld</a></li>
+        <li><a href="overons.html">Over ons</a></li>
+        <li><a href="#faq">Veelgestelde vragen</a></li>
+      </ul>
+    </nav>
+    <div class="nav-ctas">
+      <a href="partnerprogramma.html" class="btn btn-outline-light">Word partner</a>
+      <a href="workshops.html" class="btn btn-cta-large">
+        Boek een workshop
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <button type="button" class="hamburger" id="hamburgerBtn" aria-label="Menu openen" aria-expanded="false" aria-controls="mobileMenu">
+      <svg class="icon-menu" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <ul>
+        <li><a class="nav-link" href="workshops.html">Workshops</a></li>
+        <li><a class="nav-link" href="partnerprogramma.html">Partnerprogramma</a></li>
+        <li><a class="nav-link" href="inbeeld.html">In beeld</a></li>
+        <li><a class="nav-link" href="overons.html">Over ons</a></li>
+        <li><a class="nav-link" href="#faq">Veelgestelde vragen</a></li>
+      </ul>
+      <div class="mobile-menu-ctas">
+        <a href="partnerprogramma.html" class="btn btn-outline-light" style="border-color:var(--color-navy-ink); color:#fff; background:rgba(255,255,255,0.08);">Word partner</a>
+        <a href="workshops.html" class="btn btn-cta-large">
+          Boek een workshop
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero container">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">AI-educatie voor 8 t/m 15 jaar</span>
+        <h1>AI verandert hoe kinderen leren. Wij leren ze dat veilig te doen.</h1>
+        <p class="hero-lead">
+          Vrijwel geen enkel kind leert hoe je verantwoord met AI omgaat. NextGen AI
+          bouwt de workshops en lesprogramma's waarmee bibliotheken en
+          jeugdorganisaties dat direct kunnen aanbieden, met eigen software en
+          zonder dat ze zelf AI-specialisten hoeven aan te trekken.
+        </p>
+        <div class="hero-ctas">
+          <a href="workshops.html" class="btn btn-primary">Bekijk de workshops</a>
+          <a href="partnerprogramma.html" class="btn btn-secondary">Word partner</a>
+        </div>
+        <div class="hero-audience">
+          <span class="audience-chip"><span class="dot" style="background:var(--color-cyan)"></span>Bibliotheken</span>
+          <span class="audience-chip"><span class="dot" style="background:var(--color-pink)"></span>Jeugdorganisaties</span>
+          <span class="audience-chip"><span class="dot" style="background:var(--color-green)"></span>Scholen</span>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="hero-slideshow" id="heroSlideshow">
+          <img class="is-active" src="assets/hero-photo-1.jpg" alt="Kinderen tijdens een NextGen AI workshop">
+          <img src="assets/hero-photo-2.jpg" alt="NextGen AI presentatie op een evenement">
+          <img src="assets/hero-photo-3.jpg" alt="Kinderen werken samen tijdens een NextGen AI workshop">
+          <img src="assets/hero-photo-4.jpg" alt="NextGen AI Hackathon met kinderen achter laptops">
+          <div class="hero-dots" id="heroDots"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSIE -->
+  <section class="mission-band">
+    <div class="container">
+      <span class="eyebrow">Waarom</span>
+      <p class="big">Elk kind in Nederland toegang geven tot AI-educatie tussen <span class="highlight">8 en 15 jaar</span>, zodat zij later zelf kritisch, creatief en veilig met AI kunnen omgaan.</p>
+    </div>
+  </section>
+
+  <!-- USP -->
+  <section class="section on-dark" id="over-ons">
+    <div class="container usp-grid">
+      <div>
+        <span class="eyebrow">Wat ons onderscheidt</span>
+        <h2>Eigen software. Geen los lespakket.</h2>
+        <p>De meeste aanbieders werken met bestaande tools. NextGen AI bouwt de leeromgeving zelf. Daardoor blijft inhoud actueel, veilig voor kinderen en passend bij elke locatie.</p>
+      </div>
+      <div class="usp-list">
+        <div class="usp-row">
+          <span class="num">01</span>
+          <div><h3>Veilig en leeftijdsgeschikt</h3><p>Afgestemd op de belevingswereld van 8- tot 15-jarigen, met aandacht voor privacy en online veiligheid.</p></div>
+        </div>
+        <div class="usp-row">
+          <span class="num">02</span>
+          <div><h3>Direct inzetbaar</h3><p>Geen technische kennis nodig. Gastdocenten of eigen begeleiders werken meteen met kant-en-klare programma's.</p></div>
+        </div>
+        <div class="usp-row">
+          <span class="num">03</span>
+          <div><h3>Schaalbaar als partner</h3><p>Van losse workshop tot volledig programma: dezelfde software groeit mee met de ambitie van uw organisatie.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AANBOD -->
+  <section class="section container">
+    <span class="eyebrow">Wat we bieden</span>
+    <h2>Eén workshop, of een volledig partnerprogramma.</h2>
+    <p style="max-width:60ch;">Beide routes starten laagdrempelig. Veel partners begonnen zelf met één workshop.</p>
+
+    <div class="offer-grid">
+      <div class="card offer-card workshop" id="workshops">
+        <span class="tag tag-workshop">Workshops</span>
+        <h3>Boek een workshop</h3>
+        <p>Eén programma, één datum, direct resultaat. Ideaal om kennis te maken of een eenmalig event te organiseren.</p>
+        <ul>
+          <li>7 workshops, van AI for Kids tot de AI Hackathon</li>
+          <li>Ook als lessenreeks van 6 lessen te boeken</li>
+          <li>Gastdocent of train de trainer mogelijk</li>
+        </ul>
+        <a href="workshops.html" class="btn btn-secondary">Bekijk alle workshops</a>
+      </div>
+      <div class="card offer-card partner" id="partnerprogramma">
+        <span class="tag tag-partner">Partnerprogramma</span>
+        <h3>Word partner</h3>
+        <p>Een doorlopend lesprogramma onder eigen naam, inclusief software, materialen en ondersteuning.</p>
+        <ul>
+          <li>Eigen leeromgeving voor uw locatie of organisatie</li>
+          <li>Doorlopende updates van lesinhoud</li>
+          <li>Persoonlijke begeleiding bij de opstart</li>
+        </ul>
+        <a href="partnerprogramma.html" class="btn btn-secondary">Bekijk het partnerprogramma</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT -->
+  <section class="section section-tight container" id="impact">
+    <span class="eyebrow">In cijfers</span>
+    <h2>De impact tot nu toe.</h2>
+    <p style="max-width:60ch;">Verschuif de tijdlijn en bekijk hoeveel kinderen zijn bereikt, van de eerste workshop in februari 2023 tot vandaag.</p>
+
+    <div class="impact-chart-card">
+      <div class="impact-layout">
+        <div class="impact-stats-col">
+          <div class="stat-block stat-total"><span class="figure" id="statKids">0</span><span class="label">Kinderen bereikt</span></div>
+          <div class="stat-block stat-yellow"><span class="figure" id="statWorkshops">0</span><span class="label">Workshops gegeven</span></div>
+          <div class="stat-block stat-green"><span class="figure" id="statProvinces">0</span><span class="label">Provincies actief</span></div>
+        </div>
+        <div class="impact-chart-col">
+          <div class="impact-chart-head">
+            <span class="impact-unit">kinderen</span>
+            <span class="impact-date" id="impactDateLabel">&nbsp;</span>
+          </div>
+          <input type="range" id="impactSlider" class="impact-slider" min="0" max="100" value="100" aria-label="Tijdlijn">
+          <svg id="impactSvg" class="impact-svg" viewBox="0 0 1000 320">
+            <defs>
+              <linearGradient id="impactGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#6fb31a" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#6fb31a" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <g id="impactGrid"></g>
+            <path id="impactArea" class="area-path"></path>
+            <path id="impactLine" class="line-path"></path>
+            <line id="impactIndicatorLine" class="indicator-line"></line>
+            <circle id="impactIndicatorHit" class="indicator-hit" r="26"></circle>
+            <circle id="impactIndicatorDot" class="indicator-dot" r="9"></circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section section-tight container">
+    <span class="eyebrow">Wat anderen zeggen</span>
+    <h2>Ervaringen van bibliotheken en organisaties.</h2>
+
+    <div class="testi-carousel">
+      <button type="button" class="testi-arrow" id="testiPrev" aria-label="Vorige ervaring">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="testi-viewport">
+        <div class="testi-track" id="testiTrack">
+          <article class="testi-slide">
+            <div class="stars" data-rating="5"><span class="stars-fill"></span></div>
+            <p class="quote">"De kinderen waren meteen actief bezig, geen moment saai. Precies wat we zochten voor onze zomervakantie-activiteiten."</p>
+            <div class="testi-meta">
+              <span class="testi-avatar" style="background:var(--color-cyan);">BR</span>
+              <div><div class="testi-name">Bibliotheek Rijnland</div><div class="testi-role">Programmeur digitale vaardigheden</div></div>
+            </div>
+          </article>
+          <article class="testi-slide">
+            <div class="stars" data-rating="4.5"><span class="stars-fill"></span></div>
+            <p class="quote">"Als partner kunnen we het programma nu structureel aanbieden, zonder dat we zelf AI-experts hoeven te zijn."</p>
+            <div class="testi-meta">
+              <span class="testi-avatar" style="background:var(--color-yellow);">JN</span>
+              <div><div class="testi-name">Jeugdorganisatie Noord</div><div class="testi-role">Partner sinds 2025</div></div>
+            </div>
+          </article>
+          <article class="testi-slide">
+            <div class="stars" data-rating="5"><span class="stars-fill"></span></div>
+            <p class="quote">"Veilig, begrijpelijk en verrassend leuk. Ouders vroegen achteraf zelf om een vervolgworkshop."</p>
+            <div class="testi-meta">
+              <span class="testi-avatar" style="background:var(--color-green);">BD</span>
+              <div><div class="testi-name">Bibliotheek Deventer</div><div class="testi-role">Coördinator jeugdprogrammering</div></div>
+            </div>
+          </article>
+          <article class="testi-slide">
+            <div class="stars" data-rating="5"><span class="stars-fill"></span></div>
+            <p class="quote">"Onze begeleiders konden zonder technische kennis meteen aan de slag. Precies de drempel die we nodig hadden weg te nemen."</p>
+            <div class="testi-meta">
+              <span class="testi-avatar" style="background:var(--color-pink);">BU</span>
+              <div><div class="testi-name">Bibliotheek Utrecht</div><div class="testi-role">Coördinator educatie</div></div>
+            </div>
+          </article>
+          <article class="testi-slide">
+            <div class="stars" data-rating="4.5"><span class="stars-fill"></span></div>
+            <p class="quote">"Een programma dat serieus met veiligheid omgaat, zonder dat het saai wordt voor de kinderen. Precies de balans die we zochten."</p>
+            <div class="testi-meta">
+              <span class="testi-avatar" style="background:var(--color-cyan);">JZ</span>
+              <div><div class="testi-name">Jeugdorganisatie Zuid-Holland</div><div class="testi-role">Programmamanager</div></div>
+            </div>
+          </article>
+          <article class="testi-slide">
+            <div class="stars" data-rating="5"><span class="stars-fill"></span></div>
+            <p class="quote">"We zijn gestart met één workshop en binnen een half jaar partner geworden. De opbouw voelde nergens geforceerd."</p>
+            <div class="testi-meta">
+              <span class="testi-avatar" style="background:var(--color-yellow);">BD2</span>
+              <div><div class="testi-name">Bibliotheek Drenthe</div><div class="testi-role">Hoofd jeugdprogrammering</div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <button type="button" class="testi-arrow" id="testiNext" aria-label="Volgende ervaring">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="section-tight container">
+    <span class="eyebrow">Onze partners</span>
+    <h2>Organisaties waarmee we samenwerken.</h2>
+    <p style="max-width:60ch;">Dit zijn de partners waar NextGen AI structureel mee samenwerkt, naast de bibliotheken en organisaties die workshops afnemen. Hier komen binnenkort de echte partnerlogo's.</p>
+    <div class="logo-ticker" style="margin-top: var(--space-4);">
+      <div class="logo-ticker-track">
+        <span class="logo-ticker-item"><img src="assets/logo.png" alt="Partnerlogo (placeholder)"></span>
+        <span class="logo-ticker-item"><img src="assets/logo.png" alt="Partnerlogo (placeholder)"></span>
+        <span class="logo-ticker-item"><img src="assets/logo.png" alt="Partnerlogo (placeholder)"></span>
+        <span class="logo-ticker-item"><img src="assets/logo.png" alt="Partnerlogo (placeholder)"></span>
+        <span class="logo-ticker-item"><img src="assets/logo.png" alt="Partnerlogo (placeholder)"></span>
+        <span class="logo-ticker-item"><img src="assets/logo.png" alt="Partnerlogo (placeholder)"></span>
+        <!-- lijst herhaald voor naadloze loop -->
+        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/logo.png" alt=""></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/logo.png" alt=""></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/logo.png" alt=""></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/logo.png" alt=""></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/logo.png" alt=""></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/logo.png" alt=""></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-tight container" id="faq">
+    <span class="eyebrow">Veelgestelde vragen</span>
+    <h2>Vragen over veiligheid, privacy en opzet.</h2>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>Is de content veilig en geschikt voor kinderen vanaf 8 jaar?<span class="faq-icon">+</span></summary>
+        <p>Ja. Elk programma is ontwikkeld met leeftijdsgeschiktheid, privacy en online veiligheid als uitgangspunt, en wordt begeleid door geschoolde gastdocenten of getrainde begeleiders.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Werken jullie met eigen software, of bestaande AI-tools?<span class="faq-icon">+</span></summary>
+        <p>NextGen AI ontwikkelt de leeromgeving zelf. Daardoor houden we controle over veiligheid, privacy en aansluiting op de leeftijdsgroep.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Kunnen we eerst een losse workshop uitproberen voordat we partner worden?<span class="faq-icon">+</span></summary>
+        <p>Zeker. Veel partners zijn gestart met één workshop en zijn daarna doorgegroeid naar een doorlopend programma.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Hoe groot kan ik dit voor mijn organisatie opzetten?<span class="faq-icon">+</span></summary>
+        <p>Van één klas tot een provinciebreed programma. We denken graag mee over wat past bij de omvang en het budget van uw organisatie.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <!-- FOOTER CTA (wit, sitewide identiek): twee duidelijke vervolgstappen i.p.v. een formulier -->
+  <div class="footer-cta">
+    <div class="container">
+      <span class="eyebrow">Contact</span>
+      <h2>Neem contact met ons op.</h2>
+      <p class="intro">Kies hieronder waar uw vraag over gaat.</p>
+
+      <div class="contact-choice">
+        <a href="partnerprogramma.html" class="choice-card">
+          <span class="choice-title"><span class="dot" style="background:var(--color-green);"></span>Ik wil partner worden</span>
+          <p>Een doorlopend lesprogramma onder eigen naam, inclusief software en ondersteuning.</p>
+          <span class="choice-link-btn">
+            <span class="choice-link-label">Neem contact op</span>
+            <span class="choice-link-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
+        </a>
+        <a href="workshops.html" class="choice-card">
+          <span class="choice-title"><span class="dot" style="background:var(--color-cyan);"></span>Ik wil een workshop boeken</span>
+          <p>Eén programma, één datum, direct resultaat voor een groep kinderen.</p>
+          <span class="choice-link-btn">
+            <span class="choice-link-label">Boek een workshop</span>
+            <span class="choice-link-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER LEGAL (donkerblauw, sitewide identiek) -->
+  <div class="footer-legal">
+    <img class="blob-edge is-right" src="assets/blob-cyan-clean.png" alt="" style="--blob-w:200px; top:auto; bottom:-30px;">
+    <div class="container footer-grid">
+      <div class="footer-brand-col">
+        <img src="assets/logo.png" alt="NextGen AI" style="height:128px; margin-bottom:var(--space-2); margin-left:-14px;">
+        <p style="color:rgba(255,255,255,0.6); font-size:0.9rem; max-width:32ch;">Elk kind toegang geven tot AI-educatie, zodat zij morgen de oplossingen creëren die de toekomst nodig heeft.</p>
+      </div>
+      <div>
+        <h4>Sitemap</h4>
+        <ul>
+          <li><a href="workshops.html">Workshops</a></li>
+          <li><a href="partnerprogramma.html">Partnerprogramma</a></li>
+          <li><a href="inbeeld.html">In beeld</a></li>
+        <li><a href="overons.html">Over ons</a></li>
+          <li><a href="#faq">Veelgestelde vragen</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Organisatie</h4>
+        <ul>
+          <li>ACTNOW B.V.</li>
+          <li>info@nextgen-ai.club</li>
+          <li>+31 (0)00 000 00 00</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Juridisch</h4>
+        <ul>
+          <li><a href="#">Privacyverklaring</a></li>
+          <li><a href="#">Cookiebeleid</a></li>
+          <li><a href="#">Algemene voorwaarden</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>&copy; 2026 NextGen AI, onderdeel van ACTNOW B.V.</span>
+      <span>Prototype homepage · versie 0.8</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobiel hamburgermenu
+  (function () {
+    var btn = document.getElementById('hamburgerBtn');
+    var menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    function close() {
+      btn.classList.remove('is-open');
+      menu.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      btn.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', close);
+    });
+  })();
+
+  // Sterren vullen op basis van data-rating (ondersteunt halve sterren)
+  document.querySelectorAll('.stars').forEach(function (el) {
+    var rating = parseFloat(el.getAttribute('data-rating')) || 0;
+    var pct = Math.max(0, Math.min(5, rating)) / 5 * 100;
+    var fill = el.querySelector('.stars-fill');
+    if (fill) fill.style.width = pct + '%';
+    el.setAttribute('aria-label', rating + ' van 5 sterren');
+  });
+
+  // Testimonial-carrousel
+  (function () {
+    var track = document.getElementById('testiTrack');
+    if (!track) return;
+    var slides = Array.prototype.slice.call(track.querySelectorAll('.testi-slide'));
+    var n = slides.length;
+    var current = 0;
+
+    function normalize(rel) {
+      rel = ((rel % n) + n) % n;
+      if (rel > n / 2) rel -= n;
+      return rel;
+    }
+
+    function update() {
+      slides.forEach(function (slide, i) {
+        var rel = normalize(i - current);
+        var abs = Math.abs(rel);
+        var x, scale, opacity, z, pointer;
+        if (rel === 0) { x = 0; scale = 1; opacity = 1; z = 10; pointer = 'auto'; }
+        else if (abs === 1) { x = rel * 62; scale = 0.74; opacity = 0.5; z = 5; pointer = 'auto'; }
+        else { x = rel * 62; scale = 0.6; opacity = 0; z = 1; pointer = 'none'; }
+        slide.style.transform = 'translateX(-50%) translateX(' + x + '%) scale(' + scale + ')';
+        slide.style.opacity = opacity;
+        slide.style.zIndex = z;
+        slide.style.pointerEvents = pointer;
+      });
+    }
+
+    function go(dir) { current = ((current + dir) % n + n) % n; update(); }
+
+    document.getElementById('testiPrev').addEventListener('click', function () { go(-1); });
+    document.getElementById('testiNext').addEventListener('click', function () { go(1); });
+
+    slides.forEach(function (slide, i) {
+      slide.addEventListener('click', function () {
+        var rel = normalize(i - current);
+        if (rel !== 0) { current = i; update(); }
+      });
+    });
+
+    // Swipe (touch) en drag (muis)
+    var startX = null;
+    var viewport = track.parentElement;
+    viewport.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+    viewport.addEventListener('touchend', function (e) {
+      if (startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      if (dx > 40) go(-1); else if (dx < -40) go(1);
+      startX = null;
+    });
+
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  // Hero-slideshow: automatisch wisselende foto's
+  (function () {
+    var wrap = document.getElementById('heroSlideshow');
+    if (!wrap) return;
+    var imgs = Array.prototype.slice.call(wrap.querySelectorAll('img'));
+    var dotsWrap = document.getElementById('heroDots');
+    var current = 0;
+
+    imgs.forEach(function (_, i) {
+      var d = document.createElement('span');
+      if (i === 0) d.classList.add('is-active');
+      d.addEventListener('click', function () { show(i); restart(); });
+      dotsWrap.appendChild(d);
+    });
+    var dots = Array.prototype.slice.call(dotsWrap.children);
+
+    function show(i) {
+      imgs[current].classList.remove('is-active');
+      dots[current].classList.remove('is-active');
+      current = i;
+      imgs[current].classList.add('is-active');
+      dots[current].classList.add('is-active');
+    }
+
+    var timer;
+    function restart() {
+      clearInterval(timer);
+      timer = setInterval(function () { show((current + 1) % imgs.length); }, 4500);
+    }
+    restart();
+  })();
+
+  // Impact: interactieve tijdlijn
+  (function () {
+    var slider = document.getElementById('impactSlider');
+    var svg = document.getElementById('impactSvg');
+    if (!slider || !svg) return;
+
+    var maandNamen = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+
+    // Dataset opbouwen: van de eerste workshop (feb 2023) tot vandaag
+    var start = new Date(2023, 1, 1);
+    var today = new Date();
+    var months = (today.getFullYear() - start.getFullYear()) * 12 + (today.getMonth() - start.getMonth()) + 1;
+    months = Math.max(months, 12);
+
+    var TARGET_KIDS = 12000;
+    var TARGET_WORKSHOPS = 640;
+    var TARGET_PROVINCES = 9;
+
+    function sCurve(t, k) {
+      var raw = 1 / (1 + Math.exp(-k * (t - 0.5)));
+      var raw0 = 1 / (1 + Math.exp(-k * (0 - 0.5)));
+      var raw1 = 1 / (1 + Math.exp(-k * (1 - 0.5)));
+      return (raw - raw0) / (raw1 - raw0);
+    }
+
+    var data = [];
+    for (var i = 0; i < months; i++) {
+      var t = months > 1 ? i / (months - 1) : 1;
+      var easeKids = sCurve(t, 9);
+      var easeWork = sCurve(t, 7.5);
+      var d = new Date(start.getFullYear(), start.getMonth() + i, 1);
+      data.push({
+        date: d,
+        kids: Math.round(easeKids * TARGET_KIDS),
+        workshops: Math.round(easeWork * TARGET_WORKSHOPS),
+        provinces: Math.min(TARGET_PROVINCES, Math.round(1 + easeKids * (TARGET_PROVINCES - 1)))
+      });
+    }
+
+    var maxKids = TARGET_KIDS;
+    var W = 1000, H = 320;
+    var padL = 60, padR = 20, padT = 20, padB = 40;
+    var plotW = W - padL - padR;
+    var plotH = H - padT - padB;
+
+    function xAt(idx) { return padL + (data.length > 1 ? idx / (data.length - 1) : 1) * plotW; }
+    function yAt(val) { return padT + plotH - (val / maxKids) * plotH; }
+
+    // Grid, assen en labels tekenen (eenmalig)
+    var gridGroup = document.getElementById('impactGrid');
+    var gridSteps = [0, 0.25, 0.5, 0.75, 1];
+    var gridLabels = ['0', '3K', '6K', '9K', '12K'];
+    gridSteps.forEach(function (frac, idx) {
+      var y = padT + plotH - frac * plotH;
+      var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('class', 'grid-line');
+      line.setAttribute('x1', padL); line.setAttribute('x2', W - padR);
+      line.setAttribute('y1', y); line.setAttribute('y2', y);
+      gridGroup.appendChild(line);
+      var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('class', 'axis-label');
+      text.setAttribute('x', padL - 12); text.setAttribute('y', y + 6);
+      text.setAttribute('text-anchor', 'end');
+      text.textContent = gridLabels[idx];
+      gridGroup.appendChild(text);
+    });
+    // Verticale gridlines + jaarlabels bij elke januari in de reeks
+    data.forEach(function (pt, idx) {
+      if (pt.date.getMonth() === 0 || idx === 0) {
+        var x = xAt(idx);
+        var vline = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        vline.setAttribute('class', 'grid-line');
+        vline.setAttribute('x1', x); vline.setAttribute('x2', x);
+        vline.setAttribute('y1', padT); vline.setAttribute('y2', padT + plotH);
+        gridGroup.appendChild(vline);
+        var ytext = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        ytext.setAttribute('class', 'year-label');
+        ytext.setAttribute('x', x); ytext.setAttribute('y', H - 10);
+        ytext.textContent = pt.date.getFullYear();
+        gridGroup.appendChild(ytext);
+      }
+    });
+
+    // Lijn- en oppervlaktepad tekenen (volledige reeks, statisch)
+    var linePoints = data.map(function (pt, idx) { return xAt(idx) + ',' + yAt(pt.kids); });
+    document.getElementById('impactLine').setAttribute('d', 'M' + linePoints.join(' L'));
+    document.getElementById('impactArea').setAttribute('d',
+      'M' + linePoints.join(' L') + ' L' + xAt(data.length - 1) + ',' + (padT + plotH) + ' L' + xAt(0) + ',' + (padT + plotH) + ' Z'
+    );
+
+    var indicatorLine = document.getElementById('impactIndicatorLine');
+    var indicatorDot = document.getElementById('impactIndicatorDot');
+    var dateLabel = document.getElementById('impactDateLabel');
+    var statKids = document.getElementById('statKids');
+    var statWorkshops = document.getElementById('statWorkshops');
+    var statProvinces = document.getElementById('statProvinces');
+
+    function render(idx) {
+      idx = Math.max(0, Math.min(data.length - 1, idx));
+      var pt = data[idx];
+      var x = xAt(idx), y = yAt(pt.kids);
+      indicatorLine.setAttribute('x1', x); indicatorLine.setAttribute('x2', x);
+      indicatorLine.setAttribute('y1', padT); indicatorLine.setAttribute('y2', padT + plotH);
+      indicatorDot.setAttribute('cx', x); indicatorDot.setAttribute('cy', y);
+      dateLabel.textContent = maandNamen[pt.date.getMonth()] + ' ' + pt.date.getFullYear();
+      statKids.textContent = pt.kids.toLocaleString('nl-NL');
+      statWorkshops.textContent = pt.workshops.toLocaleString('nl-NL');
+      statProvinces.textContent = pt.provinces;
+    }
+
+    slider.max = data.length - 1;
+    slider.value = 0;
+
+    var indicatorHit = document.getElementById('impactIndicatorHit');
+
+    function setIndex(idx) {
+      idx = Math.max(0, Math.min(data.length - 1, Math.round(idx)));
+      slider.value = idx;
+      render(idx);
+    }
+
+    slider.addEventListener('input', function () { render(parseInt(slider.value, 10)); });
+
+    // Het gele bolletje op de grafiek is ook zelf sleepbaar
+    function indexFromClientX(clientX) {
+      var rect = svg.getBoundingClientRect();
+      var scaleX = W / rect.width;
+      var localX = (clientX - rect.left) * scaleX;
+      var frac = (localX - padL) / plotW;
+      return frac * (data.length - 1);
+    }
+
+    function startDrag(e) {
+      e.preventDefault();
+      indicatorDot.classList.add('is-dragging');
+      indicatorHit.classList.add('is-dragging');
+      var move = function (ev) {
+        var clientX = ev.touches ? ev.touches[0].clientX : ev.clientX;
+        setIndex(indexFromClientX(clientX));
+      };
+      var end = function () {
+        indicatorDot.classList.remove('is-dragging');
+        indicatorHit.classList.remove('is-dragging');
+        window.removeEventListener('pointermove', move);
+        window.removeEventListener('pointerup', end);
+      };
+      window.addEventListener('pointermove', move);
+      window.addEventListener('pointerup', end);
+    }
+    indicatorDot.addEventListener('pointerdown', startDrag);
+    indicatorHit.addEventListener('pointerdown', startDrag);
+
+    render(0);
+
+    // Bij scroll-in-beeld: de tijdlijn eenmalig automatisch laten oplopen tot vandaag
+    var triggered = false;
+    function animateTo(targetIdx, duration) {
+      var startTime = null;
+      function step(ts) {
+        if (startTime === null) startTime = ts;
+        var progress = Math.min(1, (ts - startTime) / duration);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        setIndex(targetIdx * eased);
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !triggered) {
+          triggered = true;
+          animateTo(data.length - 1, 3400);
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    observer.observe(document.getElementById('impact'));
+  })();
+</script>
+</body>
+</html>

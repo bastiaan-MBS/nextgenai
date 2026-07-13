@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In beeld: media, verslagen en impact van NextGen AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  /* ---- Hero: standaard NextGen AI page-hero, zoals op de andere pagina's ---- */
+  .page-hero { padding-block: var(--space-6) var(--space-5); }
+  .page-hero .intro { font-size: 1.1rem; max-width: 60ch; }
+
+  /* ---- Filtertabs ---- */
+  .filter-tabs { display: flex; flex-wrap: wrap; gap: 0.6em; margin-top: var(--space-4); }
+  .filter-tab {
+    font-family: var(--font-display); font-weight: 700; font-size: 0.85rem;
+    padding: 0.55em 1.1em; border-radius: var(--radius-pill); border: 2px solid var(--color-navy);
+    background: transparent; color: var(--color-navy); cursor: pointer; transition: background var(--transition), color var(--transition);
+  }
+  .filter-tab.is-active, .filter-tab:hover { background: var(--color-navy); color: #fff; }
+
+  /* ---- Mediagrid ---- */
+  .media-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-4); }
+  @media (min-width: 700px) { .media-grid { grid-template-columns: repeat(3, 1fr); } }
+  .media-card { overflow: hidden; padding: 0; display: flex; flex-direction: column; }
+  .media-card-media { position: relative; aspect-ratio: 4/3; }
+  .media-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .media-card-tag {
+    position: absolute; top: 0.7em; left: 0.7em; font-family: var(--font-display); font-weight: 700;
+    font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.35em 0.8em;
+    border-radius: var(--radius-pill); background: var(--color-navy); color: #fff;
+  }
+  .media-card-play {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(0,8,112,0.15);
+  }
+  .media-card-play span {
+    width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,0.9);
+    display: flex; align-items: center; justify-content: center; color: var(--color-navy);
+  }
+  .media-card-body { padding: var(--space-3); flex: 1; display: flex; flex-direction: column; }
+  .media-card-date { font-size: 0.78rem; color: var(--color-ink-soft); font-weight: 600; margin-bottom: 0.3em; }
+  .media-card-body h3 { font-size: 1.02rem; margin-bottom: 0.5em; }
+  .media-card-link { margin-top: auto; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; color: var(--color-navy); text-decoration: none; }
+  .media-card-link:hover { text-decoration: underline; }
+  .media-note { font-size: 0.85rem; color: var(--color-ink-soft); font-style: italic; margin-top: var(--space-2); }
+
+  /* ---- Fotobibliotheek ---- */
+  .photo-library { background: var(--color-bg-alt); }
+  .photo-library h2 .highlight { color: var(--color-green); }
+  .photo-masonry { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6em; margin-top: var(--space-4); }
+  @media (max-width: 760px) { .photo-masonry { grid-template-columns: repeat(2, 1fr); } }
+  .photo-masonry button {
+    padding: 0; border: none; background: none; cursor: pointer; border-radius: var(--radius-md); overflow: hidden;
+    aspect-ratio: 1; display: block;
+  }
+  .photo-masonry img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform var(--transition); }
+  .photo-masonry button:hover img { transform: scale(1.05); }
+
+  /* ---- Lightbox ---- */
+  .lightbox {
+    position: fixed; inset: 0; background: rgba(0,8,112,0.9); z-index: 100;
+    display: none; align-items: center; justify-content: center; padding: var(--space-4);
+  }
+  .lightbox.is-open { display: flex; }
+  .lightbox img { max-width: min(900px, 92vw); max-height: 86vh; border-radius: var(--radius-md); box-shadow: var(--shadow-soft); }
+  .lightbox-close {
+    position: absolute; top: var(--space-3); right: var(--space-3); width: 44px; height: 44px;
+    border-radius: 50%; background: #fff; color: var(--color-navy); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <img class="blob-edge is-right" src="assets/blob-pink-clean.png" alt="" style="--blob-w:130px; --blob-top:20%;">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo-mark"><img src="assets/logo.png" alt="NextGen AI logo"></a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="workshops.html">Workshops</a></li>
+        <li><a href="partnerprogramma.html">Partnerprogramma</a></li>
+        <li><a href="inbeeld.html" class="is-active">In beeld</a></li>
+        <li><a href="overons.html">Over ons</a></li>
+        <li><a href="index.html#faq">Veelgestelde vragen</a></li>
+      </ul>
+    </nav>
+    <div class="nav-ctas">
+      <a href="partnerprogramma.html" class="btn btn-outline-light">Word partner</a>
+      <a href="workshops.html" class="btn btn-cta-large">
+        Boek een workshop
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <button type="button" class="hamburger" id="hamburgerBtn" aria-label="Menu openen" aria-expanded="false" aria-controls="mobileMenu">
+      <svg class="icon-menu" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <ul>
+        <li><a class="nav-link" href="workshops.html">Workshops</a></li>
+        <li><a class="nav-link" href="partnerprogramma.html">Partnerprogramma</a></li>
+        <li><a class="nav-link" href="inbeeld.html">In beeld</a></li>
+        <li><a class="nav-link" href="overons.html">Over ons</a></li>
+        <li><a class="nav-link" href="index.html#faq">Veelgestelde vragen</a></li>
+      </ul>
+      <div class="mobile-menu-ctas">
+        <a href="partnerprogramma.html" class="btn btn-outline-light" style="border-color:var(--color-navy-ink); color:#fff; background:rgba(255,255,255,0.08);">Word partner</a>
+        <a href="workshops.html" class="btn btn-cta-large">
+          Boek een workshop
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="page-hero container">
+    <span class="eyebrow">Media en impact</span>
+    <h1>In beeld.</h1>
+    <p class="intro">Verslagen, foto's en video's van NextGen AI-workshops en events. Klik op een tegel voor het volledige verhaal.</p>
+  </section>
+
+  <!-- FILTER + MEDIAGRID -->
+  <section class="section-tight container">
+    <div class="filter-tabs" id="filterTabs">
+      <button type="button" class="filter-tab is-active" data-filter="alles">Alles</button>
+      <button type="button" class="filter-tab" data-filter="workshops">Workshops</button>
+      <button type="button" class="filter-tab" data-filter="video">Video</button>
+      <button type="button" class="filter-tab" data-filter="media">In de media</button>
+      <button type="button" class="filter-tab" data-filter="fotos">Foto's</button>
+    </div>
+
+    <div class="media-grid" id="mediaGrid">
+      <article class="card media-card" data-category="workshops">
+        <div class="media-card-media">
+          <img src="assets/hero-photo-3.jpg" alt="AI for Kids workshop in de klas">
+          <span class="media-card-tag">Workshopverslag</span>
+        </div>
+        <div class="media-card-body">
+          <span class="media-card-date">Voorbeeld · april 2026</span>
+          <h3>Een middag AI for Kids: hoe een groep 7 hun eigen AI-assistent bouwde</h3>
+          <a href="#" class="media-card-link">Lees meer →</a>
+        </div>
+      </article>
+
+      <article class="card media-card" data-category="workshops">
+        <div class="media-card-media">
+          <img src="assets/hero-photo-1.jpg" alt="Workshopgroep aan het werk">
+          <span class="media-card-tag">Workshopverslag</span>
+        </div>
+        <div class="media-card-body">
+          <span class="media-card-date">Voorbeeld · maart 2026</span>
+          <h3>Bibliotheek boekt drie workshops op rij voor de meivakantie</h3>
+          <a href="#" class="media-card-link">Lees meer →</a>
+        </div>
+      </article>
+
+      <article class="card media-card" data-category="video">
+        <div class="media-card-media">
+          <img src="assets/hero-photo-4.jpg" alt="AI Hackathon video">
+          <span class="media-card-tag">Video</span>
+          <span class="media-card-play"><span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5Z" fill="currentColor"/></svg>
+          </span></span>
+        </div>
+        <div class="media-card-body">
+          <span class="media-card-date">Voorbeeld · februari 2026</span>
+          <h3>Sfeerbeelden van de AI Hackathon</h3>
+          <a href="#" class="media-card-link">Bekijk video →</a>
+        </div>
+      </article>
+
+      <article class="card media-card" data-category="media">
+        <div class="media-card-media">
+          <img src="assets/hero-photo-2.jpg" alt="NextGen AI in de media">
+          <span class="media-card-tag">In de media</span>
+        </div>
+        <div class="media-card-body">
+          <span class="media-card-date">Voorbeeld · januari 2026</span>
+          <h3>Lokale krant over de opkomst van AI-educatie op bibliotheken</h3>
+          <a href="#" class="media-card-link">Lees meer →</a>
+        </div>
+      </article>
+
+      <article class="card media-card" data-category="video">
+        <div class="media-card-media">
+          <img src="assets/hero-photo-2.jpg" alt="Interview over impact">
+          <span class="media-card-tag">Video</span>
+          <span class="media-card-play"><span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5Z" fill="currentColor"/></svg>
+          </span></span>
+        </div>
+        <div class="media-card-body">
+          <span class="media-card-date">Voorbeeld · 2025</span>
+          <h3>Een trainer over waarom vroeg kennismaken met AI belangrijk is</h3>
+          <a href="#" class="media-card-link">Bekijk video →</a>
+        </div>
+      </article>
+
+      <article class="card media-card" data-category="workshops">
+        <div class="media-card-media">
+          <img src="assets/hero-photo-4.jpg" alt="AI Hackathon groepsfoto">
+          <span class="media-card-tag">Workshopverslag</span>
+        </div>
+        <div class="media-card-body">
+          <span class="media-card-date">Voorbeeld · 2025</span>
+          <h3>Terugblik: de eerste AI Hackathon van dit seizoen</h3>
+          <a href="#" class="media-card-link">Lees meer →</a>
+        </div>
+      </article>
+    </div>
+    <p class="media-note">De items hierboven zijn voorbeeldcontent, ter illustratie van de opzet. Vervang ze door echte verslagen, video's en persberichten zodra die er zijn.</p>
+  </section>
+
+  <!-- FOTOBIBLIOTHEEK -->
+  <section class="section photo-library">
+    <div class="container">
+      <span class="eyebrow">Fotobibliotheek</span>
+      <h2>Beelden van <span class="highlight">onze events en missie</span>.</h2>
+      <p style="max-width:60ch;">Klik op een foto om deze vergroot te bekijken.</p>
+
+      <div class="photo-masonry" id="photoMasonry">
+        <button type="button" data-full="assets/hero-photo-1.jpg"><img src="assets/hero-photo-1.jpg" alt="AI for Kids workshop"></button>
+        <button type="button" data-full="assets/hero-photo-2.jpg"><img src="assets/hero-photo-2.jpg" alt="NextGen AI op een evenement"></button>
+        <button type="button" data-full="assets/hero-photo-3.jpg"><img src="assets/hero-photo-3.jpg" alt="Samenwerken tijdens een workshop"></button>
+        <button type="button" data-full="assets/hero-photo-4.jpg"><img src="assets/hero-photo-4.jpg" alt="AI Hackathon"></button>
+      </div>
+      <p class="media-note">Deze fotobibliotheek groeit mee: er komen meer foto's bij naarmate er meer workshops en events zijn geweest.</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="lightbox" id="lightbox">
+  <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Sluiten">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+  </button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<footer id="contact">
+  <div class="footer-cta">
+    <div class="container">
+      <span class="eyebrow">Contact</span>
+      <h2>Neem contact met ons op.</h2>
+      <p class="intro">Kies hieronder waar uw vraag over gaat.</p>
+
+      <div class="contact-choice">
+        <a href="partnerprogramma.html" class="choice-card">
+          <span class="choice-title"><span class="dot" style="background:var(--color-green);"></span>Ik wil partner worden</span>
+          <p>Een doorlopend lesprogramma onder eigen naam, inclusief software en ondersteuning.</p>
+          <span class="choice-link-btn">
+            <span class="choice-link-label">Neem contact op</span>
+            <span class="choice-link-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
+        </a>
+        <a href="workshops.html" class="choice-card">
+          <span class="choice-title"><span class="dot" style="background:var(--color-cyan);"></span>Ik wil een workshop boeken</span>
+          <p>Eén programma, één datum, direct resultaat voor een groep kinderen.</p>
+          <span class="choice-link-btn">
+            <span class="choice-link-label">Boek een workshop</span>
+            <span class="choice-link-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-legal">
+    <img class="blob-edge is-right" src="assets/blob-cyan-clean.png" alt="" style="--blob-w:200px; top:auto; bottom:-30px;">
+    <div class="container footer-grid">
+      <div class="footer-brand-col">
+        <img src="assets/logo.png" alt="NextGen AI" style="height:128px; margin-bottom:var(--space-2); margin-left:-14px;">
+        <p style="color:rgba(255,255,255,0.6); font-size:0.9rem; max-width:32ch;">Elk kind toegang geven tot AI-educatie, zodat zij morgen de oplossingen creëren die de toekomst nodig heeft.</p>
+      </div>
+      <div>
+        <h4>Sitemap</h4>
+        <ul>
+          <li><a href="workshops.html">Workshops</a></li>
+          <li><a href="partnerprogramma.html">Partnerprogramma</a></li>
+          <li><a href="inbeeld.html">In beeld</a></li>
+          <li><a href="overons.html">Over ons</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Organisatie</h4>
+        <ul>
+          <li>ACTNOW B.V.</li>
+          <li>info@nextgen-ai.club</li>
+          <li>+31 (0)00 000 00 00</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Juridisch</h4>
+        <ul>
+          <li><a href="#">Privacyverklaring</a></li>
+          <li><a href="#">Cookiebeleid</a></li>
+          <li><a href="#">Algemene voorwaarden</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>&copy; 2026 NextGen AI, onderdeel van ACTNOW B.V.</span>
+      <span>Prototype in beeld-pagina · versie 0.2</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobiel hamburgermenu
+  (function () {
+    var btn = document.getElementById('hamburgerBtn');
+    var menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    function close() {
+      btn.classList.remove('is-open');
+      menu.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      btn.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  })();
+
+  // Filtertabs voor de mediagrid
+  (function () {
+    var tabs = document.querySelectorAll('.filter-tab');
+    var cards = document.querySelectorAll('.media-card');
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        tabs.forEach(function (t) { t.classList.remove('is-active'); });
+        tab.classList.add('is-active');
+        var filter = tab.getAttribute('data-filter');
+        cards.forEach(function (card) {
+          var show = filter === 'alles' || card.getAttribute('data-category') === filter;
+          card.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  })();
+
+  // Lightbox voor de fotobibliotheek
+  (function () {
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = document.getElementById('lightboxImg');
+    var closeBtn = document.getElementById('lightboxClose');
+    document.querySelectorAll('#photoMasonry button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        lightboxImg.src = btn.getAttribute('data-full');
+        lightbox.classList.add('is-open');
+      });
+    });
+    function close() { lightbox.classList.remove('is-open'); lightboxImg.src = ''; }
+    closeBtn.addEventListener('click', close);
+    lightbox.addEventListener('click', function (e) { if (e.target === lightbox) close(); });
+    window.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  })();
+
+</script>
+</body>
+</html>

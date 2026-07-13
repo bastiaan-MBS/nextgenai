@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Over ons: het team en de missie van NextGen AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  .page-hero { padding-block: var(--space-6) var(--space-5); }
+  .page-hero .intro { font-size: 1.1rem; max-width: 62ch; }
+
+  /* ---- Ontstaan ---- */
+  .story-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-4); margin-top: var(--space-4); align-items: center; }
+  @media (min-width: 900px) { .story-layout { grid-template-columns: 1fr 1fr; } }
+  .story-stat { display: flex; gap: var(--space-3); margin-top: var(--space-3); }
+  .story-stat .figure { font-family: var(--font-display); font-weight: 700; font-size: 2.4rem; color: var(--color-navy); }
+  .story-stat .label { font-size: 0.9rem; color: var(--color-ink-soft); max-width: 20ch; }
+  .story-photo { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-soft); }
+  .story-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ---- Missie ---- */
+  .mission-quote { max-width: 74ch; font-size: 1.1rem; line-height: 1.6; }
+
+  /* ---- Team ---- */
+  .team-photo-note { font-size: 0.85rem; color: var(--color-ink-soft); font-style: italic; margin-top: 0.5em; max-width: 60ch; }
+  .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); margin-top: var(--space-4); }
+  @media (min-width: 700px) { .team-grid { grid-template-columns: repeat(4, 1fr); } }
+  .team-card { text-align: center; padding: var(--space-3); }
+  .team-avatar {
+    position: relative; width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 0.7em;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; color: #fff;
+  }
+  .team-avatar-icon {
+    position: absolute; bottom: -4px; right: -4px; width: 26px; height: 26px; border-radius: 50%;
+    background: #fff; color: var(--color-ink-soft); border: 2px solid var(--color-bg);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .team-avatar-icon svg { width: 14px; height: 14px; }
+  .team-card .team-name { font-family: var(--font-display); font-weight: 700; font-size: 1rem; margin-bottom: 0.2em; }
+  .team-card .team-role { font-size: 0.85rem; color: var(--color-ink-soft); }
+  .team-group { grid-column: 1 / -1; margin-top: var(--space-3); }
+  .team-group h3 { font-size: 1rem; margin-bottom: var(--space-2); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <img class="blob-edge is-right" src="assets/blob-pink-clean.png" alt="" style="--blob-w:130px; --blob-top:20%;">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo-mark"><img src="assets/logo.png" alt="NextGen AI logo"></a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="workshops.html">Workshops</a></li>
+        <li><a href="partnerprogramma.html">Partnerprogramma</a></li>
+        <li><a href="inbeeld.html">In beeld</a></li>
+        <li><a href="overons.html" class="is-active">Over ons</a></li>
+        <li><a href="index.html#faq">Veelgestelde vragen</a></li>
+      </ul>
+    </nav>
+    <div class="nav-ctas">
+      <a href="partnerprogramma.html" class="btn btn-outline-light">Word partner</a>
+      <a href="workshops.html" class="btn btn-cta-large">
+        Boek een workshop
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <button type="button" class="hamburger" id="hamburgerBtn" aria-label="Menu openen" aria-expanded="false" aria-controls="mobileMenu">
+      <svg class="icon-menu" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <ul>
+        <li><a class="nav-link" href="workshops.html">Workshops</a></li>
+        <li><a class="nav-link" href="partnerprogramma.html">Partnerprogramma</a></li>
+        <li><a class="nav-link" href="inbeeld.html">In beeld</a></li>
+        <li><a class="nav-link" href="overons.html">Over ons</a></li>
+        <li><a class="nav-link" href="index.html#faq">Veelgestelde vragen</a></li>
+      </ul>
+      <div class="mobile-menu-ctas">
+        <a href="partnerprogramma.html" class="btn btn-outline-light" style="border-color:var(--color-navy-ink); color:#fff; background:rgba(255,255,255,0.08);">Word partner</a>
+        <a href="workshops.html" class="btn btn-cta-large">
+          Boek een workshop
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- PAGE HERO -->
+  <section class="page-hero container">
+    <span class="eyebrow">Over ons</span>
+    <h1>Tien jaar digitale jeugdeducatie, nu met AI.</h1>
+    <p class="intro">
+      NextGen AI is geen haastig opgezet lespakket. We bouwen al meer dan tien jaar aan
+      digitale jeugdeducatie en zetten die ervaring nu in om kinderen veilig en kritisch
+      met AI te leren omgaan.
+    </p>
+  </section>
+
+  <!-- ONTSTAAN -->
+  <section class="section-tight container">
+    <div class="story-layout">
+      <div>
+        <span class="eyebrow">Het ontstaan</span>
+        <h2>Begonnen vanuit digitale jeugdeducatie.</h2>
+        <p style="max-width:56ch;">
+          NextGen AI komt voort uit ACTNOW B.V., dat sinds 2016 werkt aan digitale
+          vaardigheden voor kinderen. Toen AI in hoog tempo onderdeel werd van het leven
+          van kinderen, was de volgende stap voor ons duidelijk: dezelfde aanpak, dezelfde
+          zorgvuldigheid, nu gericht op AI-educatie.
+        </p>
+        <div class="story-stat">
+          <div><span class="figure">10+</span></div>
+          <div class="label">jaar ervaring in digitale jeugdeducatie</div>
+        </div>
+      </div>
+      <div class="story-photo">
+        <img src="assets/hero-photo-3.jpg" alt="Kinderen tijdens een NextGen AI workshop">
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSIE -->
+  <section class="section on-dark">
+    <div class="container">
+      <span class="eyebrow">Onze missie</span>
+      <h2>Elk kind de kans geven om met AI de toekomst te vormen.</h2>
+      <p class="mission-quote">
+        Gedreven door authenticiteit, zelfstandigheid en actie zetten wij ons in om elk
+        kind de kans te geven met AI de toekomst te vormen. Technologie is voor ons niet
+        alleen een middel om talenten te ontdekken en creativiteit te stimuleren, maar ook
+        een instrument om gelijkheid te bevorderen. We dagen kinderen uit om verder te
+        kijken, te experimenteren, fouten te maken en te groeien: zodat persoonlijke groei
+        en waardering geen privilege zijn, maar een recht.
+      </p>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section-tight container">
+    <span class="eyebrow">Het team</span>
+    <h2>Een klein team, met een grote missie.</h2>
+    <p style="max-width:60ch;">We houden het team bewust klein en werken samen met een vaste groep trainers.</p>
+    <p class="team-photo-note">De gekleurde cirkels zijn placeholders voor profielfoto's. Zodra er echte foto's zijn, komen die hiervoor in de plaats.</p>
+
+    <div class="team-grid">
+      <div class="card team-card">
+        <span class="team-avatar" style="background:var(--color-pink);">G<span class="team-avatar-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 0 1 2-2h1l1-2h8l1 2h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
+        </span></span>
+        <div class="team-name">Geraldine</div>
+        <div class="team-role">CEO</div>
+      </div>
+      <div class="card team-card">
+        <span class="team-avatar" style="background:var(--color-green);">P<span class="team-avatar-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 0 1 2-2h1l1-2h8l1 2h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
+        </span></span>
+        <div class="team-name">Peter</div>
+        <div class="team-role">CGO</div>
+      </div>
+      <div class="card team-card">
+        <span class="team-avatar" style="background:var(--color-navy);">B<span class="team-avatar-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 0 1 2-2h1l1-2h8l1 2h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
+        </span></span>
+        <div class="team-name">Bastiaan</div>
+        <div class="team-role">CPO</div>
+      </div>
+      <div class="card team-card">
+        <span class="team-avatar" style="background:var(--color-yellow); color:var(--color-navy);">D<span class="team-avatar-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 0 1 2-2h1l1-2h8l1 2h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
+        </span></span>
+        <div class="team-name">Daniel</div>
+        <div class="team-role">Tech support</div>
+      </div>
+
+      <div class="team-group">
+        <h3>Trainers</h3>
+      </div>
+      <div class="card team-card">
+        <span class="team-avatar" style="background:var(--color-cyan); color:var(--color-navy);">L<span class="team-avatar-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 0 1 2-2h1l1-2h8l1 2h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
+        </span></span>
+        <div class="team-name">Laurens</div>
+        <div class="team-role">Trainer</div>
+      </div>
+      <div class="card team-card">
+        <span class="team-avatar" style="background:var(--color-red);">S<span class="team-avatar-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 0 1 2-2h1l1-2h8l1 2h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
+        </span></span>
+        <div class="team-name">Sjors</div>
+        <div class="team-role">Trainer</div>
+      </div>
+      <div class="card team-card">
+        <span class="team-avatar" style="background:var(--color-navy);">JW<span class="team-avatar-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 0 1 2-2h1l1-2h8l1 2h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
+        </span></span>
+        <div class="team-name">Jan-Willem</div>
+        <div class="team-role">Trainer</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="footer-cta">
+    <div class="container">
+      <span class="eyebrow">Contact</span>
+      <h2>Neem contact met ons op.</h2>
+      <p class="intro">Kies hieronder waar uw vraag over gaat.</p>
+
+      <div class="contact-choice">
+        <a href="partnerprogramma.html" class="choice-card">
+          <span class="choice-title"><span class="dot" style="background:var(--color-green);"></span>Ik wil partner worden</span>
+          <p>Een doorlopend lesprogramma onder eigen naam, inclusief software en ondersteuning.</p>
+          <span class="choice-link-btn">
+            <span class="choice-link-label">Neem contact op</span>
+            <span class="choice-link-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
+        </a>
+        <a href="workshops.html" class="choice-card">
+          <span class="choice-title"><span class="dot" style="background:var(--color-cyan);"></span>Ik wil een workshop boeken</span>
+          <p>Eén programma, één datum, direct resultaat voor een groep kinderen.</p>
+          <span class="choice-link-btn">
+            <span class="choice-link-label">Boek een workshop</span>
+            <span class="choice-link-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-legal">
+    <img class="blob-edge is-right" src="assets/blob-cyan-clean.png" alt="" style="--blob-w:200px; top:auto; bottom:-30px;">
+    <div class="container footer-grid">
+      <div class="footer-brand-col">
+        <img src="assets/logo.png" alt="NextGen AI" style="height:128px; margin-bottom:var(--space-2); margin-left:-14px;">
+        <p style="color:rgba(255,255,255,0.6); font-size:0.9rem; max-width:32ch;">Elk kind toegang geven tot AI-educatie, zodat zij morgen de oplossingen creëren die de toekomst nodig heeft.</p>
+      </div>
+      <div>
+        <h4>Sitemap</h4>
+        <ul>
+          <li><a href="workshops.html">Workshops</a></li>
+          <li><a href="partnerprogramma.html">Partnerprogramma</a></li>
+          <li><a href="inbeeld.html">In beeld</a></li>
+          <li><a href="overons.html">Over ons</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Organisatie</h4>
+        <ul>
+          <li>ACTNOW B.V.</li>
+          <li>info@nextgen-ai.club</li>
+          <li>+31 (0)00 000 00 00</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Juridisch</h4>
+        <ul>
+          <li><a href="#">Privacyverklaring</a></li>
+          <li><a href="#">Cookiebeleid</a></li>
+          <li><a href="#">Algemene voorwaarden</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>&copy; 2026 NextGen AI, onderdeel van ACTNOW B.V.</span>
+      <span>Prototype over ons-pagina · versie 0.1</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById('hamburgerBtn');
+    var menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    function close() {
+      btn.classList.remove('is-open');
+      menu.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      btn.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  })();
+</script>
+</body>
+</html>

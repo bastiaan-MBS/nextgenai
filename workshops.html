@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workshops: AI-workshops voor kinderen van 8 tot 15 jaar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  /* Paginaspecifieke opmaak. Algemene tokens en de header/footer-CSS staan
+     sitewide in css/styles.css, zodat elke pagina er identiek uitziet. */
+
+  .page-hero { padding-block: var(--space-6) var(--space-5); }
+  .page-hero .intro { font-size: 1.1rem; max-width: 60ch; }
+  .page-chips { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-top: var(--space-3); }
+  .page-chips span {
+    background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-pill);
+    padding: 0.5em 1.1em; font-size: 0.88rem; font-weight: 600; color: var(--color-navy);
+  }
+
+  /* ---- Vijf themaworkshops: elk een volledige rij, onder elkaar ---- */
+  .workshop-row {
+    display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-4);
+  }
+
+  .workshop-card {
+    background: var(--color-surface); border: 2px solid var(--color-navy); border-radius: var(--radius-lg);
+    padding: var(--space-4); display: grid; grid-template-columns: 1fr; gap: var(--space-3);
+  }
+  @media (min-width: 700px) {
+    .workshop-card { grid-template-columns: 1.15fr 1fr; align-items: start; }
+  }
+  .workshop-card.wc-theme-navy   { --wc-color: #000870; --wc-ink: #fff;     --wc-tint: rgba(0,8,112,0.06); }
+  .workshop-card.wc-theme-red    { --wc-color: #ff595d; --wc-ink: #fff;     --wc-tint: rgba(255,89,93,0.09); }
+  .workshop-card.wc-theme-cyan   { --wc-color: #18e6ee; --wc-ink: #000870;  --wc-tint: rgba(24,230,238,0.14); }
+  .workshop-card.wc-theme-yellow { --wc-color: #f8c838; --wc-ink: #000870; --wc-tint: rgba(248,200,56,0.16); }
+  .workshop-card.wc-theme-green  { --wc-color: #6fb31a; --wc-ink: #000870; --wc-tint: rgba(111,179,26,0.14); }
+  .workshop-card { border-color: var(--wc-color, var(--color-navy)); }
+
+  .wc-tag {
+    display: inline-block; font-family: var(--font-display); font-weight: 700; font-size: 0.78rem;
+    letter-spacing: 0.08em; text-transform: uppercase; padding: 0.3em 0.8em; border-radius: var(--radius-pill);
+    margin-bottom: var(--space-2); background: var(--wc-color, var(--color-bg-alt)); color: var(--wc-ink, var(--color-navy));
+  }
+  .wc-heading { display: flex; align-items: center; gap: 0.6em; margin-bottom: var(--space-2); }
+  .wc-icon {
+    flex-shrink: 0; width: 42px; height: 42px; border-radius: 50%; background: var(--wc-color, var(--color-navy));
+    display: flex; align-items: center; justify-content: center; color: var(--wc-ink, #fff);
+  }
+  .wc-icon svg { width: 22px; height: 22px; }
+  .wc-heading h3 { margin: 0; }
+
+  .wc-photo { border-radius: var(--radius-md); overflow: hidden; margin-bottom: var(--space-2); max-height: 195px; }
+  .wc-photo img { width: 100%; height: 195px; object-fit: cover; display: block; }
+  .wc-photo-placeholder {
+    width: 100%; height: 195px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.4em; position: relative; background: var(--wc-tint, var(--color-bg-alt));
+  }
+  .wc-photo-placeholder svg { width: 36px; height: 36px; color: var(--wc-color, var(--color-navy)); opacity: 0.85; }
+  .wc-photo-placeholder .ph-label {
+    font-size: 0.68rem; font-weight: 600; color: rgba(11,16,48,0.55); background: rgba(255,255,255,0.75);
+    padding: 0.25em 0.6em; border-radius: var(--radius-pill); position: absolute; bottom: 0.4em; left: 0.4em;
+  }
+
+  /* ---- Boekingsmodule (rechts, omkaderd in themakleur) ---- */
+  .wc-booking { border: 2px solid var(--wc-color, var(--color-navy)); background: var(--wc-tint, var(--color-bg-alt)); border-radius: var(--radius-md); padding: var(--space-3); align-self: stretch; }
+  .wc-stat { display: flex; justify-content: space-between; gap: var(--space-2); padding-block: 0.5em; border-bottom: 1px solid rgba(11,16,48,0.12); font-size: 0.9rem; }
+  .wc-stat:last-of-type { border-bottom: none; }
+  .wc-stat .wc-label { font-weight: 600; color: var(--color-ink-soft); }
+  .wc-stat .wc-value { text-align: right; font-weight: 600; color: var(--color-ink); }
+
+  .wc-highlights { list-style: none; margin: 0.7em 0; padding: 0; display: grid; gap: 0.4em; }
+  .wc-highlights li { display: flex; gap: 0.5em; font-size: 0.86rem; color: var(--color-ink); align-items: flex-start; }
+  .wc-highlights li::before { content: "＋"; color: var(--wc-color, var(--color-navy)); font-weight: 700; flex-shrink: 0; }
+
+  .wc-price-tiers { margin-top: var(--space-2); padding-top: var(--space-2); border-top: 2px solid var(--wc-color, var(--color-navy)); }
+  .wc-price-lead { display: flex; align-items: baseline; gap: 0.5em; }
+  .wc-price-lead .wc-price-figure { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: var(--color-navy); }
+  .wc-price-lead .wc-price-note { font-size: 0.76rem; color: var(--color-ink-soft); }
+  .wc-price-tier-list { margin: 0.5em 0 0; padding: 0; list-style: none; display: grid; gap: 0.3em; }
+  .wc-price-tier-list li { font-size: 0.8rem; color: var(--color-ink-soft); display: flex; justify-content: space-between; gap: 0.5em; }
+  .wc-price-tier-list strong { color: var(--color-ink); font-weight: 700; }
+
+  .wc-option-note { font-size: 0.82rem; color: var(--color-ink-soft); margin-top: var(--space-2); }
+  .btn-book-toggle {
+    width: 100%; justify-content: center; margin-top: var(--space-3); font-size: 1rem; padding: 0.9em 1.4em;
+    background: var(--wc-color, var(--color-navy)); border-color: var(--wc-color, var(--color-navy)); color: var(--wc-ink, #fff);
+  }
+  .btn-book-toggle:hover { filter: brightness(0.95); }
+
+  /* ---- Inklapbaar boekingsformulier (winkelmandje-stijl) ---- */
+  .wc-booking-slot {
+    grid-column: 1 / -1;
+    display: grid; grid-template-rows: 0fr; opacity: 0;
+    transition: grid-template-rows 420ms cubic-bezier(.4,0,.2,1), opacity 320ms ease, margin-top 420ms cubic-bezier(.4,0,.2,1);
+  }
+  .wc-booking-slot > div { overflow: hidden; }
+  .wc-booking-slot.is-open { grid-template-rows: 1fr; opacity: 1; margin-top: var(--space-2); }
+  .wc-slot-inner { border-top: 2px dashed var(--color-line); padding-top: var(--space-3); }
+
+  /* Compact label boven het formulier (welke workshop) en een prijsindicatie
+     die logisch bij het veld "Aantal kinderen" hoort. */
+  .wc-booking-header { margin-bottom: 0.8rem; }
+  .wc-booking-header .wcs-name-tag {
+    display: inline-block; background: var(--wc-color, var(--color-navy)); color: var(--wc-ink, #fff);
+    font-family: var(--font-display); font-weight: 700; font-size: 0.82rem;
+    padding: 0.4em 0.9em; border-radius: var(--radius-pill);
+  }
+  .bk-price-live {
+    display: inline-block; margin-top: 0.4em; font-family: var(--font-display); font-weight: 700;
+    font-size: 0.82rem; color: var(--wc-ink, var(--color-navy)); background: var(--wc-color, var(--color-bg-alt));
+    padding: 0.3em 0.8em; border-radius: var(--radius-pill);
+  }
+
+  /* ---- Hackathon en Family Festival: aparte feature-blokken ---- */
+  .feature-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-3); }
+  .feature-card {
+    background: var(--color-navy); color: #fff; border-radius: var(--radius-lg); padding: var(--space-4);
+    display: grid; grid-template-columns: 1fr; gap: var(--space-3);
+  }
+  @media (min-width: 700px) { .feature-card { grid-template-columns: 1.1fr 1fr; } }
+  .feature-card h3, .feature-card .wc-label { color: #fff; }
+  .feature-card p { color: rgba(255,255,255,0.78); }
+  .feature-card .wc-value { color: #fff; }
+  .feature-card .wc-stat { border-bottom-color: rgba(255,255,255,0.18); }
+  .feature-card .wc-booking { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.3); }
+  .feature-card .wc-price-tiers { border-top-color: var(--color-yellow); }
+  .feature-card .wc-price-lead .wc-price-figure { color: var(--color-yellow); }
+  .feature-card .wc-price-lead .wc-price-note { color: rgba(255,255,255,0.6); }
+  .feature-card .btn-book-toggle { background: var(--color-yellow); border-color: var(--color-yellow); color: var(--color-navy); }
+  .feature-card .wc-tag { background: var(--color-yellow); color: var(--color-navy); }
+  .feature-card .wc-icon { background: var(--color-yellow); color: var(--color-navy); }
+  .feature-card .wc-booking-slot { color: var(--color-ink); }
+  .feature-card .wc-slot-inner { border-top-color: rgba(255,255,255,0.25); }
+
+  /* Hackathon: groen-blauwe gradient, gelieerd aan de Junior AI League */
+  .feature-card.hackathon-gradient {
+    background: linear-gradient(135deg, #1c8c4a 0%, #0a5c7a 55%, #000870 100%);
+  }
+  .feature-card.hackathon-gradient .wc-tag { background: var(--color-green); color: #fff; }
+  .feature-card.hackathon-gradient .wc-icon { background: var(--color-green); color: #fff; }
+  .feature-card.hackathon-gradient .wc-price-tiers { border-top-color: var(--color-green); }
+  .feature-card.hackathon-gradient .wc-price-lead .wc-price-figure { color: #fff; }
+  .feature-card.hackathon-gradient .btn-book-toggle { background: var(--color-green); border-color: var(--color-green); color: #fff; }
+
+  /* ---- Word-partner uitnodiging ---- */
+  .partner-invite {
+    background: var(--color-bg-alt); border: 2px solid var(--color-line); border-radius: var(--radius-lg);
+    padding: var(--space-4); margin-top: var(--space-5);
+    display: grid; grid-template-columns: 1fr; gap: var(--space-3); align-items: center;
+  }
+  @media (min-width: 800px) { .partner-invite { grid-template-columns: 1.3fr auto; } }
+  .partner-invite h3 { margin-bottom: 0.3em; }
+  .partner-invite p { margin: 0; max-width: 60ch; }
+
+  /* ---- Testimonials (hergebruikt van de homepage) ---- */
+  .testi-carousel { display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-5); }
+  .testi-arrow {
+    flex-shrink: 0; width: 46px; height: 46px; border-radius: 50%;
+    border: 2px solid var(--color-navy); background: #fff; color: var(--color-navy);
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    transition: background var(--transition), color var(--transition), transform var(--transition);
+  }
+  .testi-arrow:hover { background: var(--color-navy); color: #fff; }
+  .testi-arrow:active { transform: scale(0.94); }
+  .testi-arrow svg { width: 20px; height: 20px; }
+  .testi-viewport { flex: 1; position: relative; height: 320px; overflow: visible; touch-action: pan-y; padding-bottom: 12px; }
+  .testi-track { position: relative; width: 100%; height: 100%; }
+  .testi-slide {
+    position: absolute; bottom: 12px; left: 50%; width: min(440px, 84vw);
+    background: var(--color-navy); border-radius: var(--radius-lg); padding: var(--space-4);
+    box-shadow: var(--shadow-soft); cursor: pointer; transform-origin: bottom center;
+    transition: transform 450ms cubic-bezier(.4,0,.2,1), opacity 450ms;
+  }
+  .testi-slide .quote { color: #fff; font-size: 1.0rem; }
+  .testi-meta { display: flex; align-items: center; gap: 0.7em; margin-top: var(--space-2); }
+  .testi-avatar {
+    width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--color-navy);
+  }
+  .testi-name { font-weight: 600; font-size: 0.92rem; color: #fff; }
+  .testi-role { color: rgba(255,255,255,0.65); font-size: 0.85rem; }
+
+  @media (max-width: 700px) { .testi-viewport { height: 360px; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <img class="blob-edge is-right" src="assets/blob-pink-clean.png" alt="" style="--blob-w:130px; --blob-top:20%;">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo-mark"><img src="assets/logo.png" alt="NextGen AI logo"></a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="workshops.html" class="is-active">Workshops</a></li>
+        <li><a href="partnerprogramma.html">Partnerprogramma</a></li>
+        <li><a href="inbeeld.html">In beeld</a></li>
+        <li><a href="overons.html">Over ons</a></li>
+        <li><a href="index.html#faq">Veelgestelde vragen</a></li>
+      </ul>
+    </nav>
+    <div class="nav-ctas">
+      <a href="partnerprogramma.html" class="btn btn-outline-light">Word partner</a>
+      <a href="workshops.html" class="btn btn-cta-large">
+        Boek een workshop
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <button type="button" class="hamburger" id="hamburgerBtn" aria-label="Menu openen" aria-expanded="false" aria-controls="mobileMenu">
+      <svg class="icon-menu" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <ul>
+        <li><a class="nav-link" href="workshops.html">Workshops</a></li>
+        <li><a class="nav-link" href="partnerprogramma.html">Partnerprogramma</a></li>
+        <li><a class="nav-link" href="inbeeld.html">In beeld</a></li>
+        <li><a class="nav-link" href="overons.html">Over ons</a></li>
+        <li><a class="nav-link" href="index.html#faq">Veelgestelde vragen</a></li>
+      </ul>
+      <div class="mobile-menu-ctas">
+        <a href="partnerprogramma.html" class="btn btn-outline-light" style="border-color:var(--color-navy-ink); color:#fff; background:rgba(255,255,255,0.08);">Word partner</a>
+        <a href="workshops.html" class="btn btn-cta-large">
+          Boek een workshop
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- PAGE HERO -->
+  <section class="page-hero container">
+    <span class="eyebrow">Workshops</span>
+    <h1>Kies de workshop die past bij uw groep.</h1>
+    <p class="intro">
+      Van een eerste kennismaking met AI tot een intensieve hackathon: NextGen AI biedt
+      zeven workshops voor kinderen van 8 tot 15 jaar. Direct te boeken, of eerst
+      uitbreiden naar een doorlopend partnerprogramma.
+    </p>
+    <div class="page-chips">
+      <span>7 workshops</span>
+      <span>8 t/m 15 jaar</span>
+      <span>Vanaf € 395</span>
+      <span>In heel Nederland</span>
+    </div>
+  </section>
+
+  <!-- VIJF THEMAWORKSHOPS: elk een volledige rij -->
+  <section class="section-tight container">
+    <div class="workshop-row" id="workshopRow">
+
+      <article class="card workshop-card wc-theme-navy" data-workshop="AI for Kids workshop">
+        <div>
+          <span class="wc-tag">Basis</span>
+          <div class="wc-heading">
+            <span class="wc-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.5.4.8 1 .8 1.6v.5h5.4v-.5c0-.6.3-1.2.8-1.6A6 6 0 0 0 12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <h3>AI for Kids workshop</h3>
+          </div>
+          <div class="wc-photo"><img src="assets/hero-photo-1.jpg" alt="Kinderen tijdens de AI for Kids workshop"></div>
+          <p>Een toegankelijke basisworkshop waarin kinderen voor het eerst kennismaken met
+            generatieve AI. Ze ontdekken wat een taalmodel is, hoe het werkt en waar de
+            grenzen liggen. Onder begeleiding bouwen ze stap voor stap hun eigen
+            AI-assistent, die ze aan het eind aan de groep laten zien. Er is nadrukkelijk
+            ruimte voor vragen over veilig en verantwoord gebruik.</p>
+        </div>
+        <div class="wc-booking">
+          <div class="wc-stat"><span class="wc-label">Doelgroep</span><span class="wc-value">8 t/m 15 jaar</span></div>
+          <div class="wc-stat"><span class="wc-label">Duur</span><span class="wc-value">2 uur</span></div>
+          <div class="wc-stat"><span class="wc-label">Op locatie nodig</span><span class="wc-value">Laptops, wifi, scherm</span></div>
+          <ul class="wc-highlights">
+            <li>Kennismaken met generatieve AI</li>
+            <li>Zelf een AI-assistent bouwen</li>
+            <li>Presenteren aan de groep</li>
+          </ul>
+          <div class="wc-price-tiers">
+            <div class="wc-price-lead"><span class="wc-price-figure">Vanaf € 395</span><span class="wc-price-note">excl. reiskosten en btw</span></div>
+          </div>
+          <p class="wc-option-note">Uit te breiden naar een lessenreeks van 6 lessen, prijs op aanvraag.</p>
+          <button type="button" class="btn btn-book-toggle" data-workshop="AI for Kids workshop" data-price-base="395" data-price-large="595" data-tier-threshold="16">Boek deze workshop</button>
+        </div>
+        <div class="wc-booking-slot" data-slot="AI for Kids workshop"><div></div></div>
+      </article>
+
+      <article class="card workshop-card wc-theme-red" data-workshop="AI Music workshop">
+        <div>
+          <span class="wc-tag">Muziek</span>
+          <div class="wc-heading">
+            <span class="wc-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9 18V5l10-2v13M9 18a3 3 0 1 1-3-3 3 3 0 0 1 3 3Zm10-2a3 3 0 1 1-3-3 3 3 0 0 1 3 3Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <h3>AI Music workshop</h3>
+          </div>
+          <div class="wc-photo"><div class="wc-photo-placeholder">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 18V5l10-2v13M9 18a3 3 0 1 1-3-3 3 3 0 0 1 3 3Zm10-2a3 3 0 1 1-3-3 3 3 0 0 1 3 3Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="ph-label">Voorbeeldbeeld, echte foto volgt</span>
+          </div></div>
+          <p>Kinderen ontdekken hoe AI kan helpen bij het maken van muziek. Ze experimenteren
+            met AI-tools om beats, melodieën en samples te genereren, en zetten die zelf in
+            elkaar tot een eigen track. Aan het eind luistert de groep gezamenlijk naar
+            elkaars creaties.</p>
+        </div>
+        <div class="wc-booking">
+          <div class="wc-stat"><span class="wc-label">Doelgroep</span><span class="wc-value">8 t/m 15 jaar</span></div>
+          <div class="wc-stat"><span class="wc-label">Duur</span><span class="wc-value">2 uur</span></div>
+          <div class="wc-stat"><span class="wc-label">Op locatie nodig</span><span class="wc-value">Laptops, wifi, scherm</span></div>
+          <ul class="wc-highlights">
+            <li>Beats en melodieën maken met AI</li>
+            <li>Een eigen track samenstellen</li>
+            <li>Luisteren naar elkaars werk</li>
+          </ul>
+          <div class="wc-price-tiers">
+            <div class="wc-price-lead"><span class="wc-price-figure">Vanaf € 395</span><span class="wc-price-note">excl. reiskosten en btw</span></div>
+          </div>
+          <button type="button" class="btn btn-book-toggle" data-workshop="AI Music workshop" data-price-base="395" data-price-large="595" data-tier-threshold="16">Boek deze workshop</button>
+        </div>
+        <div class="wc-booking-slot" data-slot="AI Music workshop"><div></div></div>
+      </article>
+
+      <article class="card workshop-card wc-theme-cyan" data-workshop="AI Story workshop">
+        <div>
+          <span class="wc-tag">Verhaal</span>
+          <div class="wc-heading">
+            <span class="wc-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5V6a2 2 0 0 1 2-2h5v16H6a2 2 0 0 0-2 2Zm16-15.5H13v16h5a2 2 0 0 1 2 2V4Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <h3>AI Story workshop</h3>
+          </div>
+          <div class="wc-photo"><div class="wc-photo-placeholder">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5V6a2 2 0 0 1 2-2h5v16H6a2 2 0 0 0-2 2Zm16-15.5H13v16h5a2 2 0 0 1 2 2V4Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="ph-label">Voorbeeldbeeld, echte foto volgt</span>
+          </div></div>
+          <p>Kinderen schrijven met hulp van AI hun eigen verhaal. Ze bedenken personages en
+            een plot, en ontdekken hoe AI kan meedenken over wendingen, dialogen en sfeer,
+            zonder dat het de creativiteit overneemt. Aan het eind heeft iedereen een eigen
+            kort verhaal geschreven.</p>
+        </div>
+        <div class="wc-booking">
+          <div class="wc-stat"><span class="wc-label">Doelgroep</span><span class="wc-value">8 t/m 15 jaar</span></div>
+          <div class="wc-stat"><span class="wc-label">Duur</span><span class="wc-value">2 uur</span></div>
+          <div class="wc-stat"><span class="wc-label">Op locatie nodig</span><span class="wc-value">Laptops, wifi, scherm</span></div>
+          <ul class="wc-highlights">
+            <li>Personage en plot bedenken</li>
+            <li>Schrijven met AI als hulpmiddel</li>
+            <li>Een eigen kort verhaal afronden</li>
+          </ul>
+          <div class="wc-price-tiers">
+            <div class="wc-price-lead"><span class="wc-price-figure">Vanaf € 395</span><span class="wc-price-note">excl. reiskosten en btw</span></div>
+          </div>
+          <button type="button" class="btn btn-book-toggle" data-workshop="AI Story workshop" data-price-base="395" data-price-large="595" data-tier-threshold="16">Boek deze workshop</button>
+        </div>
+        <div class="wc-booking-slot" data-slot="AI Story workshop"><div></div></div>
+      </article>
+
+      <article class="card workshop-card wc-theme-yellow" data-workshop="AI Game workshop">
+        <div>
+          <span class="wc-tag">Game</span>
+          <div class="wc-heading">
+            <span class="wc-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 9v4M5 11h4m5-1h.01M17 12h.01M6 7h12a3 3 0 0 1 3 3.4l-.7 5A3 3 0 0 1 17.3 18c-.8 0-1.5-.3-2-.9L14 15h-4l-1.3 2.1c-.5.6-1.2.9-2 .9a3 3 0 0 1-3-2.6l-.7-5A3 3 0 0 1 6 7Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <h3>AI Game workshop</h3>
+          </div>
+          <div class="wc-photo"><div class="wc-photo-placeholder">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M7 9v4M5 11h4m5-1h.01M17 12h.01M6 7h12a3 3 0 0 1 3 3.4l-.7 5A3 3 0 0 1 17.3 18c-.8 0-1.5-.3-2-.9L14 15h-4l-1.3 2.1c-.5.6-1.2.9-2 .9a3 3 0 0 1-3-2.6l-.7-5A3 3 0 0 1 6 7Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="ph-label">Voorbeeldbeeld, echte foto volgt</span>
+          </div></div>
+          <p>Kinderen ontwerpen met AI hun eigen game-idee of level. Ze bedenken een concept,
+            laten AI meedenken over personages, werelden en regels, en zien hun idee tot
+            leven komen op het scherm. Aan het eind speelt de groep elkaars levels.</p>
+        </div>
+        <div class="wc-booking">
+          <div class="wc-stat"><span class="wc-label">Doelgroep</span><span class="wc-value">8 t/m 15 jaar</span></div>
+          <div class="wc-stat"><span class="wc-label">Duur</span><span class="wc-value">2 uur</span></div>
+          <div class="wc-stat"><span class="wc-label">Op locatie nodig</span><span class="wc-value">Laptops, wifi, scherm</span></div>
+          <ul class="wc-highlights">
+            <li>Een game-concept bedenken</li>
+            <li>AI inzetten voor personages en werelden</li>
+            <li>Het eigen level testen en spelen</li>
+          </ul>
+          <div class="wc-price-tiers">
+            <div class="wc-price-lead"><span class="wc-price-figure">Vanaf € 395</span><span class="wc-price-note">excl. reiskosten en btw</span></div>
+          </div>
+          <p class="wc-option-note">Uit te breiden naar een lessenreeks van 6 lessen, prijs op aanvraag.</p>
+          <button type="button" class="btn btn-book-toggle" data-workshop="AI Game workshop" data-price-base="395" data-price-large="595" data-tier-threshold="16">Boek deze workshop</button>
+        </div>
+        <div class="wc-booking-slot" data-slot="AI Game workshop"><div></div></div>
+      </article>
+
+      <article class="card workshop-card wc-theme-green" data-workshop="AI Arts workshop">
+        <div>
+          <span class="wc-tag">Kunst</span>
+          <div class="wc-heading">
+            <span class="wc-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 20 15 9M18 3l3 3-3.5 3.5-3-3ZM4 20l1.5-4.5L11 10l3 3-5.5 5.5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <h3>AI Arts workshop</h3>
+          </div>
+          <div class="wc-photo"><div class="wc-photo-placeholder">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 20 15 9M18 3l3 3-3.5 3.5-3-3ZM4 20l1.5-4.5L11 10l3 3-5.5 5.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="ph-label">Voorbeeldbeeld, echte foto volgt</span>
+          </div></div>
+          <p>Kinderen maken met AI hun eigen visuele kunstwerk. Ze experimenteren met
+            AI-beeldtools, ontdekken hoe prompts werken, en leren waar menselijke
+            creativiteit en AI elkaar versterken. Aan het eind heeft iedereen een eigen
+            kunstwerk gemaakt om mee naar huis te nemen.</p>
+        </div>
+        <div class="wc-booking">
+          <div class="wc-stat"><span class="wc-label">Doelgroep</span><span class="wc-value">8 t/m 15 jaar</span></div>
+          <div class="wc-stat"><span class="wc-label">Duur</span><span class="wc-value">2 uur</span></div>
+          <div class="wc-stat"><span class="wc-label">Op locatie nodig</span><span class="wc-value">Laptops, wifi, scherm</span></div>
+          <ul class="wc-highlights">
+            <li>Experimenteren met AI-beeldtools</li>
+            <li>Een eigen kunstwerk maken</li>
+            <li>Ontdekken wat AI wel en niet kan</li>
+          </ul>
+          <div class="wc-price-tiers">
+            <div class="wc-price-lead"><span class="wc-price-figure">Vanaf € 395</span><span class="wc-price-note">excl. reiskosten en btw</span></div>
+          </div>
+          <button type="button" class="btn btn-book-toggle" data-workshop="AI Arts workshop" data-price-base="395" data-price-large="595" data-tier-threshold="16">Boek deze workshop</button>
+        </div>
+        <div class="wc-booking-slot" data-slot="AI Arts workshop"><div></div></div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- HACKATHON EN FAMILY FESTIVAL: aparte feature-blokken -->
+  <section class="section-tight container">
+    <span class="eyebrow">Voor gevorderde groepen en grote evenementen</span>
+    <h2>Hackathon en Family Festival.</h2>
+    <div class="feature-grid">
+
+      <article class="feature-card hackathon-gradient" data-workshop="AI Hackathon">
+        <div>
+          <span class="wc-tag">Gevorderd</span>
+          <div class="wc-heading">
+            <span class="wc-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <h3>AI Hackathon</h3>
+          </div>
+          <div class="wc-photo"><img src="assets/hero-photo-4.jpg" alt="Kinderen tijdens de AI Hackathon achter laptops"></div>
+          <p>Een intensieve sessie waarin kinderen in teams een AI-uitdaging aanpakken.
+            Onder begeleiding van een senior trainer werken ze van idee tot werkend
+            prototype, met alle educatiematerialen, de NextGen AI software en de benodigde
+            AI-tools inbegrepen. Aan het eind presenteert elk team de eigen oplossing.</p>
+        </div>
+        <div class="wc-booking">
+          <div class="wc-stat"><span class="wc-label">Doelgroep</span><span class="wc-value">8 t/m 15 jaar</span></div>
+          <div class="wc-stat"><span class="wc-label">Duur</span><span class="wc-value">3 uur</span></div>
+          <div class="wc-stat"><span class="wc-label">Op locatie nodig</span><span class="wc-value">Laptops, wifi, scherm</span></div>
+          <ul class="wc-highlights">
+            <li>In teams werken aan een AI-uitdaging</li>
+            <li>Van idee tot werkend prototype</li>
+            <li>Presenteren aan elkaar</li>
+          </ul>
+          <div class="wc-price-tiers">
+            <div class="wc-price-lead"><span class="wc-price-figure">€ 495</span><span class="wc-price-note">excl. reiskosten en btw</span></div>
+          </div>
+          <button type="button" class="btn btn-book-toggle" data-workshop="AI Hackathon" data-price-base="495" data-price-large="495" data-tier-threshold="999">Boek deze workshop</button>
+        </div>
+        <div class="wc-booking-slot" data-slot="AI Hackathon"><div></div></div>
+      </article>
+
+      <article class="feature-card" data-workshop="AI Family Festival">
+        <div>
+          <span class="wc-tag">Op maat</span>
+          <div class="wc-heading">
+            <span class="wc-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="m12 2 2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3l-6.1 3.3 1.4-6.8-5.1-4.7 6.9-.8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            </span>
+            <h3>AI Family Festival</h3>
+          </div>
+          <div class="wc-photo"><img src="assets/hero-photo-2.jpg" alt="NextGen AI presentatie op een evenement"></div>
+          <p>Een uniek, op maat gemaakt eendaags festival met een divers aanbod van
+            AI-workshops, opstellingen en presentaties, voor kinderen én ouders.
+            We gaan graag in gesprek om een speciaal programma voor uw organisatie op te stellen.</p>
+        </div>
+        <div class="wc-booking">
+          <div class="wc-stat"><span class="wc-label">Doelgroep</span><span class="wc-value">Kinderen en ouders</span></div>
+          <div class="wc-stat"><span class="wc-label">Duur</span><span class="wc-value">1 dag</span></div>
+          <div class="wc-stat"><span class="wc-label">Op locatie nodig</span><span class="wc-value">In overleg</span></div>
+          <div class="wc-price-tiers">
+            <div class="wc-price-lead"><span class="wc-price-figure">Op aanvraag</span><span class="wc-price-note">samen op maat samengesteld</span></div>
+          </div>
+          <button type="button" class="btn btn-book-toggle" data-workshop="AI Family Festival" data-price-base="0" data-price-large="0" data-tier-threshold="999" data-on-request="true">Vraag het festival aan</button>
+        </div>
+        <div class="wc-booking-slot" data-slot="AI Family Festival"><div></div></div>
+      </article>
+
+
+    </div>
+
+    <!-- WORD PARTNER UITNODIGING -->
+    <div class="partner-invite">
+      <div>
+        <h3>Organiseert u dit vaker?</h3>
+        <p>Voor organisaties die regelmatig een workshop willen aanbieden is het
+          partnerprogramma vaak interessanter dan steeds een losse workshop boeken:
+          een eigen licentie, het volledige programma en een Train-de-Trainer, zodat u
+          het voortaan zelf kunt organiseren.</p>
+      </div>
+      <a href="partnerprogramma.html" class="btn btn-primary">Bekijk het partnerprogramma</a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (zelfde ervaringen als op de homepage) -->
+  <section class="section section-tight container">
+    <span class="eyebrow">Wat anderen zeggen</span>
+    <h2>Ervaringen van bibliotheken en organisaties.</h2>
+
+    <div class="testi-carousel">
+      <button type="button" class="testi-arrow" id="testiPrev" aria-label="Vorige ervaring">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="testi-viewport">
+        <div class="testi-track" id="testiTrack">
+          <article class="testi-slide">
+            <div class="stars" data-rating="5"><span class="stars-fill"></span></div>
+            <p class="quote">"De kinderen waren meteen actief bezig, geen moment saai. Precies wat we zochten voor onze zomervakantie-activiteiten."</p>
+            <div class="testi-meta">
+              <span class="testi-avatar" style="background:var(--color-cyan);">BR</span>
+              <div><div class="testi-name">Bibliotheek Rijnland</div><div class="testi-role">Programmeur digitale vaardigheden</div></div>
+            </div>
+          </article>
+          <article class="testi-slide">
+            <div class="stars" data-rating="4.5"><span class="stars-fill"></span></div>
+            <p class="quote">"Als partner kunnen we het programma nu structureel aanbieden, zonder dat we zelf AI-experts hoeven te zijn."</p>
+            <div class="testi-meta">
+              <span class="testi-avatar" style="background:var(--color-yellow);">JN</span>
+              <div><div class="testi-name">Jeugdorganisatie Noord</div><div class="testi-role">Partner sinds 2025</div></div>
+            </div>
+          </article>
+          <article class="testi-slide">
+            <div class="stars" data-rating="5"><span class="stars-fill"></span></div>
+            <p class="quote">"Veilig, begrijpelijk en verrassend leuk. Ouders vroegen achteraf zelf om een vervolgworkshop."</p>
+            <div class="testi-meta">
+              <span class="testi-avatar" style="background:var(--color-green);">BD</span>
+              <div><div class="testi-name">Bibliotheek Deventer</div><div class="testi-role">Coördinator jeugdprogrammering</div></div>
+            </div>
+          </article>
+          <article class="testi-slide">
+            <div class="stars" data-rating="5"><span class="stars-fill"></span></div>
+            <p class="quote">"Onze begeleiders konden zonder technische kennis meteen aan de slag. Precies de drempel die we nodig hadden weg te nemen."</p>
+            <div class="testi-meta">
+              <span class="testi-avatar" style="background:var(--color-pink);">BU</span>
+              <div><div class="testi-name">Bibliotheek Utrecht</div><div class="testi-role">Coördinator educatie</div></div>
+            </div>
+          </article>
+          <article class="testi-slide">
+            <div class="stars" data-rating="4.5"><span class="stars-fill"></span></div>
+            <p class="quote">"Een programma dat serieus met veiligheid omgaat, zonder dat het saai wordt voor de kinderen. Precies de balans die we zochten."</p>
+            <div class="testi-meta">
+              <span class="testi-avatar" style="background:var(--color-cyan);">JZ</span>
+              <div><div class="testi-name">Jeugdorganisatie Zuid-Holland</div><div class="testi-role">Programmamanager</div></div>
+            </div>
+          </article>
+          <article class="testi-slide">
+            <div class="stars" data-rating="5"><span class="stars-fill"></span></div>
+            <p class="quote">"We zijn gestart met één workshop en binnen een half jaar partner geworden. De opbouw voelde nergens geforceerd."</p>
+            <div class="testi-meta">
+              <span class="testi-avatar" style="background:var(--color-yellow);">BD2</span>
+              <div><div class="testi-name">Bibliotheek Drenthe</div><div class="testi-role">Hoofd jeugdprogrammering</div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <button type="button" class="testi-arrow" id="testiNext" aria-label="Volgende ervaring">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <template id="bookingTemplate">
+    <div class="wc-slot-inner">
+      <div class="wc-booking-header">
+        <span class="wcs-name-tag wc-cart-chip-label">U boekt: </span>
+      </div>
+      <form class="booking-slot-form" action="/formulier/workshop-boeking" method="POST" novalidate>
+        <input type="hidden" name="workshop" class="bk-workshop-field" value="">
+        <input type="hidden" name="_pagina" value="workshops">
+        <div class="field" style="position:absolute; left:-9999px;" aria-hidden="true">
+          <label>Laat dit veld leeg<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <div class="field-grid">
+          <div class="field"><label>Voornaam</label><input type="text" name="voornaam" autocomplete="given-name" required></div>
+          <div class="field"><label>Achternaam</label><input type="text" name="achternaam" autocomplete="family-name" required></div>
+          <div class="field"><label>Organisatie</label><input type="text" name="organisatie" required></div>
+          <div class="field">
+            <label>Regio</label>
+            <select name="regio">
+              <option value="">Kies een provincie</option>
+              <option>Groningen</option><option>Friesland</option><option>Drenthe</option>
+              <option>Overijssel</option><option>Flevoland</option><option>Gelderland</option>
+              <option>Utrecht</option><option>Noord-Holland</option><option>Zuid-Holland</option>
+              <option>Zeeland</option><option>Noord-Brabant</option><option>Limburg</option>
+            </select>
+          </div>
+          <div class="field"><label>E-mailadres</label><input type="email" name="email" autocomplete="email" required></div>
+          <div class="field"><label>Telefoonnummer</label><input type="tel" name="telefoon" autocomplete="tel" required></div>
+          <div class="field"><label>Gewenste datum</label><input type="date" name="gewenste_datum"></div>
+          <div class="field"><label>Alternatieve datum</label><input type="date" name="alternatieve_datum"></div>
+          <div class="field">
+            <label>Aantal kinderen</label>
+            <input type="number" class="bk-aantal-field" name="aantal_kinderen" min="1" placeholder="Bijvoorbeeld 30" required>
+            <span class="bk-price-live"></span>
+          </div>
+          <div class="field"><label>Leeftijd of groep van de kinderen</label><input type="text" name="leeftijd_groep" placeholder="Bijvoorbeeld 10 t/m 12 jaar, groep 7"></div>
+          <div class="field field-full"><label>Locatie</label><input type="text" name="locatie" placeholder="Adres of plaats waar de workshop plaatsvindt" required></div>
+          <div class="field"><label>Factuur t.n.v. (bedrijfsnaam)</label><input type="text" name="factuur_naam"></div>
+          <div class="field"><label>KvK- of btw-nummer (optioneel)</label><input type="text" name="kvk_btw"></div>
+          <div class="field field-full"><label>Factuuradres</label><input type="text" name="factuuradres" placeholder="Straat, huisnummer, postcode en plaats"></div>
+          <div class="field field-full"><label>Aanvullende wensen of opmerkingen</label><textarea name="opmerkingen" rows="3"></textarea></div>
+        </div>
+        <button type="submit" class="btn btn-primary">Boekingsaanvraag versturen</button>
+        <p class="form-note">We reageren doorgaans binnen twee werkdagen om de datum te bevestigen.</p>
+        <div class="form-success"><span>✓</span><span>Bedankt voor uw aanvraag. We nemen snel contact op om de datum te bevestigen.</span></div>
+        <div class="form-error"><span>!</span><span>Er ging iets mis bij het versturen. Probeer het opnieuw of mail ons direct op <a href="mailto:info@nextgen-ai.club">info@nextgen-ai.club</a>.</span></div>
+      </form>
+    </div>
+  </template>
+
+</main>
+
+<footer id="contact">
+  <!-- FOOTER CTA (wit, sitewide identiek): twee duidelijke vervolgstappen i.p.v. een formulier -->
+  <div class="footer-cta">
+    <div class="container">
+      <span class="eyebrow">Contact</span>
+      <h2>Neem contact met ons op.</h2>
+      <p class="intro">Kies hieronder waar uw vraag over gaat.</p>
+
+      <div class="contact-choice">
+        <a href="partnerprogramma.html" class="choice-card">
+          <span class="choice-title"><span class="dot" style="background:var(--color-green);"></span>Ik wil partner worden</span>
+          <p>Een doorlopend lesprogramma onder eigen naam, inclusief software en ondersteuning.</p>
+          <span class="choice-link-btn">
+            <span class="choice-link-label">Neem contact op</span>
+            <span class="choice-link-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
+        </a>
+        <a href="workshops.html" class="choice-card">
+          <span class="choice-title"><span class="dot" style="background:var(--color-cyan);"></span>Ik wil een workshop boeken</span>
+          <p>Eén programma, één datum, direct resultaat voor een groep kinderen.</p>
+          <span class="choice-link-btn">
+            <span class="choice-link-label">Boek een workshop</span>
+            <span class="choice-link-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER LEGAL (donkerblauw, sitewide identiek) -->
+  <div class="footer-legal">
+    <img class="blob-edge is-right" src="assets/blob-cyan-clean.png" alt="" style="--blob-w:200px; top:auto; bottom:-30px;">
+    <div class="container footer-grid">
+      <div class="footer-brand-col">
+        <img src="assets/logo.png" alt="NextGen AI" style="height:128px; margin-bottom:var(--space-2); margin-left:-14px;">
+        <p style="color:rgba(255,255,255,0.6); font-size:0.9rem; max-width:32ch;">Elk kind toegang geven tot AI-educatie, zodat zij morgen de oplossingen creëren die de toekomst nodig heeft.</p>
+      </div>
+      <div>
+        <h4>Sitemap</h4>
+        <ul>
+          <li><a href="workshops.html">Workshops</a></li>
+          <li><a href="partnerprogramma.html">Partnerprogramma</a></li>
+          <li><a href="inbeeld.html">In beeld</a></li>
+          <li><a href="overons.html">Over ons</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Organisatie</h4>
+        <ul>
+          <li>ACTNOW B.V.</li>
+          <li>info@nextgen-ai.club</li>
+          <li>+31 (0)00 000 00 00</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Juridisch</h4>
+        <ul>
+          <li><a href="#">Privacyverklaring</a></li>
+          <li><a href="#">Cookiebeleid</a></li>
+          <li><a href="#">Algemene voorwaarden</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>&copy; 2026 NextGen AI, onderdeel van ACTNOW B.V.</span>
+      <span>Prototype workshoppagina · versie 0.2</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobiel hamburgermenu
+  (function () {
+    var btn = document.getElementById('hamburgerBtn');
+    var menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    function close() {
+      btn.classList.remove('is-open');
+      menu.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      btn.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  })();
+
+  // Sterren vullen op basis van data-rating (ondersteunt halve sterren)
+  document.querySelectorAll('.stars').forEach(function (el) {
+    var rating = parseFloat(el.getAttribute('data-rating')) || 0;
+    var pct = Math.max(0, Math.min(5, rating)) / 5 * 100;
+    var fill = el.querySelector('.stars-fill');
+    if (fill) fill.style.width = pct + '%';
+    el.setAttribute('aria-label', rating + ' van 5 sterren');
+  });
+
+  // Testimonial-carrousel (zelfde gedrag als op de homepage)
+  (function () {
+    var track = document.getElementById('testiTrack');
+    if (!track) return;
+    var slides = Array.prototype.slice.call(track.querySelectorAll('.testi-slide'));
+    var n = slides.length;
+    var current = 0;
+
+    function normalize(rel) {
+      rel = ((rel % n) + n) % n;
+      if (rel > n / 2) rel -= n;
+      return rel;
+    }
+
+    function update() {
+      slides.forEach(function (slide, i) {
+        var rel = normalize(i - current);
+        var abs = Math.abs(rel);
+        var x, scale, opacity, z, pointer;
+        if (rel === 0) { x = 0; scale = 1; opacity = 1; z = 10; pointer = 'auto'; }
+        else if (abs === 1) { x = rel * 62; scale = 0.74; opacity = 0.5; z = 5; pointer = 'auto'; }
+        else { x = rel * 62; scale = 0.6; opacity = 0; z = 1; pointer = 'none'; }
+        slide.style.transform = 'translateX(-50%) translateX(' + x + '%) scale(' + scale + ')';
+        slide.style.opacity = opacity;
+        slide.style.zIndex = z;
+        slide.style.pointerEvents = pointer;
+      });
+    }
+
+    function go(dir) { current = ((current + dir) % n + n) % n; update(); }
+
+    document.getElementById('testiPrev').addEventListener('click', function () { go(-1); });
+    document.getElementById('testiNext').addEventListener('click', function () { go(1); });
+
+    slides.forEach(function (slide, i) {
+      slide.addEventListener('click', function () {
+        var rel = normalize(i - current);
+        if (rel !== 0) { current = i; update(); }
+      });
+    });
+
+    var startX = null;
+    var viewport = track.parentElement;
+    viewport.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+    viewport.addEventListener('touchend', function (e) {
+      if (startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      if (dx > 40) go(-1); else if (dx < -40) go(1);
+      startX = null;
+    });
+
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  // "Boek deze workshop": klapt direct onder de workshop een boekingsformulier
+  // uit (winkelmandje-stijl), met de gekozen workshop al ingevuld.
+  (function () {
+    var template = document.getElementById('bookingTemplate');
+    if (!template) return;
+
+    function closeSlot(slot) {
+      slot.classList.remove('is-open');
+      var card = slot.closest('.workshop-card, .feature-card');
+      var toggleBtn = card ? card.querySelector('.btn-book-toggle') : null;
+      if (toggleBtn) toggleBtn.textContent = toggleBtn.dataset.originalLabel || toggleBtn.textContent;
+      window.setTimeout(function () { slot.querySelector('div').innerHTML = ''; }, 420);
+    }
+
+    function openSlot(slot, workshopName, toggleBtn) {
+      var fragment = template.content.cloneNode(true);
+      var wrapper = slot.querySelector('div');
+      wrapper.innerHTML = '';
+      wrapper.appendChild(fragment);
+
+      var card = toggleBtn.closest('.workshop-card, .feature-card');
+      var cardStyle = window.getComputedStyle(card);
+      var wcColor = cardStyle.getPropertyValue('--wc-color').trim() || '#000870';
+      var wcInk = cardStyle.getPropertyValue('--wc-ink').trim() || '#fff';
+
+      var priceBase = parseFloat(toggleBtn.getAttribute('data-price-base')) || 0;
+      var priceLarge = parseFloat(toggleBtn.getAttribute('data-price-large')) || priceBase;
+      var tierThreshold = parseFloat(toggleBtn.getAttribute('data-tier-threshold')) || 16;
+      var onRequest = toggleBtn.getAttribute('data-on-request') === 'true';
+
+      var wcsNameTag = wrapper.querySelector('.wcs-name-tag');
+      wcsNameTag.style.background = wcColor;
+      wcsNameTag.style.color = wcInk;
+      wrapper.querySelector('.wc-cart-chip-label').textContent = 'U boekt: ' + workshopName;
+
+      var priceLiveEl = wrapper.querySelector('.bk-price-live');
+      priceLiveEl.style.background = wcColor;
+      priceLiveEl.style.color = wcInk;
+      var aantalField = wrapper.querySelector('.bk-aantal-field');
+
+      function formatPrice(n) { return '€ ' + n.toLocaleString('nl-NL'); }
+
+      function updatePrice() {
+        if (onRequest) {
+          priceLiveEl.textContent = 'Prijs op aanvraag';
+          return;
+        }
+        var aantal = parseInt(aantalField.value, 10);
+        if (!aantal || aantal < 1) {
+          priceLiveEl.textContent = 'Vanaf ' + formatPrice(priceBase);
+          return;
+        }
+        var price = aantal > tierThreshold ? priceLarge : priceBase;
+        var trainers = aantal > tierThreshold ? '2 trainers' : '1 trainer';
+        priceLiveEl.textContent = formatPrice(price) + ' · ' + aantal + ' kinderen, ' + trainers;
+      }
+
+      aantalField.addEventListener('input', updatePrice);
+      updatePrice();
+
+      wrapper.querySelector('.bk-workshop-field').value = workshopName;
+
+      var form = wrapper.querySelector('form');
+      var successEl = wrapper.querySelector('.form-success');
+      var errorEl = wrapper.querySelector('.form-error');
+      var submitBtn = form.querySelector('button[type="submit"]');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (form.website && form.website.value) return;
+
+        // Prototype: er is nog geen echte server, dus we sturen door zodra het
+        // formulier geldig is en versturen de data op de achtergrond. Zodra het
+        // echte endpoint bestaat: wacht dit `then`-blok af voordat je doorstuurt,
+        // en toon anders de foutmelding hieronder.
+        var voornaam = form.querySelector('[name="voornaam"]').value;
+        var params = new URLSearchParams({ type: 'workshop', workshop: workshopName, naam: voornaam });
+
+        fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } }).catch(function () {});
+        window.location.href = 'bedankt.html?' + params.toString();
+      });
+
+      slot.classList.add('is-open');
+      if (toggleBtn) { toggleBtn.dataset.originalLabel = toggleBtn.dataset.originalLabel || toggleBtn.textContent; toggleBtn.textContent = 'Verberg boekingsformulier'; }
+      window.setTimeout(function () { slot.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 200);
+    }
+
+    document.querySelectorAll('.btn-book-toggle').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var workshopName = btn.getAttribute('data-workshop');
+        var card = btn.closest('.workshop-card, .feature-card');
+        var slot = card.querySelector('.wc-booking-slot');
+        var alreadyOpenForThis = slot.classList.contains('is-open');
+
+        document.querySelectorAll('.wc-booking-slot.is-open').forEach(function (openSlotEl) {
+          if (openSlotEl !== slot) closeSlot(openSlotEl);
+        });
+
+        if (alreadyOpenForThis) { closeSlot(slot); } else { openSlot(slot, workshopName, btn); }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
