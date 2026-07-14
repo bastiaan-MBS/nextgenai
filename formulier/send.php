@@ -85,6 +85,10 @@ function verstuur_mail(PHPMailer $mail, array $config): void {
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->CharSet = 'UTF-8';
     $mail->isHTML(true);
+    // Voorkomt dat een onbereikbare SMTP-server het script (en de pagina van de
+    // bezoeker) minutenlang laat hangen tot aan een 504 Gateway Timeout.
+    $mail->Timeout = 10;
+    $mail->SMTPKeepAlive = false;
 }
 
 try {
