@@ -214,7 +214,7 @@
             <input type="hidden" name="_pagina" value="partnerprogramma">
             <div class="field" style="position:absolute; left:-9999px;" aria-hidden="true">
               <label for="pf-website">Laat dit veld leeg</label>
-              <input type="text" id="pf-website" name="website" tabindex="-1" autocomplete="off">
+              <input type="text" id="pf-website" name="nagi_controle" tabindex="-1" autocomplete="off">
             </div>
             <div class="field-grid">
               <div class="field"><label for="pf-voornaam">Voornaam</label><input type="text" id="pf-voornaam" name="voornaam" autocomplete="given-name" required></div>
@@ -488,7 +488,7 @@
     var errorEl = document.getElementById('introError');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (form.website && form.website.value) return;
+      if (form.nagi_controle && form.nagi_controle.value) return;
 
       var voornaam = form.querySelector('[name="voornaam"]').value;
       var params = new URLSearchParams({ type: 'partner', naam: voornaam });

@@ -44,8 +44,11 @@ function stuur_succes(): void {
     exit;
 }
 
-// Honeypot: bots vullen dit verborgen veld in, mensen niet.
-if (!empty($_POST['website'])) {
+// Honeypot: bots vullen dit verborgen veld in, mensen niet. Bewust geen naam
+// als "website" of "url" gebruikt: browsers/wachtwoordmanagers vullen dat
+// soort velden vaak automatisch in, ook als ze onzichtbaar zijn, waardoor
+// echte aanvragen ten onrechte als spam werden aangezien.
+if (!empty($_POST['nagi_controle'])) {
     stuur_succes();
 }
 
@@ -92,7 +95,7 @@ $veldLabels = [
 
 $velden = [];
 foreach ($_POST as $veld => $waarde) {
-    if (in_array($veld, ['website', '_pagina'], true) || trim((string) $waarde) === '') {
+    if (in_array($veld, ['nagi_controle', '_pagina'], true) || trim((string) $waarde) === '') {
         continue;
     }
     $velden[$veldLabels[$veld] ?? ucfirst(str_replace('_', ' ', $veld))] = $waarde;

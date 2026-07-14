@@ -592,7 +592,7 @@
         <input type="hidden" name="workshop" class="bk-workshop-field" value="">
         <input type="hidden" name="_pagina" value="workshops">
         <div class="field" style="position:absolute; left:-9999px;" aria-hidden="true">
-          <label>Laat dit veld leeg<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          <label>Laat dit veld leeg<input type="text" name="nagi_controle" tabindex="-1" autocomplete="off"></label>
         </div>
         <div class="field-grid">
           <div class="field"><label>Voornaam</label><input type="text" name="voornaam" autocomplete="given-name" required></div>
@@ -860,7 +860,7 @@
 
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        if (form.website && form.website.value) return;
+        if (form.nagi_controle && form.nagi_controle.value) return;
 
         var voornaam = form.querySelector('[name="voornaam"]').value;
         var params = new URLSearchParams({ type: 'workshop', workshop: workshopName, naam: voornaam });
