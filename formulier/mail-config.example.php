@@ -6,9 +6,9 @@
 return [
     'smtp_host' => 'mail.mbscs.nl',
     'smtp_port' => 587,
-    'smtp_username' => 'nextgen@mbscs.nl',
+    'smtp_username' => 'noreply@mbscs.nl',
     'smtp_password' => 'VUL_HIER_JE_WACHTWOORD_IN',
-    'from_email' => 'nextgen@mbscs.nl',
+    'from_email' => 'noreply@mbscs.nl',
     'from_name' => 'NextGen AI website',
     // Demo-fase: alle interne meldingen gaan naar dit testadres.
     // Bij livegang aanpassen naar het definitieve eigenaarsadres.
