@@ -484,18 +484,28 @@
     });
 
     var form = document.getElementById('introForm');
+    var submitBtn = document.getElementById('introSubmitBtn');
+    var errorEl = document.getElementById('introError');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (form.website && form.website.value) return;
 
-      // Prototype: er is nog geen echte server, dus we sturen door zodra het
-      // formulier geldig is en versturen de data op de achtergrond. Zodra het
-      // echte endpoint bestaat: wacht dit `then`-blok af voordat je doorstuurt.
       var voornaam = form.querySelector('[name="voornaam"]').value;
       var params = new URLSearchParams({ type: 'partner', naam: voornaam });
 
-      fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } }).catch(function () {});
-      window.location.href = 'bedankt.html?' + params.toString();
+      submitBtn.disabled = true;
+      errorEl.classList.remove('is-visible');
+
+      fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+          if (!data.success) throw new Error('Verzenden mislukt');
+          window.location.href = 'bedankt.html?' + params.toString();
+        })
+        .catch(function () {
+          submitBtn.disabled = false;
+          errorEl.classList.add('is-visible');
+        });
     });
   })();
 

@@ -14,21 +14,44 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $referer = $_SERVER['HTTP_REFERER'] ?? '/index.html';
 
-function terug_met_fout(string $referer): void {
+// De pagina roept dit endpoint aan via fetch() met Accept: application/json.
+// In dat geval antwoorden we met JSON zodat de pagina pas doorstuurt zodra de
+// mail echt is verstuurd. Zonder JavaScript (gewone POST) valt dit terug op
+// een redirect.
+function wil_json(): bool {
+    return isset($_SERVER['HTTP_ACCEPT']) && str_contains($_SERVER['HTTP_ACCEPT'], 'application/json');
+}
+
+function stuur_fout(string $referer): void {
+    if (wil_json()) {
+        header('Content-Type: application/json');
+        http_response_code(422);
+        echo json_encode(['success' => false]);
+        exit;
+    }
     $scheiding = str_contains($referer, '?') ? '&' : '?';
     header('Location: ' . $referer . $scheiding . 'formulier_status=fout');
     exit;
 }
 
-// Honeypot: bots vullen dit verborgen veld in, mensen niet.
-if (!empty($_POST['website'])) {
+function stuur_succes(): void {
+    if (wil_json()) {
+        header('Content-Type: application/json');
+        echo json_encode(['success' => true]);
+        exit;
+    }
     header('Location: bedankt.html');
     exit;
 }
 
+// Honeypot: bots vullen dit verborgen veld in, mensen niet.
+if (!empty($_POST['website'])) {
+    stuur_succes();
+}
+
 $configPad = __DIR__ . '/mail-config.php';
 if (!file_exists($configPad)) {
-    terug_met_fout($referer);
+    stuur_fout($referer);
 }
 $config = require $configPad;
 
@@ -38,7 +61,7 @@ $voornaam = trim($_POST['voornaam'] ?? '');
 $achternaam = trim($_POST['achternaam'] ?? '');
 
 if (!$email || $voornaam === '' || $achternaam === '') {
-    terug_met_fout($referer);
+    stuur_fout($referer);
 }
 
 $onderwerpen = [
@@ -114,8 +137,7 @@ try {
     $klantMail->AltBody = "Beste $voornaam,\n\nBedankt voor uw aanvraag. We hebben deze goed ontvangen en nemen binnenkort contact met u op.\n\nMet vriendelijke groet,\nTeam NextGen AI";
     $klantMail->send();
 } catch (Exception $e) {
-    terug_met_fout($referer);
+    stuur_fout($referer);
 }
 
-header('Location: bedankt.html');
-exit;
+stuur_succes();
