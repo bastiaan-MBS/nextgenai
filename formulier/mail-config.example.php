@@ -10,5 +10,10 @@ return [
     'smtp_password' => 'VUL_HIER_JE_WACHTWOORD_IN',
     'from_email' => 'nextgen@origyns.nl',
     'from_name' => 'NextGen AI website',
-    'to_email' => 'nextgen@origyns.nl',
+    // Demo-fase: alle interne meldingen gaan naar dit testadres.
+    // Bij livegang aanpassen naar het definitieve eigenaarsadres.
+    'owner_email' => 'bastiaan@mrbluesky.nl',
+    // Gebruikt om het logo in de HTML-mails op te halen.
+    // Demo-fase: subdomain van origyns.nl. Bij livegang aanpassen naar https://nextgen-ai.club
+    'site_url' => 'https://nextgen.origyns.nl',
 ];

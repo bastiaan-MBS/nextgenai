@@ -24,7 +24,8 @@ jobs:
               'smtp_password' => '${{ secrets.SMTP_PASSWORD }}',
               'from_email' => '${{ secrets.SMTP_USERNAME }}',
               'from_name' => 'NextGen AI website',
-              'to_email' => '${{ secrets.SMTP_USERNAME }}',
+              'owner_email' => 'bastiaan@mrbluesky.nl',
+              'site_url' => 'https://nextgen.origyns.nl',
           ];
           PHP
 

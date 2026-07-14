@@ -159,29 +159,67 @@ stuurt het formulier door zodra het geldig is ingevuld, en wordt de data op
 de achtergrond verstuurd.
 
 ## Formulieren
-Er zijn twee formulieren, allebei op dezelfde manier aangesloten:
-- Het boekingsformulier per workshop op `workshops.html` (klapt uit onder
-  de gekozen workshop, actie: `/formulier/workshop-boeking`).
-- Het kennismakingsformulier op `partnerprogramma.html` (actie: `/formulier/kennismaking`).
+Er zijn twee formulieren, allebei aangesloten op dezelfde verwerker:
+- Het boekingsformulier per workshop op `workshops.html`.
+- Het kennismakingsformulier op `partnerprogramma.html`.
 
-Voor beide geldt:
-- Pas het `action`-attribuut aan naar het echte verzend-endpoint op de server.
+Beide posten naar `formulier/send.php` (PHP-script, zie
+"Mailverwerking" hieronder). Voor beide geldt verder:
 - Alle velden hebben een `name`-attribuut dat als POST-data binnenkomt
   (voornaam, achternaam, email, telefoon, organisatie, regio, workshop,
   gewenste/alternatieve datum, aantal kinderen, leeftijd/groep, locatie,
   factuurgegevens, bericht/opmerkingen).
-- Beide werken met JavaScript (nette bevestiging via fetch) én zonder
-  JavaScript (gewone POST, action/method staan al goed).
 - Er zit een verborgen honeypot-veld (`website`) in voor basale
   spambescherming.
 - Bij een serverfout verschijnt een foutmelding met een directe
   mailto-link naar info@nextgen-ai.club, zodat er nooit een dode knop is.
 
+## Mailverwerking
+`formulier/send.php` verwerkt beide formulieren en verstuurt via SMTP
+(PHPMailer, bestanden in `lib/PHPMailer/`) twee e-mails per inzending:
+1. Een interne melding met alle ingevulde velden naar `owner_email`
+   (in de mail-config, momenteel het testadres `bastiaan@mrbluesky.nl`).
+2. Een HTML-bevestigingsmail naar het e-mailadres van de aanvrager, met een
+   overzicht van de aanvraag en de mededeling dat er binnenkort contact
+   wordt opgenomen.
+
+De HTML-templates staan in `formulier/mail-templates.php` (navy header met
+logo, kleurstreep in de merkkleuren, nette content-tabel).
+
+**SMTP-instellingen en het eigenaarsadres staan nooit in de repository**
+(deze is publiek op GitHub). In plaats daarvan genereert de GitHub Actions
+deploy-workflow (`.github/workflows/deploy.yml`) het bestand
+`formulier/mail-config.php` bij elke deploy, met de waarden uit de
+GitHub secrets `SMTP_HOST`, `SMTP_PORT`, `SMTP_USERNAME` en
+`SMTP_PASSWORD`. Zie `formulier/mail-config.example.php` voor de vorm van
+dit bestand (handig om lokaal te testen: kopieer het naar
+`formulier/mail-config.php` en vul het wachtwoord in — dit bestand staat in
+`.gitignore` en wordt dus nooit gecommit).
+
+## ⚠️ Demo-omgeving — belangrijk voor de livegang
+Deze site draait momenteel als **demo-omgeving** op het subdomain
+`nextgen.origyns.nl` (op de eigen DirectAdmin-server van Bastiaan), niet op
+het uiteindelijke domein. Zodra de site live gaat op het echte domein
+**`nextgen-ai.club`**, moet het volgende worden omgezet:
+- **DNS/hosting**: het domein `nextgen-ai.club` koppelen aan de juiste
+  server/hosting-omgeving.
+- **FTP-deploy**: `server-dir` in `.github/workflows/deploy.yml` aanpassen
+  naar het pad op de nieuwe server, en de secrets `FTP_SERVER`,
+  `FTP_USERNAME` en `FTP_PASSWORD` vervangen door de gegevens van de nieuwe
+  hosting.
+- **Mail-config**: `site_url` in de workflow (gebruikt voor het logo in de
+  HTML-mails) aanpassen naar `https://nextgen-ai.club`, en de
+  `SMTP_*`-secrets vervangen door een mailaccount op `nextgen-ai.club`.
+- **Eigenaarsadres**: `owner_email` in de workflow aanpassen van het
+  testadres `bastiaan@mrbluesky.nl` naar het definitieve adres waar
+  aanvragen binnen moeten komen.
+- De bestaande mailto-links in de code (`info@nextgen-ai.club`) kunnen
+  blijven staan, die verwijzen al naar het toekomstige domein.
+
 ## Volgende stappen
-1. Echte verzendlogica aan beide formulieren koppelen.
-2. Calendly-link en partnerlogo's/links vervangen door de echte gegevens.
-3. Teksten laten uitschrijven en aanscherpen.
-4. Eigen CMS bouwen zodat teksten, impactcijfers en testimonials buiten de
+1. Calendly-link en partnerlogo's/links vervangen door de echte gegevens.
+2. Teksten laten uitschrijven en aanscherpen.
+3. Eigen CMS bouwen zodat teksten, impactcijfers en testimonials buiten de
    code om aan te passen zijn.
-5. Project naar een GitHub-repository pushen, van daaruit builden en
-   deployen naar de live-omgeving.
+4. Bij livegang: alle punten onder "Demo-omgeving" hierboven doorlopen om
+   van `nextgen.origyns.nl` over te zetten naar `nextgen-ai.club`.
