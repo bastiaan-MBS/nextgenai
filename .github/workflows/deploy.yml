@@ -13,6 +13,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Genereer mail-config.php
+        run: |
+          cat > formulier/mail-config.php <<PHP
+          <?php
+          return [
+              'smtp_host' => '${{ secrets.SMTP_HOST }}',
+              'smtp_port' => ${{ secrets.SMTP_PORT }},
+              'smtp_username' => '${{ secrets.SMTP_USERNAME }}',
+              'smtp_password' => '${{ secrets.SMTP_PASSWORD }}',
+              'from_email' => '${{ secrets.SMTP_USERNAME }}',
+              'from_name' => 'NextGen AI website',
+              'to_email' => '${{ secrets.SMTP_USERNAME }}',
+          ];
+          PHP
+
       - name: Deploy via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
