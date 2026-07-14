@@ -593,7 +593,10 @@
       <form class="booking-slot-form" action="/formulier/send.php" method="POST" novalidate>
         <input type="hidden" name="workshop" class="bk-workshop-field" value="">
         <input type="hidden" name="_pagina" value="workshops">
-        <input type="hidden" name="_geopend" class="bk-geopend-field" value="">
+        <input type="hidden" name="_token" class="bk-token-field" value="">
+        <div class="field" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+          <label>Laat dit vinkje uit<input type="checkbox" name="_bevestig" tabindex="-1" autocomplete="off"></label>
+        </div>
         <div class="field-grid">
           <div class="field"><label>Voornaam</label><input type="text" name="voornaam" autocomplete="given-name" required></div>
           <div class="field"><label>Achternaam</label><input type="text" name="achternaam" autocomplete="family-name" required></div>
@@ -618,20 +621,21 @@
             <span class="bk-price-live"></span>
           </div>
           <div class="field"><label>Leeftijd of groep van de kinderen</label><input type="text" name="leeftijd_groep" placeholder="Bijvoorbeeld 10 t/m 12 jaar, groep 7" required></div>
-          <div class="field field-full"><label>Locatie</label><input type="text" class="bk-locatie-field" name="locatie" placeholder="Adres of plaats waar de workshop plaatsvindt" required></div>
           <div class="field"><label>Factuur t.n.v. (bedrijfsnaam, optioneel)</label><input type="text" name="factuur_naam"></div>
           <div class="field"><label>KvK- of btw-nummer</label><input type="text" name="kvk_btw" required></div>
+          <div class="field"><label>Postcode</label><input type="text" class="bk-factuur-postcode" name="factuur_postcode" autocomplete="postal-code" placeholder="1234 AB" required></div>
+          <div class="field"><label>Huisnummer</label><input type="text" class="bk-factuur-huisnummer" name="factuur_huisnummer" required></div>
+          <div class="field"><label>Straat</label><input type="text" class="bk-factuur-straat" name="factuur_straat" autocomplete="address-line1" required></div>
+          <div class="field"><label>Stad</label><input type="text" class="bk-factuur-stad" name="factuur_stad" autocomplete="address-level2" required></div>
           <div class="field field-full">
             <label class="field-checkbox">
-              <input type="checkbox" class="bk-zelfde-adres-veld" name="factuuradres_zelfde_locatie" value="ja" checked>
-              Factuuradres is hetzelfde als het adres van de workshoplocatie
+              <input type="checkbox" class="bk-zelfde-adres-veld" name="locatie_zelfde_factuuradres" value="ja" checked>
+              Locatieadres is hetzelfde als het factuuradres
             </label>
           </div>
-          <div class="field-grid bk-factuuradres-velden">
-            <div class="field"><label>Straat</label><input type="text" name="factuur_straat" autocomplete="address-line1"></div>
-            <div class="field"><label>Huisnummer</label><input type="text" name="factuur_huisnummer"></div>
-            <div class="field"><label>Postcode</label><input type="text" name="factuur_postcode" autocomplete="postal-code"></div>
-            <div class="field"><label>Stad</label><input type="text" name="factuur_stad" autocomplete="address-level2"></div>
+          <div class="field field-full bk-locatie-blok">
+            <label>Locatie</label>
+            <input type="text" class="bk-locatie-field" name="locatie" placeholder="Adres of plaats waar de workshop plaatsvindt">
           </div>
           <div class="field field-full"><label>Aanvullende wensen of opmerkingen</label><textarea name="opmerkingen" rows="3" required></textarea></div>
         </div>
@@ -868,24 +872,56 @@
       updatePrice();
 
       wrapper.querySelector('.bk-workshop-field').value = workshopName;
-      wrapper.querySelector('.bk-geopend-field').value = Date.now();
 
-      // Factuuradres: standaard hetzelfde als de workshoplocatie. Zodra dat
-      // uitgevinkt wordt, tonen en vereisen we de losse adresvelden.
+      // Tijd-token voor spambescherming: opgehaald bij de server, zodat
+      // send.php twee tijdstippen van dezelfde klok vergelijkt (zie
+      // formulier/send.php voor de uitleg waarom dit beter is dan een
+      // clientside timestamp).
+      var tokenField = wrapper.querySelector('.bk-token-field');
+      fetch('/formulier/token.php').then(function (r) { return r.json(); })
+        .then(function (data) { tokenField.value = data.token; })
+        .catch(function () {});
+
+      // Locatie: standaard hetzelfde als het factuuradres. Zodra dat
+      // uitgevinkt wordt, tonen en vereisen we het losse locatieveld.
       var zelfdeAdresVeld = wrapper.querySelector('.bk-zelfde-adres-veld');
-      var factuuradresBlok = wrapper.querySelector('.bk-factuuradres-velden');
-      var factuuradresInputs = factuuradresBlok.querySelectorAll('input');
+      var locatieBlok = wrapper.querySelector('.bk-locatie-blok');
+      var locatieInput = wrapper.querySelector('.bk-locatie-field');
 
-      function toggleFactuuradres() {
+      function toggleLocatie() {
         var zelfde = zelfdeAdresVeld.checked;
-        factuuradresBlok.classList.toggle('is-visible', !zelfde);
-        factuuradresInputs.forEach(function (input) {
-          if (zelfde) { input.removeAttribute('required'); input.value = ''; }
-          else { input.setAttribute('required', 'required'); }
-        });
+        locatieBlok.classList.toggle('is-visible', !zelfde);
+        if (zelfde) { locatieInput.removeAttribute('required'); locatieInput.value = ''; }
+        else { locatieInput.setAttribute('required', 'required'); }
       }
-      zelfdeAdresVeld.addEventListener('change', toggleFactuuradres);
-      toggleFactuuradres();
+      zelfdeAdresVeld.addEventListener('change', toggleLocatie);
+      toggleLocatie();
+
+      // Postcode-lookup (PDOK, gratis overheids-API): vult straat en stad
+      // automatisch in zodra postcode + huisnummer bekend zijn. Vult nooit
+      // een veld overschrijvend dat de bezoeker al zelf heeft ingevuld.
+      var postcodeField = wrapper.querySelector('.bk-factuur-postcode');
+      var huisnummerField = wrapper.querySelector('.bk-factuur-huisnummer');
+      var straatField = wrapper.querySelector('.bk-factuur-straat');
+      var stadField = wrapper.querySelector('.bk-factuur-stad');
+
+      function zoekAdresOp() {
+        var postcode = postcodeField.value.trim();
+        var huisnummer = huisnummerField.value.trim();
+        if (!/^[1-9][0-9]{3}\s?[A-Za-z]{2}$/.test(postcode) || !huisnummer) return;
+        var query = postcode.replace(/\s/g, '') + ' ' + huisnummer;
+        fetch('https://api.pdok.nl/bzk/locatieserver/search/v3_1/free?' + new URLSearchParams({ q: query, fq: 'type:adres', rows: 1 }))
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            var doc = data && data.response && data.response.docs && data.response.docs[0];
+            if (!doc) return;
+            if (!straatField.value) straatField.value = doc.straatnaam || '';
+            if (!stadField.value) stadField.value = doc.woonplaatsnaam || '';
+          })
+          .catch(function () {});
+      }
+      postcodeField.addEventListener('blur', zoekAdresOp);
+      huisnummerField.addEventListener('blur', zoekAdresOp);
 
       var form = wrapper.querySelector('form');
       var successEl = wrapper.querySelector('.form-success');

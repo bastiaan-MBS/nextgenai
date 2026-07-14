@@ -44,13 +44,30 @@ function stuur_succes(): void {
     exit;
 }
 
-// Er zit bewust geen geautomatiseerde spamdetectie (honeypot/tijd-check)
-// meer in: zowel een verborgen honeypot-veld als een tijd-check bleken
-// legitieme aanvragen te blokkeren zodra browser-autofill een formulier in
-// een fractie van een seconde invulde. Voor de demo-fase weegt
-// betrouwbaarheid zwaarder dan het beperkte spamrisico op een
-// laag-verkeer site. Vóór livegang: vervang dit door een echte CAPTCHA
-// (bv. Cloudflare Turnstile), die niet afhankelijk is van formuliertiming.
+// Spambescherming, twee lagen, allebei bewust ontworpen om nooit een echte
+// aanvraag te blokkeren:
+// 1. Checkbox-honeypot: onzichtbaar vinkje. Wachtwoordmanagers/autofill
+//    vullen wel eens tekstvelden, maar vinken vrijwel nooit uit zichzelf
+//    een checkbox aan.
+// 2. Tijd-token: formulier.php geeft bij het openen een servertijdstip mee
+//    (_token, via formulier/token.php). send.php vergelijkt dat met de
+//    huidige servertijd — dus twee metingen van dezelfde klok, in
+//    tegenstelling tot de eerdere versie die de kloktijd van de bezoeker
+//    (JS Date.now()) vergeleek met de serverklok. Als de klokken uiteen
+//    liepen, werd toen elke echte aanvraag onterecht als bot gezien.
+//    Ontbreekt het token (bv. JS uitgeschakeld of fetch geblokkeerd)? Dan
+//    slaan we deze check gewoon over, zodat het formulier ook zonder
+//    JavaScript blijft werken.
+if (!empty($_POST['_bevestig'])) {
+    stuur_succes();
+}
+$token = (int) ($_POST['_token'] ?? 0);
+if ($token > 0) {
+    $verstreken = microtime(true) * 1000 - $token;
+    if ($verstreken < 1200 || $verstreken > 3600000) {
+        stuur_succes();
+    }
+}
 
 $configPad = __DIR__ . '/mail-config.php';
 if (!file_exists($configPad)) {
@@ -87,11 +104,11 @@ $veldLabels = [
     'locatie' => 'Locatie',
     'factuur_naam' => 'Factuur t.n.v.',
     'kvk_btw' => 'KvK- of btw-nummer',
-    'factuuradres_zelfde_locatie' => 'Factuuradres is gelijk aan locatie',
-    'factuur_straat' => 'Factuuradres - straat',
-    'factuur_huisnummer' => 'Factuuradres - huisnummer',
     'factuur_postcode' => 'Factuuradres - postcode',
+    'factuur_huisnummer' => 'Factuuradres - huisnummer',
+    'factuur_straat' => 'Factuuradres - straat',
     'factuur_stad' => 'Factuuradres - stad',
+    'locatie_zelfde_factuuradres' => 'Locatie is gelijk aan factuuradres',
     'opmerkingen' => 'Opmerkingen',
     'bericht' => 'Bericht',
     'workshop' => 'Workshop',
@@ -99,7 +116,7 @@ $veldLabels = [
 
 $velden = [];
 foreach ($_POST as $veld => $waarde) {
-    if (in_array($veld, ['_geopend', '_pagina'], true) || trim((string) $waarde) === '') {
+    if (in_array($veld, ['_token', '_bevestig', '_pagina'], true) || trim((string) $waarde) === '') {
         continue;
     }
     $velden[$veldLabels[$veld] ?? ucfirst(str_replace('_', ' ', $veld))] = $waarde;

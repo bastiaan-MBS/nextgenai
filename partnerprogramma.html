@@ -212,7 +212,10 @@
         <div class="intro-fields-inner intro-fields-inner-wide">
           <form id="introForm" action="/formulier/send.php" method="POST" novalidate>
             <input type="hidden" name="_pagina" value="partnerprogramma">
-            <input type="hidden" name="_geopend" id="pf-geopend" value="">
+            <input type="hidden" name="_token" id="pf-token" value="">
+            <div class="field" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+              <label>Laat dit vinkje uit<input type="checkbox" name="_bevestig" tabindex="-1" autocomplete="off"></label>
+            </div>
             <div class="field-grid">
               <div class="field"><label for="pf-voornaam">Voornaam</label><input type="text" id="pf-voornaam" name="voornaam" autocomplete="given-name" required></div>
               <div class="field"><label for="pf-achternaam">Achternaam</label><input type="text" id="pf-achternaam" name="achternaam" autocomplete="family-name" required></div>
@@ -475,11 +478,15 @@
     var toggle = document.getElementById('toggleIntroForm');
     var fields = document.getElementById('introFields');
     if (!toggle || !fields) return;
-    var geopendField = document.getElementById('pf-geopend');
+    var tokenField = document.getElementById('pf-token');
     toggle.addEventListener('click', function () {
       var open = fields.classList.toggle('is-open');
       toggle.textContent = open ? 'Formulier verbergen' : 'Of vul het formulier in';
-      if (open) geopendField.value = Date.now();
+      if (open && !tokenField.value) {
+        fetch('/formulier/token.php').then(function (r) { return r.json(); })
+          .then(function (data) { tokenField.value = data.token; })
+          .catch(function () {});
+      }
     });
 
     var form = document.getElementById('introForm');
@@ -487,6 +494,7 @@
     var errorEl = document.getElementById('introError');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
 
       var voornaam = form.querySelector('[name="voornaam"]').value;
       var params = new URLSearchParams({ type: 'partner', naam: voornaam });
