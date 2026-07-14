@@ -591,9 +591,7 @@
       <form class="booking-slot-form" action="/formulier/send.php" method="POST" novalidate>
         <input type="hidden" name="workshop" class="bk-workshop-field" value="">
         <input type="hidden" name="_pagina" value="workshops">
-        <div class="field" style="position:absolute; left:-9999px;" aria-hidden="true">
-          <label>Laat dit veld leeg<input type="text" name="nagi_controle" tabindex="-1" autocomplete="off"></label>
-        </div>
+        <input type="hidden" name="_geopend" class="bk-geopend-field" value="">
         <div class="field-grid">
           <div class="field"><label>Voornaam</label><input type="text" name="voornaam" autocomplete="given-name" required></div>
           <div class="field"><label>Achternaam</label><input type="text" name="achternaam" autocomplete="family-name" required></div>
@@ -852,6 +850,7 @@
       updatePrice();
 
       wrapper.querySelector('.bk-workshop-field').value = workshopName;
+      wrapper.querySelector('.bk-geopend-field').value = Date.now();
 
       var form = wrapper.querySelector('form');
       var successEl = wrapper.querySelector('.form-success');
@@ -860,7 +859,6 @@
 
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        if (form.nagi_controle && form.nagi_controle.value) return;
 
         var voornaam = form.querySelector('[name="voornaam"]').value;
         var params = new URLSearchParams({ type: 'workshop', workshop: workshopName, naam: voornaam });
