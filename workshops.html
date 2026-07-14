@@ -133,7 +133,9 @@
   .feature-card .wc-tag { background: var(--color-yellow); color: var(--color-navy); }
   .feature-card .wc-icon { background: var(--color-yellow); color: var(--color-navy); }
   .feature-card .wc-booking-slot { color: var(--color-ink); }
-  .feature-card .wc-slot-inner { border-top-color: rgba(255,255,255,0.25); }
+  .feature-card .wc-slot-inner {
+    background: var(--color-surface); border: none; border-radius: var(--radius-md); padding: var(--space-3);
+  }
 
   /* Hackathon: groen-blauwe gradient, gelieerd aan de Junior AI League */
   .feature-card.hackathon-gradient {
@@ -598,7 +600,7 @@
           <div class="field"><label>Organisatie</label><input type="text" name="organisatie" required></div>
           <div class="field">
             <label>Regio</label>
-            <select name="regio">
+            <select name="regio" required>
               <option value="">Kies een provincie</option>
               <option>Groningen</option><option>Friesland</option><option>Drenthe</option>
               <option>Overijssel</option><option>Flevoland</option><option>Gelderland</option>
@@ -608,19 +610,30 @@
           </div>
           <div class="field"><label>E-mailadres</label><input type="email" name="email" autocomplete="email" required></div>
           <div class="field"><label>Telefoonnummer</label><input type="tel" name="telefoon" autocomplete="tel" required></div>
-          <div class="field"><label>Gewenste datum</label><input type="date" name="gewenste_datum"></div>
+          <div class="field"><label>Gewenste datum</label><input type="date" name="gewenste_datum" required></div>
           <div class="field"><label>Alternatieve datum</label><input type="date" name="alternatieve_datum"></div>
           <div class="field">
             <label>Aantal kinderen</label>
             <input type="number" class="bk-aantal-field" name="aantal_kinderen" min="1" placeholder="Bijvoorbeeld 30" required>
             <span class="bk-price-live"></span>
           </div>
-          <div class="field"><label>Leeftijd of groep van de kinderen</label><input type="text" name="leeftijd_groep" placeholder="Bijvoorbeeld 10 t/m 12 jaar, groep 7"></div>
-          <div class="field field-full"><label>Locatie</label><input type="text" name="locatie" placeholder="Adres of plaats waar de workshop plaatsvindt" required></div>
-          <div class="field"><label>Factuur t.n.v. (bedrijfsnaam)</label><input type="text" name="factuur_naam"></div>
-          <div class="field"><label>KvK- of btw-nummer (optioneel)</label><input type="text" name="kvk_btw"></div>
-          <div class="field field-full"><label>Factuuradres</label><input type="text" name="factuuradres" placeholder="Straat, huisnummer, postcode en plaats"></div>
-          <div class="field field-full"><label>Aanvullende wensen of opmerkingen</label><textarea name="opmerkingen" rows="3"></textarea></div>
+          <div class="field"><label>Leeftijd of groep van de kinderen</label><input type="text" name="leeftijd_groep" placeholder="Bijvoorbeeld 10 t/m 12 jaar, groep 7" required></div>
+          <div class="field field-full"><label>Locatie</label><input type="text" class="bk-locatie-field" name="locatie" placeholder="Adres of plaats waar de workshop plaatsvindt" required></div>
+          <div class="field"><label>Factuur t.n.v. (bedrijfsnaam, optioneel)</label><input type="text" name="factuur_naam"></div>
+          <div class="field"><label>KvK- of btw-nummer</label><input type="text" name="kvk_btw" required></div>
+          <div class="field field-full">
+            <label class="field-checkbox">
+              <input type="checkbox" class="bk-zelfde-adres-veld" name="factuuradres_zelfde_locatie" value="ja" checked>
+              Factuuradres is hetzelfde als het adres van de workshoplocatie
+            </label>
+          </div>
+          <div class="field-grid bk-factuuradres-velden">
+            <div class="field"><label>Straat</label><input type="text" name="factuur_straat" autocomplete="address-line1"></div>
+            <div class="field"><label>Huisnummer</label><input type="text" name="factuur_huisnummer"></div>
+            <div class="field"><label>Postcode</label><input type="text" name="factuur_postcode" autocomplete="postal-code"></div>
+            <div class="field"><label>Stad</label><input type="text" name="factuur_stad" autocomplete="address-level2"></div>
+          </div>
+          <div class="field field-full"><label>Aanvullende wensen of opmerkingen</label><textarea name="opmerkingen" rows="3" required></textarea></div>
         </div>
         <button type="submit" class="btn btn-primary">Boekingsaanvraag versturen</button>
         <p class="form-note">We reageren doorgaans binnen twee werkdagen om de datum te bevestigen.</p>
@@ -817,6 +830,7 @@
       var priceBase = parseFloat(toggleBtn.getAttribute('data-price-base')) || 0;
       var priceLarge = parseFloat(toggleBtn.getAttribute('data-price-large')) || priceBase;
       var tierThreshold = parseFloat(toggleBtn.getAttribute('data-tier-threshold')) || 16;
+      var maxKinderen = parseFloat(toggleBtn.getAttribute('data-max-kinderen')) || 30;
       var onRequest = toggleBtn.getAttribute('data-on-request') === 'true';
 
       var wcsNameTag = wrapper.querySelector('.wcs-name-tag');
@@ -841,6 +855,10 @@
           priceLiveEl.textContent = 'Vanaf ' + formatPrice(priceBase);
           return;
         }
+        if (aantal > maxKinderen) {
+          priceLiveEl.textContent = 'Groepen groter dan ' + maxKinderen + ': vraag een prijsvoorstel aan';
+          return;
+        }
         var price = aantal > tierThreshold ? priceLarge : priceBase;
         var trainers = aantal > tierThreshold ? '2 trainers' : '1 trainer';
         priceLiveEl.textContent = formatPrice(price) + ' · ' + aantal + ' kinderen, ' + trainers;
@@ -852,6 +870,23 @@
       wrapper.querySelector('.bk-workshop-field').value = workshopName;
       wrapper.querySelector('.bk-geopend-field').value = Date.now();
 
+      // Factuuradres: standaard hetzelfde als de workshoplocatie. Zodra dat
+      // uitgevinkt wordt, tonen en vereisen we de losse adresvelden.
+      var zelfdeAdresVeld = wrapper.querySelector('.bk-zelfde-adres-veld');
+      var factuuradresBlok = wrapper.querySelector('.bk-factuuradres-velden');
+      var factuuradresInputs = factuuradresBlok.querySelectorAll('input');
+
+      function toggleFactuuradres() {
+        var zelfde = zelfdeAdresVeld.checked;
+        factuuradresBlok.classList.toggle('is-visible', !zelfde);
+        factuuradresInputs.forEach(function (input) {
+          if (zelfde) { input.removeAttribute('required'); input.value = ''; }
+          else { input.setAttribute('required', 'required'); }
+        });
+      }
+      zelfdeAdresVeld.addEventListener('change', toggleFactuuradres);
+      toggleFactuuradres();
+
       var form = wrapper.querySelector('form');
       var successEl = wrapper.querySelector('.form-success');
       var errorEl = wrapper.querySelector('.form-error');
@@ -859,6 +894,7 @@
 
       form.addEventListener('submit', function (e) {
         e.preventDefault();
+        if (!form.checkValidity()) { form.reportValidity(); return; }
 
         var voornaam = form.querySelector('[name="voornaam"]').value;
         var params = new URLSearchParams({ type: 'workshop', workshop: workshopName, naam: voornaam });

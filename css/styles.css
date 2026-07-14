@@ -347,6 +347,14 @@ nav.main-nav a:hover, nav.main-nav a.is-active { border-color: var(--color-yello
 .field textarea { resize: vertical; min-height: 72px; }
 .field-full { grid-column: 1 / -1; }
 
+.field-checkbox {
+  display: flex; align-items: center; gap: 0.6em; font-family: var(--font-body);
+  font-weight: 500; font-size: 0.92rem; cursor: pointer;
+}
+.field-checkbox input { width: 1.1em; height: 1.1em; accent-color: var(--color-navy); flex-shrink: 0; }
+.bk-factuuradres-velden { grid-column: 1 / -1; display: none; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+.bk-factuuradres-velden.is-visible { display: grid; }
+
 .workshop-options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6em; margin-top: 0.3em; }
 .workshop-options label {
   display: flex; align-items: center; gap: 0.55em; font-size: 0.92rem; font-weight: 500;

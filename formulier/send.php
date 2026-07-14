@@ -44,16 +44,13 @@ function stuur_succes(): void {
     exit;
 }
 
-// Basale spambescherming: JS zet bij het openen van het formulier een
-// timestamp (_geopend). Een echt mens heeft altijd meer dan 1,5 seconde nodig
-// om het formulier in te vullen; een script dat het direct afvuurt niet.
-// Geen honeypot-veld meer: browsers/wachtwoordmanagers vullen verborgen
-// tekstvelden vaak automatisch in (ongeacht de naam), waardoor echte
-// aanvragen ten onrechte als spam werden aangezien.
-$geopend = (int) ($_POST['_geopend'] ?? 0);
-if ($geopend > 0 && (microtime(true) * 1000 - $geopend) < 1500) {
-    stuur_succes();
-}
+// Er zit bewust geen geautomatiseerde spamdetectie (honeypot/tijd-check)
+// meer in: zowel een verborgen honeypot-veld als een tijd-check bleken
+// legitieme aanvragen te blokkeren zodra browser-autofill een formulier in
+// een fractie van een seconde invulde. Voor de demo-fase weegt
+// betrouwbaarheid zwaarder dan het beperkte spamrisico op een
+// laag-verkeer site. Vóór livegang: vervang dit door een echte CAPTCHA
+// (bv. Cloudflare Turnstile), die niet afhankelijk is van formuliertiming.
 
 $configPad = __DIR__ . '/mail-config.php';
 if (!file_exists($configPad)) {
@@ -90,7 +87,11 @@ $veldLabels = [
     'locatie' => 'Locatie',
     'factuur_naam' => 'Factuur t.n.v.',
     'kvk_btw' => 'KvK- of btw-nummer',
-    'factuuradres' => 'Factuuradres',
+    'factuuradres_zelfde_locatie' => 'Factuuradres is gelijk aan locatie',
+    'factuur_straat' => 'Factuuradres - straat',
+    'factuur_huisnummer' => 'Factuuradres - huisnummer',
+    'factuur_postcode' => 'Factuuradres - postcode',
+    'factuur_stad' => 'Factuuradres - stad',
     'opmerkingen' => 'Opmerkingen',
     'bericht' => 'Bericht',
     'workshop' => 'Workshop',
@@ -143,6 +144,7 @@ try {
     $klantMail->AltBody = "Beste $voornaam,\n\nBedankt voor uw aanvraag. We hebben deze goed ontvangen en nemen binnenkort contact met u op.\n\nMet vriendelijke groet,\nTeam NextGen AI";
     $klantMail->send();
 } catch (Exception $e) {
+    error_log('[formulier/send.php] Mail verzenden mislukt: ' . $e->getMessage());
     stuur_fout($referer);
 }
 
