@@ -25,7 +25,7 @@ jobs:
               'from_email' => '${{ secrets.SMTP_USERNAME }}',
               'from_name' => 'NextGen AI website',
               'owner_email' => 'bastiaan@mrbluesky.nl',
-              'site_url' => 'https://nextgen.origyns.nl',
+              'site_url' => 'https://nextgen.mbscs.nl',
           ];
           PHP
 
@@ -36,7 +36,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
-          server-dir: /domains/origyns.nl/public_html/nextgen/
+          server-dir: /domains/mbscs.nl/public_html/nextgen/
           exclude: |
             **/.git*
             **/.git*/**

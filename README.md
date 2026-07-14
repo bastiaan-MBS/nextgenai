@@ -198,8 +198,8 @@ dit bestand (handig om lokaal te testen: kopieer het naar
 
 ## ⚠️ Demo-omgeving — belangrijk voor de livegang
 Deze site draait momenteel als **demo-omgeving** op het subdomain
-`nextgen.origyns.nl` (op de eigen DirectAdmin-server van Bastiaan), niet op
-het uiteindelijke domein. Zodra de site live gaat op het echte domein
+`nextgen.mbscs.nl` (op de eigen server van Bastiaan, inclusief mail voor deze
+demo), niet op het uiteindelijke domein. Zodra de site live gaat op het echte domein
 **`nextgen-ai.club`**, moet het volgende worden omgezet:
 - **DNS/hosting**: het domein `nextgen-ai.club` koppelen aan de juiste
   server/hosting-omgeving.
@@ -222,4 +222,4 @@ het uiteindelijke domein. Zodra de site live gaat op het echte domein
 3. Eigen CMS bouwen zodat teksten, impactcijfers en testimonials buiten de
    code om aan te passen zijn.
 4. Bij livegang: alle punten onder "Demo-omgeving" hierboven doorlopen om
-   van `nextgen.origyns.nl` over te zetten naar `nextgen-ai.club`.
+   van `nextgen.mbscs.nl` over te zetten naar `nextgen-ai.club`.
