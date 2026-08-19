@@ -144,6 +144,9 @@ try {
     verstuur_mail($ownerMail, $config);
     $ownerMail->setFrom($config['from_email'], $config['from_name']);
     $ownerMail->addAddress($config['owner_email']);
+    if (!empty($config['owner_bcc'])) {
+        $ownerMail->addBCC($config['owner_bcc']);
+    }
     $ownerMail->addReplyTo($email, $voornaam . ' ' . $achternaam);
     $ownerMail->Subject = $onderwerp . ' (' . $pagina . ')';
     $ownerMail->Body = nextgen_mail_eigenaar_html($onderwerp, $velden, $config);

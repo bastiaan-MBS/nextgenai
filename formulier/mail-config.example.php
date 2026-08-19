@@ -10,9 +10,8 @@ return [
     'smtp_password' => 'VUL_HIER_JE_WACHTWOORD_IN',
     'from_email' => 'noreply@mbscs.nl',
     'from_name' => 'NextGen AI website',
-    // Demo-fase: alle interne meldingen gaan naar dit testadres.
-    // Bij livegang aanpassen naar het definitieve eigenaarsadres.
-    'owner_email' => 'bastiaan@mrbluesky.nl',
+    'owner_email' => 'peter@lead2deal.nl',
+    'owner_bcc' => 'bastiaan@origyns.nl',
     // Gebruikt om het logo in de HTML-mails op te halen.
     // Demo-fase: subdomain van mbscs.nl. Bij livegang aanpassen naar https://nextgen-ai.club
     'site_url' => 'https://nextgen.mbscs.nl',

@@ -178,7 +178,8 @@ Beide posten naar `formulier/send.php` (PHP-script, zie
 `formulier/send.php` verwerkt beide formulieren en verstuurt via SMTP
 (PHPMailer, bestanden in `lib/PHPMailer/`) twee e-mails per inzending:
 1. Een interne melding met alle ingevulde velden naar `owner_email`
-   (in de mail-config, momenteel het testadres `bastiaan@mrbluesky.nl`).
+   (momenteel `peter@lead2deal.nl`), met BCC naar `owner_bcc`
+   (`bastiaan@origyns.nl`).
 2. Een HTML-bevestigingsmail naar het e-mailadres van de aanvrager, met een
    overzicht van de aanvraag en de mededeling dat er binnenkort contact
    wordt opgenomen.
@@ -210,9 +211,9 @@ demo), niet op het uiteindelijke domein. Zodra de site live gaat op het echte do
 - **Mail-config**: `site_url` in de workflow (gebruikt voor het logo in de
   HTML-mails) aanpassen naar `https://nextgen-ai.club`, en de
   `SMTP_*`-secrets vervangen door een mailaccount op `nextgen-ai.club`.
-- **Eigenaarsadres**: `owner_email` in de workflow aanpassen van het
-  testadres `bastiaan@mrbluesky.nl` naar het definitieve adres waar
-  aanvragen binnen moeten komen.
+- **Eigenaarsadres**: `owner_email` (en eventueel `owner_bcc`) in de
+  workflow aanpassen naar de definitieve adressen waar aanvragen binnen
+  moeten komen.
 - De bestaande mailto-links in de code (`info@nextgen-ai.club`) kunnen
   blijven staan, die verwijzen al naar het toekomstige domein.
 
