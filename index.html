@@ -52,6 +52,7 @@
   .mission-band .container { display: grid; grid-template-columns: 0.45fr 1.55fr; gap: var(--space-4); align-items: start; }
   .mission-band p.big { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.35rem, 1.1rem + 1.1vw, 2rem); color: var(--color-ink); line-height: 1.28; margin: 0; }
   .mission-band .highlight { background: linear-gradient(to bottom, transparent 60%, var(--color-yellow) 60%); }
+  .mission-band .safety-callout { grid-column: 1 / -1; margin-top: 0; }
 
   /* ---- USP ---- */
   .usp-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--space-5); align-items: start; }
@@ -202,14 +203,14 @@
     <nav class="main-nav">
       <ul>
         <li><a href="workshops.html">Workshops</a></li>
-        <li><a href="partnerprogramma.html">Partners</a></li>
+        <li><a href="partnerprogramma.html">Organisaties</a></li>
         <li><a href="inbeeld.html">In Beeld</a></li>
         <li><a href="overons.html">Over Ons</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
     </nav>
     <div class="nav-ctas">
-      <a href="partnerprogramma.html" class="btn btn-outline-light">Word partner</a>
+      <a href="partnerprogramma.html" class="btn btn-outline-light">Voor organisaties</a>
       <a href="workshops.html" class="btn btn-cta-large">
         Boek een workshop
         <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -224,13 +225,13 @@
     <div class="mobile-menu-inner">
       <ul>
         <li><a class="nav-link" href="workshops.html">Workshops</a></li>
-        <li><a class="nav-link" href="partnerprogramma.html">Partners</a></li>
+        <li><a class="nav-link" href="partnerprogramma.html">Organisaties</a></li>
         <li><a class="nav-link" href="inbeeld.html">In Beeld</a></li>
         <li><a class="nav-link" href="overons.html">Over Ons</a></li>
         <li><a class="nav-link" href="#faq">FAQ</a></li>
       </ul>
       <div class="mobile-menu-ctas">
-        <a href="partnerprogramma.html" class="btn btn-outline-light" style="border-color:var(--color-navy-ink); color:#fff; background:rgba(255,255,255,0.08);">Word partner</a>
+        <a href="partnerprogramma.html" class="btn btn-outline-light" style="border-color:var(--color-navy-ink); color:#fff; background:rgba(255,255,255,0.08);">Voor organisaties</a>
         <a href="workshops.html" class="btn btn-cta-large">
           Boek een workshop
           <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -246,17 +247,16 @@
   <section class="hero container">
     <div class="hero-grid">
       <div>
-        <span class="eyebrow">AI-educatie voor 8 t/m 15 jaar</span>
-        <h1>AI verandert hoe kinderen leren. Wij leren ze dat veilig te doen.</h1>
+        <span class="eyebrow">Voor bibliotheken, jeugdorganisaties en scholen</span>
+        <h1>Maak van jouw organisatie een plek waar kinderen AI leren begrijpen en mee werken.</h1>
         <p class="hero-lead">
-          Vrijwel geen enkel kind leert hoe je verantwoord met AI omgaat. NextGen AI
-          bouwt de workshops en lesprogramma's waarmee bibliotheken en
-          jeugdorganisaties dat direct kunnen aanbieden, met eigen software en
-          zonder dat ze zelf AI-specialisten hoeven aan te trekken.
+          Zonder zelf AI-expert te zijn, of software en lesprogramma's te ontwikkelen,
+          kan jouw organisatie kwalitatieve AI-programma's voor kinderen van 8 tot 15
+          jaar aanbieden. Compleet, veilig en direct te starten.
         </p>
         <div class="hero-ctas">
-          <a href="workshops.html" class="btn btn-primary">Bekijk de workshops</a>
-          <a href="partnerprogramma.html" class="btn btn-secondary">Word partner</a>
+          <a href="partnerprogramma.html" class="btn btn-primary">Ontdek de mogelijkheden</a>
+          <a href="workshops.html" class="btn btn-secondary">Bekijk de workshops</a>
         </div>
         <div class="hero-audience">
           <span class="audience-chip"><span class="dot" style="background:var(--color-cyan)"></span>Bibliotheken</span>
@@ -281,6 +281,15 @@
     <div class="container">
       <span class="eyebrow">Waarom</span>
       <p class="big">Elk kind in Nederland toegang geven tot AI-educatie tussen <span class="highlight">8 en 15 jaar</span>, zodat zij later zelf kritisch, creatief en veilig met AI kunnen omgaan.</p>
+      <div class="safety-callout">
+        <span class="safety-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 9.6-4-1.2-7-5-7-9.6V6l7-3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div>
+          <h3>Veiligheid staat voorop</h3>
+          <p>Kinderen ontdekken AI in een begeleide, kindveilige omgeving — nooit zomaar losgelaten op publieke AI-tools. Meer over hoe we met veiligheid en privacy omgaan lees je in de <a href="#faq" style="color:var(--color-cyan);">FAQ</a>.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -303,17 +312,31 @@
         </div>
         <div class="usp-row">
           <span class="num">03</span>
-          <div><h3>Schaalbaar als partner</h3><p>Van losse workshop tot volledig programma: dezelfde software groeit mee met de ambitie van uw organisatie.</p></div>
+          <div><h3>Schaalbaar met je organisatie</h3><p>Van losse workshop tot volledige licentie: dezelfde software groeit mee met jouw ambitie.</p></div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- WAT LEVERT DIT OP -->
+  <section class="section-tight container">
+    <span class="eyebrow">Wat levert dit jouw organisatie op?</span>
+    <h2>Geen AI-expert nodig om AI-educatie aan te bieden.</h2>
+    <ul class="offer-list" style="max-width:70ch; margin-top: var(--space-3);">
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Actuele programmering rond AI en digitale geletterdheid</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Een aantrekkelijk aanbod voor kinderen van 8 tot 15 jaar</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Geen eigen AI-expertise nodig</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Geen eigen lesprogramma's ontwikkelen</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Eigen medewerkers kunnen na training zelfstandig workshops geven</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Klein beginnen en later opschalen</li>
+    </ul>
+  </section>
+
   <!-- AANBOD -->
   <section class="section container">
     <span class="eyebrow">Wat we bieden</span>
-    <h2>Eén workshop, of een volledig partnerprogramma.</h2>
-    <p style="max-width:60ch;">Beide routes starten laagdrempelig. Veel partners begonnen zelf met één workshop.</p>
+    <h2>Eén workshop, of een compleet programma voor je organisatie.</h2>
+    <p style="max-width:60ch;">Beide routes starten laagdrempelig. Veel organisaties beginnen zelf met één workshop en groeien later door naar een lessenreeks of licentie.</p>
 
     <div class="offer-grid">
       <div class="card offer-card workshop" id="workshops">
@@ -322,21 +345,21 @@
         <p>Eén programma, één datum, direct resultaat. Ideaal om kennis te maken of een eenmalig event te organiseren.</p>
         <ul>
           <li>7 workshops, van AI for Kids tot de AI Hackathon</li>
-          <li>Ook als lessenreeks van 6 lessen te boeken</li>
-          <li>Gastdocent of train de trainer mogelijk</li>
+          <li>Ook als complete lessenreeks van 6 lessen te boeken</li>
+          <li>Gastdocent of Train-de-Trainer mogelijk</li>
         </ul>
         <a href="workshops.html" class="btn btn-secondary">Bekijk alle workshops</a>
       </div>
-      <div class="card offer-card partner" id="partnerprogramma">
-        <span class="tag tag-partner">Partnerprogramma</span>
-        <h3>Word partner</h3>
-        <p>Een doorlopend lesprogramma onder eigen naam, inclusief software, materialen en ondersteuning.</p>
+      <div class="card offer-card partner" id="voor-organisaties">
+        <span class="tag tag-partner">Voor organisaties</span>
+        <h3>Ontdek de mogelijkheden</h3>
+        <p>Van een verzorgde lessenreeks tot een eigen licentie: kies wat past bij jouw organisatie, inclusief software, materialen en ondersteuning.</p>
         <ul>
-          <li>Eigen leeromgeving voor uw locatie of organisatie</li>
+          <li>Eigen leeromgeving voor jouw locatie of organisatie</li>
           <li>Doorlopende updates van lesinhoud</li>
           <li>Persoonlijke begeleiding bij de opstart</li>
         </ul>
-        <a href="partnerprogramma.html" class="btn btn-secondary">Bekijk het partnerprogramma</a>
+        <a href="partnerprogramma.html" class="btn btn-secondary">Bekijk de mogelijkheden</a>
       </div>
     </div>
   </section>
@@ -345,14 +368,14 @@
   <section class="section section-tight container" id="impact">
     <span class="eyebrow">In cijfers</span>
     <h2>De impact tot nu toe.</h2>
-    <p style="max-width:60ch;">Verschuif de tijdlijn en bekijk hoeveel kinderen zijn bereikt, van de eerste workshop in februari 2023 tot vandaag.</p>
+    <p style="max-width:60ch;">Verschuif de tijdlijn en bekijk hoeveel organisaties, workshops en kinderen NextGen AI heeft bereikt, van de eerste workshop in februari 2023 tot vandaag.</p>
 
     <div class="impact-chart-card">
       <div class="impact-layout">
         <div class="impact-stats-col">
-          <div class="stat-block stat-total"><span class="figure" id="statKids">0</span><span class="label">Kinderen bereikt</span></div>
+          <div class="stat-block stat-total"><span class="figure" id="statOrganisaties">0</span><span class="label">Organisaties die met ons werken</span></div>
           <div class="stat-block stat-yellow"><span class="figure" id="statWorkshops">0</span><span class="label">Workshops gegeven</span></div>
-          <div class="stat-block stat-green"><span class="figure" id="statProvinces">0</span><span class="label">Provincies actief</span></div>
+          <div class="stat-block stat-green"><span class="figure" id="statKids">0</span><span class="label">Kinderen bereikt</span></div>
         </div>
         <div class="impact-chart-col">
           <div class="impact-chart-head">
@@ -479,6 +502,10 @@
     <h2>Vragen over veiligheid, privacy en opzet.</h2>
     <div class="faq-list">
       <details class="faq-item" open>
+        <summary>Wat gebeurt er als kinderen met generatieve AI werken?<span class="faq-icon">+</span></summary>
+        <p>Kinderen ontdekken AI in een begeleide, kindveilige omgeving die NextGen AI zelf bouwt — ze worden nooit zomaar losgelaten op publieke AI-tools zoals ChatGPT. Er wordt geen persoonlijke data van kinderen verzameld of opgeslagen, alle content is vooraf beoordeeld op leeftijdsgeschiktheid, en een geschoolde trainer of begeleider is altijd aanwezig.</p>
+      </details>
+      <details class="faq-item">
         <summary>Is de content veilig en geschikt voor kinderen vanaf 8 jaar?<span class="faq-icon">+</span></summary>
         <p>Ja. Elk programma is ontwikkeld met leeftijdsgeschiktheid, privacy en online veiligheid als uitgangspunt, en wordt begeleid door geschoolde gastdocenten of getrainde begeleiders.</p>
       </details>
@@ -487,12 +514,12 @@
         <p>NextGen AI ontwikkelt de leeromgeving zelf. Daardoor houden we controle over veiligheid, privacy en aansluiting op de leeftijdsgroep.</p>
       </details>
       <details class="faq-item">
-        <summary>Kunnen we eerst een losse workshop uitproberen voordat we partner worden?<span class="faq-icon">+</span></summary>
-        <p>Zeker. Veel partners zijn gestart met één workshop en zijn daarna doorgegroeid naar een doorlopend programma.</p>
+        <summary>Kunnen we eerst een losse workshop uitproberen voordat we verder gaan?<span class="faq-icon">+</span></summary>
+        <p>Zeker. Veel organisaties starten met één workshop en groeien daarna door naar een lessenreeks of een eigen licentie.</p>
       </details>
       <details class="faq-item">
         <summary>Hoe groot kan ik dit voor mijn organisatie opzetten?<span class="faq-icon">+</span></summary>
-        <p>Van één klas tot een provinciebreed programma. We denken graag mee over wat past bij de omvang en het budget van uw organisatie.</p>
+        <p>Van één klas tot een provinciebreed programma. We denken graag mee over wat past bij de omvang en het budget van jouw organisatie.</p>
       </details>
     </div>
   </section>
@@ -505,11 +532,11 @@
     <div class="container">
       <span class="eyebrow">Contact</span>
       <h2>Neem contact met ons op.</h2>
-      <p class="intro">Kies hieronder waar uw vraag over gaat.</p>
+      <p class="intro">Kies hieronder waar jouw vraag over gaat.</p>
 
       <div class="contact-choice">
         <a href="partnerprogramma.html" class="choice-card">
-          <span class="choice-title"><span class="dot" style="background:var(--color-green);"></span>Ik wil partner worden</span>
+          <span class="choice-title"><span class="dot" style="background:var(--color-green);"></span>Ik wil dit voor mijn organisatie</span>
           <p>Een doorlopend lesprogramma onder eigen naam, inclusief software en ondersteuning.</p>
           <span class="choice-link-btn">
             <span class="choice-link-label">Neem contact op</span>
@@ -544,7 +571,7 @@
         <h4>Sitemap</h4>
         <ul>
           <li><a href="workshops.html">Workshops</a></li>
-          <li><a href="partnerprogramma.html">Partnerprogramma</a></li>
+          <li><a href="partnerprogramma.html">Voor organisaties</a></li>
           <li><a href="inbeeld.html">In beeld</a></li>
         <li><a href="overons.html">Over ons</a></li>
           <li><a href="#faq">Veelgestelde vragen</a></li>
@@ -708,7 +735,7 @@
 
     var TARGET_KIDS = 12000;
     var TARGET_WORKSHOPS = 640;
-    var TARGET_PROVINCES = 9;
+    var TARGET_ORGANISATIES = 45;
 
     function sCurve(t, k) {
       var raw = 1 / (1 + Math.exp(-k * (t - 0.5)));
@@ -722,12 +749,13 @@
       var t = months > 1 ? i / (months - 1) : 1;
       var easeKids = sCurve(t, 9);
       var easeWork = sCurve(t, 7.5);
+      var easeOrg = sCurve(t, 6.5);
       var d = new Date(start.getFullYear(), start.getMonth() + i, 1);
       data.push({
         date: d,
         kids: Math.round(easeKids * TARGET_KIDS),
         workshops: Math.round(easeWork * TARGET_WORKSHOPS),
-        provinces: Math.min(TARGET_PROVINCES, Math.round(1 + easeKids * (TARGET_PROVINCES - 1)))
+        organisaties: Math.min(TARGET_ORGANISATIES, Math.round(1 + easeOrg * (TARGET_ORGANISATIES - 1)))
       });
     }
 
@@ -787,7 +815,7 @@
     var dateLabel = document.getElementById('impactDateLabel');
     var statKids = document.getElementById('statKids');
     var statWorkshops = document.getElementById('statWorkshops');
-    var statProvinces = document.getElementById('statProvinces');
+    var statOrganisaties = document.getElementById('statOrganisaties');
 
     function render(idx) {
       idx = Math.max(0, Math.min(data.length - 1, idx));
@@ -799,7 +827,7 @@
       dateLabel.textContent = maandNamen[pt.date.getMonth()] + ' ' + pt.date.getFullYear();
       statKids.textContent = pt.kids.toLocaleString('nl-NL');
       statWorkshops.textContent = pt.workshops.toLocaleString('nl-NL');
-      statProvinces.textContent = pt.provinces;
+      statOrganisaties.textContent = pt.organisaties;
     }
 
     slider.max = data.length - 1;

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Partnerprogramma: word partner van NextGen AI</title>
+<title>Voor organisaties: AI-programma's aanbieden met NextGen AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -28,17 +28,23 @@
   .usp-row h3 { margin-bottom: 0.3em; }
   @media (max-width: 900px) { .usp-grid { grid-template-columns: 1fr; } }
 
-  /* ---- Aanbod ---- */
-  .offer-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-4); margin-top: var(--space-4); align-items: start; }
-  @media (min-width: 900px) { .offer-layout { grid-template-columns: 1.1fr 0.9fr; } }
-  .offer-list { display: grid; gap: 0.9em; margin: var(--space-3) 0 0; padding: 0; list-style: none; }
-  .offer-list li { display: flex; gap: 0.7em; align-items: flex-start; font-size: 0.98rem; }
-  .offer-list .check {
-    flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; background: var(--color-green); color: #fff;
-    display: flex; align-items: center; justify-content: center; margin-top: 0.1em;
+  /* ---- Aanbod: 3 duidelijke keuzes (offer-list/.check staan sitewide in css/styles.css) ---- */
+  .choices-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-4); }
+  @media (min-width: 900px) { .choices-grid { grid-template-columns: repeat(3, 1fr); } }
+  .choice-plan {
+    border: 2px solid var(--color-line); border-radius: var(--radius-lg); padding: var(--space-4);
+    display: flex; flex-direction: column; background: var(--color-surface);
   }
-  .offer-list .check svg { width: 14px; height: 14px; }
-  .offer-note { margin-top: var(--space-3); font-weight: 600; color: var(--color-navy); }
+  .choice-plan.is-featured { border-color: var(--color-navy); background: var(--color-bg-alt); position: relative; }
+  .choice-plan .plan-tag {
+    display: inline-block; font-family: var(--font-display); font-weight: 700; font-size: 0.72rem;
+    letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3em 0.8em; border-radius: var(--radius-pill);
+    margin-bottom: var(--space-2); align-self: flex-start;
+  }
+  .choice-plan h3 { margin-bottom: 0.3em; }
+  .choice-plan .plan-desc { color: var(--color-ink-soft); font-size: 0.95rem; }
+  .choice-plan .offer-list { flex: 1; }
+  .choice-plan .btn { margin-top: var(--space-3); width: 100%; justify-content: center; }
 
   .cta-card { background: var(--color-navy); color: #fff; border-radius: var(--radius-lg); padding: var(--space-4); position: relative; overflow: hidden; }
   .cta-card h3 { color: #fff; }
@@ -115,14 +121,14 @@
     <nav class="main-nav">
       <ul>
         <li><a href="workshops.html">Workshops</a></li>
-        <li><a href="partnerprogramma.html" class="is-active">Partners</a></li>
+        <li><a href="partnerprogramma.html" class="is-active">Organisaties</a></li>
         <li><a href="inbeeld.html">In Beeld</a></li>
         <li><a href="overons.html">Over Ons</a></li>
         <li><a href="index.html#faq">FAQ</a></li>
       </ul>
     </nav>
     <div class="nav-ctas">
-      <a href="partnerprogramma.html" class="btn btn-outline-light">Word partner</a>
+      <a href="partnerprogramma.html" class="btn btn-outline-light">Voor organisaties</a>
       <a href="workshops.html" class="btn btn-cta-large">
         Boek een workshop
         <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -137,13 +143,13 @@
     <div class="mobile-menu-inner">
       <ul>
         <li><a class="nav-link" href="workshops.html">Workshops</a></li>
-        <li><a class="nav-link" href="partnerprogramma.html">Partners</a></li>
+        <li><a class="nav-link" href="partnerprogramma.html">Organisaties</a></li>
         <li><a class="nav-link" href="inbeeld.html">In Beeld</a></li>
         <li><a class="nav-link" href="overons.html">Over Ons</a></li>
         <li><a class="nav-link" href="index.html#faq">FAQ</a></li>
       </ul>
       <div class="mobile-menu-ctas">
-        <a href="partnerprogramma.html" class="btn btn-outline-light" style="border-color:var(--color-navy-ink); color:#fff; background:rgba(255,255,255,0.08);">Word partner</a>
+        <a href="partnerprogramma.html" class="btn btn-outline-light" style="border-color:var(--color-navy-ink); color:#fff; background:rgba(255,255,255,0.08);">Voor organisaties</a>
         <a href="workshops.html" class="btn btn-cta-large">
           Boek een workshop
           <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -157,52 +163,94 @@
 
   <!-- PAGE HERO -->
   <section class="page-hero container">
-    <span class="eyebrow">Partnerprogramma</span>
-    <h1>Word partner en organiseer uw eigen AI-programma.</h1>
+    <span class="eyebrow">Voor organisaties</span>
+    <h1>Kies hoe jouw organisatie AI-programma's voor kinderen aanbiedt.</h1>
     <p class="intro">
-      Elk kind toegang geven tot AI-educatie, ook in uw eigen regio. Als partner
-      bouwt u zelf aan die missie: met uw eigen mensen, uw eigen naam en het
-      complete NextGen AI-programma achter de hand.
+      Zonder zelf AI-expert te zijn, of software en lesprogramma's te ontwikkelen, kan
+      jouw organisatie kwalitatieve AI-programma's voor kinderen aanbieden. Er zijn
+      drie manieren om te starten, van volledig verzorgd tot volledig zelf georganiseerd.
     </p>
     <div class="page-chips">
-      <span>Eigen regio</span>
-      <span>Eigen team</span>
-      <span>Volledig ondersteund</span>
+      <span>Geen AI-expertise nodig</span>
+      <span>Geen lesprogramma's ontwikkelen</span>
+      <span>Klein beginnen, later opschalen</span>
     </div>
   </section>
 
-  <!-- AANBOD -->
-  <section class="section-tight container" style="padding-top: var(--space-5);">
-    <span class="eyebrow">Wat krijgt u als partner?</span>
-    <h2>Eén licentie. Het complete programma. Zelf organiseren.</h2>
+  <!-- WAT LEVERT DIT OP -->
+  <section class="section-tight container" style="padding-top: var(--space-3);">
+    <span class="eyebrow">Wat levert dit jouw organisatie op?</span>
+    <ul class="offer-list" style="max-width:70ch;">
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Actuele programmering rond AI en digitale geletterdheid</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Een aantrekkelijk aanbod voor kinderen van 8 tot 15 jaar</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Geen eigen AI-expertise nodig</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Geen eigen lesprogramma's ontwikkelen</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Eigen medewerkers kunnen na training zelfstandig workshops geven</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Klein beginnen en later opschalen</li>
+    </ul>
+  </section>
 
-    <div class="offer-layout">
-      <div>
-        <p style="max-width:60ch;">
-          Als partner krijgt u een licentie op de NextGen AI software en het volledige
-          educatieve programma, inclusief een Train-de-Trainer zodat uw eigen mensen de
-          workshops kunnen geven. Alles zit erin: u hoeft zelf geen AI-specialist te worden.
-        </p>
+  <!-- DRIE KEUZES -->
+  <section class="section-tight container">
+    <span class="eyebrow">Drie manieren om te starten</span>
+    <h2>Van volledig verzorgd tot volledig zelf georganiseerd.</h2>
+    <p style="max-width:60ch;">Kies wat past bij jouw organisatie. Alle drie starten met dezelfde kindveilige NextGen AI-software.</p>
+
+    <div class="choices-grid">
+      <div class="choice-plan">
+        <span class="plan-tag" style="background:var(--color-cyan); color:var(--color-navy);">Workshop</span>
+        <h3>Wij verzorgen de workshop</h3>
+        <p class="plan-desc">Een complete AI-ervaring, verzorgd door NextGen AI. Ideaal om kennis te maken of voor een eenmalig evenement.</p>
         <ul class="offer-list">
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Licentie op de NextGen AI leeromgeving</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Het volledige workshopprogramma, inclusief alle 7 workshops</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Train-de-Trainer, zodat uw eigen begeleiders het zelf kunnen geven</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Doorlopende updates van de lesinhoud</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Persoonlijke ondersteuning bij de opstart</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Eén of meerdere workshops op locatie</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Eigen trainer van NextGen AI</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Geen voorbereiding nodig</li>
         </ul>
-        <p class="offer-note">Zo eenvoudig dat iedereen in uw team er meteen mee aan de slag kan.</p>
+        <a href="workshops.html" class="btn btn-secondary">Bekijk de workshops</a>
       </div>
 
-      <div class="cta-card">
-        <span class="eyebrow" style="color:var(--color-yellow);">Volgende stap</span>
-        <h3>Plan een kennismaking</h3>
-        <p>Liever nu meteen een afspraak, of eerst wat gegevens achterlaten? Beide kan.</p>
-        <div class="cta-options">
-          <a href="https://calendly.com/nextgen-ai/kennismaking" target="_blank" rel="noopener" class="btn btn-ghost">
-            Plan direct in de agenda
-          </a>
-          <button type="button" class="btn btn-outline-light" id="toggleIntroForm">Of vul het formulier in</button>
-        </div>
+      <div class="choice-plan is-featured">
+        <span class="plan-tag" style="background:var(--color-yellow); color:var(--color-navy);">Lessenreeks</span>
+        <h3>Een complete lessenreeks</h3>
+        <p class="plan-desc">Een doorlopende reeks van 6 lessen voor een vaste groep kinderen, die stap voor stap dieper op AI ingaat. Verzorgd door NextGen AI.</p>
+        <ul class="offer-list">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>6 lessen, opgebouwd van basis tot verdieping</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Verzorgd door NextGen AI-trainers</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Vast programma, makkelijk in te plannen</li>
+        </ul>
+        <a href="#kennismaking" class="btn btn-primary js-open-intro-form">Vraag de lessenreeks aan</a>
+      </div>
+
+      <div class="choice-plan">
+        <span class="plan-tag" style="background:var(--color-green); color:#fff;">Licentie</span>
+        <h3>Ga zelf aan de slag</h3>
+        <p class="plan-desc">Een licentie op de NextGen AI-software en het volledige programma. Train je eigen mensen en organiseer structureel AI-activiteiten.</p>
+        <ul class="offer-list">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Licentie op de NextGen AI-leeromgeving</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Het volledige programma, alle 7 workshops</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Train-de-Trainer voor je eigen begeleiders</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Doorlopende updates van de lesinhoud</li>
+        </ul>
+        <a href="#kennismaking" class="btn btn-secondary js-open-intro-form">Plan een kennismaking</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- KENNISMAKING -->
+  <section class="section-tight container" id="kennismaking" style="padding-top: var(--space-5);">
+    <span class="eyebrow">Nog niet toe aan een keuze?</span>
+    <h2>Vraag vrijblijvend informatie of een demo aan.</h2>
+    <p style="max-width:60ch;">Niet iedereen wil meteen boeken. Ontvang eerst meer informatie, vraag een demo van de software aan, of plan een kort kennismakingsgesprek — helemaal vrijblijvend.</p>
+
+    <div class="cta-card" style="max-width:640px;">
+      <span class="eyebrow" style="color:var(--color-yellow);">Volgende stap</span>
+      <h3>Kies wat bij jou past</h3>
+      <p>Liever nu meteen een afspraak in de agenda? Of eerst informatie, een demo, of een voorbeeld van Train-de-Trainer ontvangen via het formulier? Beide kan.</p>
+      <div class="cta-options">
+        <a href="https://calendly.com/nextgen-ai/kennismaking" target="_blank" rel="noopener" class="btn btn-ghost">
+          Plan direct in de agenda
+        </a>
+        <button type="button" class="btn btn-outline-light" id="toggleIntroForm">Of vul het formulier in</button>
       </div>
     </div>
 
@@ -220,6 +268,19 @@
               <div class="field"><label for="pf-voornaam">Voornaam</label><input type="text" id="pf-voornaam" name="voornaam" autocomplete="given-name" required></div>
               <div class="field"><label for="pf-achternaam">Achternaam</label><input type="text" id="pf-achternaam" name="achternaam" autocomplete="family-name" required></div>
               <div class="field"><label for="pf-organisatie">Organisatie</label><input type="text" id="pf-organisatie" name="organisatie" required></div>
+              <div class="field">
+                <label for="pf-interesse">Waar ben je in geïnteresseerd?</label>
+                <select id="pf-interesse" name="interesse" required>
+                  <option value="">Kies een optie</option>
+                  <option>Alleen meer informatie ontvangen</option>
+                  <option>Een demo van de software</option>
+                  <option>Een voorbeeld van Train-de-Trainer</option>
+                  <option>Een workshop laten verzorgen</option>
+                  <option>De complete lessenreeks</option>
+                  <option>Zelf aan de slag met een licentie</option>
+                  <option>Een kennismakingsgesprek plannen</option>
+                </select>
+              </div>
               <div class="field">
                 <label for="pf-regio">Regio</label>
                 <select id="pf-regio" name="regio">
@@ -246,11 +307,11 @@
     </div>
   </section>
 
-  <!-- HUIDIGE PARTNERS -->
+  <!-- ORGANISATIES DIE MEEDOEN -->
   <section class="section container">
-    <span class="eyebrow">Onze partners</span>
-    <h2>Organisaties die al partner zijn.</h2>
-    <p style="max-width:60ch;">Een greep uit de bibliotheken en jeugdorganisaties die het partnerprogramma al gebruiken.</p>
+    <span class="eyebrow">Wie werken er al met ons</span>
+    <h2>Organisaties die al met NextGen AI werken.</h2>
+    <p style="max-width:60ch;">Een greep uit de bibliotheken en jeugdorganisaties die al met de licentie of lessenreeks werken.</p>
 
     <div class="testi-carousel">
       <button type="button" class="testi-arrow" id="partnerPrev" aria-label="Vorige partner">
@@ -261,8 +322,8 @@
         <div class="testi-track" id="partnerTrack">
           <article class="testi-slide">
             <span class="partner-region">Zuid-Holland</span>
-            <p class="quote">"Dankzij het partnerprogramma kunnen we AI-educatie nu structureel aanbieden, met onze eigen mensen."</p>
-            <p class="partner-blurb">Sinds 2024 partner, organiseert maandelijks workshops voor de hele regio.</p>
+            <p class="quote">"Dankzij dit programma kunnen we AI-educatie nu structureel aanbieden, met onze eigen mensen."</p>
+            <p class="partner-blurb">Actief sinds 2024, organiseert maandelijks workshops voor de hele regio.</p>
             <div class="testi-meta">
               <div style="display:flex; align-items:center; gap:0.7em;">
                 <span class="testi-avatar" style="background:var(--color-cyan);">BR</span>
@@ -273,8 +334,8 @@
           </article>
           <article class="testi-slide">
             <span class="partner-region">Groningen</span>
-            <p class="quote">"Als partner kunnen we het programma nu structureel aanbieden, zonder dat we zelf AI-experts hoeven te zijn."</p>
-            <p class="partner-blurb">Partner sinds 2025, actief in drie gemeenten in de regio.</p>
+            <p class="quote">"We kunnen het programma nu structureel aanbieden, zonder dat we zelf AI-experts hoeven te zijn."</p>
+            <p class="partner-blurb">Actief sinds 2025, actief in drie gemeenten in de regio.</p>
             <div class="testi-meta">
               <div style="display:flex; align-items:center; gap:0.7em;">
                 <span class="testi-avatar" style="background:var(--color-yellow);">JN</span>
@@ -286,7 +347,7 @@
           <article class="testi-slide">
             <span class="partner-region">Overijssel</span>
             <p class="quote">"Veilig, begrijpelijk en verrassend leuk. Ouders vroegen achteraf zelf om een vervolgworkshop."</p>
-            <p class="partner-blurb">Partner sinds 2024, organiseert workshops voor de hele bibliotheekregio.</p>
+            <p class="partner-blurb">Actief sinds 2024, organiseert workshops voor de hele bibliotheekregio.</p>
             <div class="testi-meta">
               <div style="display:flex; align-items:center; gap:0.7em;">
                 <span class="testi-avatar" style="background:var(--color-green);">BD</span>
@@ -298,7 +359,7 @@
           <article class="testi-slide">
             <span class="partner-region">Utrecht</span>
             <p class="quote">"Onze begeleiders konden zonder technische kennis meteen aan de slag. Precies de drempel die we nodig hadden weg te nemen."</p>
-            <p class="partner-blurb">Partner sinds 2025, met een eigen Train-de-Trainer-team.</p>
+            <p class="partner-blurb">Actief sinds 2025, met een eigen Train-de-Trainer-team.</p>
             <div class="testi-meta">
               <div style="display:flex; align-items:center; gap:0.7em;">
                 <span class="testi-avatar" style="background:var(--color-pink);">BU</span>
@@ -310,7 +371,7 @@
           <article class="testi-slide">
             <span class="partner-region">Zuid-Holland</span>
             <p class="quote">"Een programma dat serieus met veiligheid omgaat, zonder dat het saai wordt voor de kinderen. Precies de balans die we zochten."</p>
-            <p class="partner-blurb">Partner sinds 2025, actief in meerdere jeugdcentra.</p>
+            <p class="partner-blurb">Actief sinds 2025, actief in meerdere jeugdcentra.</p>
             <div class="testi-meta">
               <div style="display:flex; align-items:center; gap:0.7em;">
                 <span class="testi-avatar" style="background:var(--color-cyan);">JZ</span>
@@ -321,8 +382,8 @@
           </article>
           <article class="testi-slide">
             <span class="partner-region">Drenthe</span>
-            <p class="quote">"We zijn gestart met één workshop en binnen een half jaar partner geworden. De opbouw voelde nergens geforceerd."</p>
-            <p class="partner-blurb">Partner sinds 2024, organiseert het programma provinciebreed.</p>
+            <p class="quote">"We zijn gestart met één workshop en binnen een half jaar overgestapt op de licentie. De opbouw voelde nergens geforceerd."</p>
+            <p class="partner-blurb">Actief sinds 2024, organiseert het programma provinciebreed.</p>
             <div class="testi-meta">
               <div style="display:flex; align-items:center; gap:0.7em;">
                 <span class="testi-avatar" style="background:var(--color-yellow);">BD2</span>
@@ -347,32 +408,32 @@
         <h3>Ook partner van de Junior AI League?</h3>
         <p>NextGen AI is gelieerd aan de Junior AI League, het regionale competitieprogramma
           waarin scholen het tegen elkaar opnemen op het gebied van AI-vaardigheden. Ook
-          hiervan kunt u partner worden in uw eigen regio.</p>
+          hiervan kun je partner worden in jouw eigen regio.</p>
       </div>
       <a href="http://junioraileague.nl" target="_blank" rel="noopener" class="btn btn-primary">Bekijk junioraileague.nl</a>
     </div>
   </section>
 
-  <!-- WAT U KRIJGT ALS PARTNER -->
+  <!-- WAT JE KRIJGT -->
   <section class="section-tight on-dark" id="over-ons">
     <div class="container usp-grid">
       <div>
-        <span class="eyebrow">Wat u krijgt als partner</span>
+        <span class="eyebrow">Wat je krijgt</span>
         <h2>Een kindveilig programma, volledig eigen te maken.</h2>
-        <p>Als partner krijgt u niet zomaar lesmateriaal, maar een professioneel onderhouden, kindveilige leeromgeving die NextGen AI zelf bouwt en actueel houdt. Zo kunt u het programma volledig onder uw eigen naam voeren, ook als u zelf geen AI-specialist bent.</p>
+        <p>Je krijgt niet zomaar lesmateriaal, maar een professioneel onderhouden, kindveilige leeromgeving die NextGen AI zelf bouwt en actueel houdt. Zo kun je het programma volledig onder je eigen naam voeren, ook als je zelf geen AI-specialist bent.</p>
       </div>
       <div class="usp-list">
         <div class="usp-row">
           <span class="num">01</span>
-          <div><h3>Veilig en leeftijdsgeschikt</h3><p>U krijgt een omgeving die is afgestemd op de belevingswereld van 8- tot 15-jarigen, met aandacht voor privacy en online veiligheid.</p></div>
+          <div><h3>Veilig en leeftijdsgeschikt</h3><p>Kinderen ontdekken AI in een begeleide, kindveilige omgeving — nooit zomaar losgelaten op publieke AI-tools.</p></div>
         </div>
         <div class="usp-row">
           <span class="num">02</span>
-          <div><h3>Direct inzetbaar</h3><p>U krijgt een kant-en-klaar programma waarmee uw eigen team na de Train-de-Trainer meteen aan de slag kan.</p></div>
+          <div><h3>Direct inzetbaar</h3><p>Je krijgt een kant-en-klaar programma waarmee je eigen team na de Train-de-Trainer meteen aan de slag kan.</p></div>
         </div>
         <div class="usp-row">
           <span class="num">03</span>
-          <div><h3>Schaalbaar in uw regio</h3><p>U krijgt een programma dat meegroeit: van één locatie tot een provinciebrede aanpak.</p></div>
+          <div><h3>Schaalbaar in jouw regio</h3><p>Je krijgt een programma dat meegroeit: van één locatie tot een provinciebrede aanpak.</p></div>
         </div>
       </div>
     </div>
@@ -386,11 +447,11 @@
     <div class="container">
       <span class="eyebrow">Contact</span>
       <h2>Neem contact met ons op.</h2>
-      <p class="intro">Kies hieronder waar uw vraag over gaat.</p>
+      <p class="intro">Kies hieronder waar jouw vraag over gaat.</p>
 
       <div class="contact-choice">
         <a href="partnerprogramma.html" class="choice-card">
-          <span class="choice-title"><span class="dot" style="background:var(--color-green);"></span>Ik wil partner worden</span>
+          <span class="choice-title"><span class="dot" style="background:var(--color-green);"></span>Ik wil dit voor mijn organisatie</span>
           <p>Een doorlopend lesprogramma onder eigen naam, inclusief software en ondersteuning.</p>
           <span class="choice-link-btn">
             <span class="choice-link-label">Neem contact op</span>
@@ -425,7 +486,7 @@
         <h4>Sitemap</h4>
         <ul>
           <li><a href="workshops.html">Workshops</a></li>
-          <li><a href="partnerprogramma.html">Partnerprogramma</a></li>
+          <li><a href="partnerprogramma.html">Voor organisaties</a></li>
           <li><a href="inbeeld.html">In beeld</a></li>
           <li><a href="overons.html">Over ons</a></li>
         </ul>
@@ -449,7 +510,7 @@
     </div>
     <div class="container footer-bottom">
       <span>&copy; 2026 NextGen AI, onderdeel van ACTNOW B.V.</span>
-      <span>Prototype partnerpagina · versie 0.1</span>
+      <span>Prototype pagina voor organisaties · versie 0.2</span>
     </div>
   </div>
 </footer>
@@ -479,6 +540,21 @@
     var fields = document.getElementById('introFields');
     if (!toggle || !fields) return;
     var tokenField = document.getElementById('pf-token');
+    var interesseField = document.getElementById('pf-interesse');
+
+    function openForm(interesseWaarde) {
+      if (!fields.classList.contains('is-open')) {
+        fields.classList.add('is-open');
+        toggle.textContent = 'Formulier verbergen';
+      }
+      if (!tokenField.value) {
+        fetch('/formulier/token.php').then(function (r) { return r.json(); })
+          .then(function (data) { tokenField.value = data.token; })
+          .catch(function () {});
+      }
+      if (interesseWaarde) interesseField.value = interesseWaarde;
+    }
+
     toggle.addEventListener('click', function () {
       var open = fields.classList.toggle('is-open');
       toggle.textContent = open ? 'Formulier verbergen' : 'Of vul het formulier in';
@@ -487,6 +563,17 @@
           .then(function (data) { tokenField.value = data.token; })
           .catch(function () {});
       }
+    });
+
+    document.querySelectorAll('.js-open-intro-form').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var interesse = btn.textContent.indexOf('lessenreeks') !== -1
+          ? 'De complete lessenreeks'
+          : 'Een kennismakingsgesprek plannen';
+        openForm(interesse);
+        document.getElementById('kennismaking').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
     });
 
     var form = document.getElementById('introForm');

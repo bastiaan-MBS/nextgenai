@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bedankt: uw aanvraag is ontvangen</title>
+<title>Bedankt: jouw aanvraag is ontvangen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -49,14 +49,14 @@
     <nav class="main-nav">
       <ul>
         <li><a href="workshops.html">Workshops</a></li>
-        <li><a href="partnerprogramma.html">Partners</a></li>
+        <li><a href="partnerprogramma.html">Organisaties</a></li>
         <li><a href="inbeeld.html">In Beeld</a></li>
         <li><a href="overons.html">Over Ons</a></li>
         <li><a href="index.html#faq">FAQ</a></li>
       </ul>
     </nav>
     <div class="nav-ctas">
-      <a href="partnerprogramma.html" class="btn btn-outline-light">Word partner</a>
+      <a href="partnerprogramma.html" class="btn btn-outline-light">Voor organisaties</a>
       <a href="workshops.html" class="btn btn-cta-large">
         Boek een workshop
         <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -71,13 +71,13 @@
     <div class="mobile-menu-inner">
       <ul>
         <li><a class="nav-link" href="workshops.html">Workshops</a></li>
-        <li><a class="nav-link" href="partnerprogramma.html">Partners</a></li>
+        <li><a class="nav-link" href="partnerprogramma.html">Organisaties</a></li>
         <li><a class="nav-link" href="inbeeld.html">In Beeld</a></li>
         <li><a class="nav-link" href="overons.html">Over Ons</a></li>
         <li><a class="nav-link" href="index.html#faq">FAQ</a></li>
       </ul>
       <div class="mobile-menu-ctas">
-        <a href="partnerprogramma.html" class="btn btn-outline-light" style="border-color:var(--color-navy-ink); color:#fff; background:rgba(255,255,255,0.08);">Word partner</a>
+        <a href="partnerprogramma.html" class="btn btn-outline-light" style="border-color:var(--color-navy-ink); color:#fff; background:rgba(255,255,255,0.08);">Voor organisaties</a>
         <a href="workshops.html" class="btn btn-cta-large">
           Boek een workshop
           <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -94,8 +94,8 @@
       <svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
     <span class="eyebrow" style="justify-content:center;">Aanvraag ontvangen</span>
-    <h1 id="thanksTitle">Bedankt voor uw aanvraag.</h1>
-    <p class="intro" id="thanksIntro">We hebben uw bericht in goede orde ontvangen en nemen zo snel mogelijk contact met u op.</p>
+    <h1 id="thanksTitle">Bedankt voor jouw aanvraag.</h1>
+    <p class="intro" id="thanksIntro">We hebben je bericht in goede orde ontvangen en nemen zo snel mogelijk contact met je op.</p>
     <div class="thanks-summary" id="thanksSummary" style="display:none;"></div>
   </section>
 
@@ -106,7 +106,7 @@
         <span class="step-num">1</span>
         <div>
           <h3>Aanvraag ontvangen</h3>
-          <p>We hebben uw aanvraag succesvol ontvangen. We nemen contact met u op om de datum en uw wensen af te stemmen.</p>
+          <p>We hebben je aanvraag succesvol ontvangen. We nemen contact met je op om de datum en je wensen af te stemmen.</p>
         </div>
       </div>
       <div class="timeline-step">
@@ -140,11 +140,11 @@
     <div class="container">
       <span class="eyebrow">Contact</span>
       <h2>Neem contact met ons op.</h2>
-      <p class="intro">Kies hieronder waar uw vraag over gaat.</p>
+      <p class="intro">Kies hieronder waar jouw vraag over gaat.</p>
 
       <div class="contact-choice">
         <a href="partnerprogramma.html" class="choice-card">
-          <span class="choice-title"><span class="dot" style="background:var(--color-green);"></span>Ik wil partner worden</span>
+          <span class="choice-title"><span class="dot" style="background:var(--color-green);"></span>Ik wil dit voor mijn organisatie</span>
           <p>Een doorlopend lesprogramma onder eigen naam, inclusief software en ondersteuning.</p>
           <span class="choice-link-btn">
             <span class="choice-link-label">Neem contact op</span>
@@ -178,7 +178,7 @@
         <h4>Sitemap</h4>
         <ul>
           <li><a href="workshops.html">Workshops</a></li>
-          <li><a href="partnerprogramma.html">Partnerprogramma</a></li>
+          <li><a href="partnerprogramma.html">Voor organisaties</a></li>
           <li><a href="inbeeld.html">In beeld</a></li>
           <li><a href="overons.html">Over ons</a></li>
         </ul>
@@ -241,18 +241,18 @@
     var naamDeel = naam ? ', ' + naam : '';
 
     if (type === 'workshop') {
-      title.textContent = 'Bedankt voor uw aanvraag' + naamDeel + '.';
-      intro.textContent = 'We hebben uw workshopaanvraag in goede orde ontvangen en nemen zo snel mogelijk contact met u op om de datum en uw wensen af te stemmen.';
+      title.textContent = 'Bedankt voor je aanvraag' + naamDeel + '.';
+      intro.textContent = 'We hebben je workshopaanvraag in goede orde ontvangen en nemen zo snel mogelijk contact met je op om de datum en je wensen af te stemmen.';
       if (workshop) {
         summary.style.display = 'inline-flex';
         summary.textContent = 'Aangevraagd: ' + workshop;
       }
       timeline.style.display = 'block';
     } else if (type === 'partner') {
-      title.textContent = 'Bedankt voor uw interesse' + naamDeel + '.';
-      intro.textContent = 'We hebben uw aanvraag voor het partnerprogramma ontvangen en nemen zo snel mogelijk contact met u op.';
+      title.textContent = 'Bedankt voor je interesse' + naamDeel + '.';
+      intro.textContent = 'We hebben je aanvraag ontvangen en nemen zo snel mogelijk contact met je op.';
     } else {
-      title.textContent = 'Bedankt voor uw bericht' + naamDeel + '.';
+      title.textContent = 'Bedankt voor je bericht' + naamDeel + '.';
     }
   })();
 </script>

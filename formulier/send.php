@@ -110,6 +110,7 @@ $veldLabels = [
     'factuur_stad' => 'Factuuradres - stad',
     'locatie_zelfde_factuuradres' => 'Locatie is gelijk aan factuuradres',
     'opmerkingen' => 'Opmerkingen',
+    'interesse' => 'Waar ben je in geïnteresseerd?',
     'bericht' => 'Bericht',
     'workshop' => 'Workshop',
 ];
