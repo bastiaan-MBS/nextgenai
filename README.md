@@ -4,7 +4,7 @@
 ```
 index.html             → homepage
 workshops.html         → workshoppagina met alle workshops en boeken per workshop
-partnerprogramma.html  → partnerpagina met aanbod, kennismaking en huidige partners
+organisaties.html      → aanbod voor organisaties (workshop/lessenreeks/licentie), kennismaking en huidige klanten
 inbeeld.html           → mediapagina: nieuwsoverzicht, fotobibliotheek en impacttijdlijn
 nieuws/                → losse artikelpagina's, één per mijlpaal uit inbeeld.html
 overons.html           → team, missie en ontstaansgeschiedenis
@@ -43,7 +43,7 @@ zolang ze dezelfde header-markup gebruiken.
 ## Footer (sitewide, identiek op elke pagina)
 De footer heeft geen contactformulier. In plaats daarvan staan er twee
 duidelijke kaarten met een geel rond knopje: "Ik wil partner worden" (linkt
-naar `partnerprogramma.html`) en "Ik wil een workshop boeken" (linkt naar
+naar `organisaties.html`) en "Ik wil een workshop boeken" (linkt naar
 `workshops.html`). Onder de witte kaarten volgt de donkerblauwe balk met
 sitemap, organisatiegegevens en juridische links.
 
@@ -84,7 +84,7 @@ tekst voor voldoende contrast.
 
 Verder op deze pagina: dezelfde reviews-carrousel als op de homepage, en een
 blok dat bezoekers die vaker een workshop willen organiseren uitnodigt om
-partner te worden (met link naar `partnerprogramma.html`).
+partner te worden (met link naar `organisaties.html`).
 
 Foto's: AI for Kids, AI Hackathon en AI Family Festival gebruiken echte
 foto's. Voor AI Music, AI Story, AI Game en AI Arts is nog geen passende
@@ -139,8 +139,8 @@ placeholders in één keer vervangen door `<img>`-tags.
   tekst eronder, zodat helder is dat dit placeholders zijn die later door
   echte foto's vervangen worden.
 
-## Partnerprogramma-pagina
-`partnerprogramma.html` beschrijft het aanbod (licentie, volledig
+## Organisaties-pagina
+`organisaties.html` beschrijft het aanbod (licentie, volledig
 programma, Train-de-Trainer) met een CTA-kaart die twee opties biedt: direct
 een afspraak plannen via een Calendly-link, of een kennismakingsformulier
 uitklappen. Dat formulier staat nu als volledige-breedte-blok onder de
@@ -182,7 +182,7 @@ de achtergrond verstuurd.
 ## Formulieren
 Er zijn twee formulieren, allebei aangesloten op dezelfde verwerker:
 - Het boekingsformulier per workshop op `workshops.html`.
-- Het kennismakingsformulier op `partnerprogramma.html`.
+- Het kennismakingsformulier op `organisaties.html`.
 
 Beide posten naar `formulier/send.php` (PHP-script, zie
 "Mailverwerking" hieronder). Voor beide geldt verder:

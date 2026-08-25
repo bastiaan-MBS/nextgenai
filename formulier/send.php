@@ -86,7 +86,7 @@ if (!$email || $voornaam === '' || $achternaam === '') {
 
 $onderwerpen = [
     'workshops' => 'Nieuwe workshopboeking',
-    'partnerprogramma' => 'Nieuwe kennismakingsaanvraag',
+    'organisaties' => 'Nieuwe kennismakingsaanvraag',
 ];
 $onderwerp = $onderwerpen[$pagina] ?? 'Nieuw formulierbericht';
 

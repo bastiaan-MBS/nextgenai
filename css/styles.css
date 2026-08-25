@@ -425,13 +425,10 @@ nav.main-nav a:hover, nav.main-nav a.is-active { border-color: var(--color-yello
 .footer-legal .footer-grid a:hover { color: #fff; }
 .footer-legal .footer-bottom { margin-top: var(--space-5); padding-top: var(--space-3); border-top: 1px solid rgba(255,255,255,0.16); display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-2); font-size: 0.85rem; position: relative; z-index: 2; background: var(--color-navy); }
 
-.footer-badge {
-  display: inline-flex; align-items: center; gap: 0.7em; margin-top: var(--space-3);
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16);
-  border-radius: var(--radius-pill); padding: 0.4em 0.9em 0.4em 0.4em;
-}
-.footer-badge img { height: 26px; width: auto; background: #fff; border-radius: 50%; padding: 3px; }
-.footer-badge span { font-size: 0.8rem; color: rgba(255,255,255,0.75); line-height: 1.3; max-width: 22ch; }
+.footer-legal .footer-bottom a { color: rgba(255,255,255,0.85); text-decoration: underline; }
+.footer-legal .footer-bottom a:hover { color: #fff; }
+.footer-badge-mini { display: inline-flex; align-items: center; }
+.footer-badge-mini img { height: 20px; width: auto; background: #fff; border-radius: 4px; padding: 2px 4px; }
 
 @media (max-width: 760px) {
   .contact-choice, .field-grid, .workshop-options { grid-template-columns: 1fr; }
