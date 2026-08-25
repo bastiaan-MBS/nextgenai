@@ -8,6 +8,21 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="description" content="Nieuws, media-aandacht en video's van NextGen AI: mijlpalen, publicaties, erkenningen en shorts.">
+<link rel="canonical" href="https://nextgen-ai.club/inbeeld.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="In beeld: media, verslagen en impact van NextGen AI">
+<meta property="og:description" content="Nieuws, media-aandacht en video's van NextGen AI: mijlpalen, publicaties, erkenningen en shorts.">
+<meta property="og:url" content="https://nextgen-ai.club/inbeeld.html">
+<meta property="og:image" content="https://nextgen-ai.club/assets/hero-photo-2.jpg">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:site_name" content="NextGen AI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="In beeld: media, verslagen en impact van NextGen AI">
+<meta name="twitter:description" content="Nieuws, media-aandacht en video's van NextGen AI: mijlpalen, publicaties, erkenningen en shorts.">
+<meta name="twitter:image" content="https://nextgen-ai.club/assets/hero-photo-2.jpg">
 <style>
   /* ---- Hero: standaard NextGen AI page-hero, zoals op de andere pagina's ---- */
   .page-hero { padding-block: var(--space-6) var(--space-5); }
@@ -23,10 +38,10 @@
   .filter-tab.is-active, .filter-tab:hover { background: var(--color-navy); color: #fff; }
 
   /* ---- Mediagrid ---- */
-  .media-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-4); }
+  .media-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-4); align-items: stretch; }
   @media (min-width: 700px) { .media-grid { grid-template-columns: repeat(3, 1fr); } }
-  .media-card { overflow: hidden; padding: 0; display: flex; flex-direction: column; }
-  .media-card-media { position: relative; aspect-ratio: 4/3; }
+  .media-card { overflow: hidden; padding: 0; display: flex; flex-direction: column; height: 100%; }
+  .media-card-media { position: relative; aspect-ratio: 4/3; flex-shrink: 0; }
   .media-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .media-card-photo-placeholder {
     display: flex; align-items: center; justify-content: center; background: var(--color-bg-alt);
@@ -48,7 +63,10 @@
   }
   .media-card-body { padding: var(--space-3); flex: 1; display: flex; flex-direction: column; }
   .media-card-date { font-size: 0.78rem; color: var(--color-ink-soft); font-weight: 600; margin-bottom: 0.3em; }
-  .media-card-body h3 { font-size: 1.02rem; margin-bottom: 0.5em; }
+  .media-card-body h3 {
+    font-size: 1.02rem; margin-bottom: 0.5em; line-height: 1.3; min-height: 3.9em;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  }
   .media-card-link { margin-top: auto; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; color: var(--color-navy); text-decoration: none; }
   .media-card-link:hover { text-decoration: underline; }
   .media-note { font-size: 0.85rem; color: var(--color-ink-soft); font-style: italic; margin-top: var(--space-2); }
@@ -60,7 +78,12 @@
   @media (max-width: 760px) { .photo-masonry { grid-template-columns: repeat(2, 1fr); } }
   .photo-masonry button {
     padding: 0; border: none; background: none; cursor: pointer; border-radius: var(--radius-md); overflow: hidden;
-    aspect-ratio: 1; display: block;
+    aspect-ratio: 1; display: block; position: relative;
+  }
+  .photo-tile-art .photo-tag {
+    position: absolute; top: 0.5em; left: 0.5em; z-index: 1; font-family: var(--font-display); font-weight: 700;
+    font-size: 0.65rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.3em 0.7em;
+    border-radius: var(--radius-pill); background: var(--color-pink); color: #fff;
   }
   .photo-masonry img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform var(--transition); }
   .photo-masonry button:hover img { transform: scale(1.05); }
@@ -470,6 +493,11 @@
         <button type="button" data-full="assets/fotobibliotheek/NextgenAI-workshop-muziekjpeg.jpeg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-workshop-muziekjpeg.jpg" alt="NextGen AI workshop muziekjpeg" loading="lazy"></button>
         <button type="button" data-full="assets/fotobibliotheek/NextgenAI-workshop-train-je-eigen-chatbot.jpeg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-workshop-train-je-eigen-chatbot.jpg" alt="NextGen AI workshop train je eigen chatbot" loading="lazy"></button>
         <button type="button" data-full="assets/fotobibliotheek/NextgenAI-workshop-verhalen-schrijven.jpeg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-workshop-verhalen-schrijven.jpg" alt="NextGen AI workshop verhalen schrijven" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextGenAI-team-en-supporters.jpeg"><img src="assets/fotobibliotheek/thumbs/NextGenAI-team-en-supporters.jpg" alt="NextGen AI team en supporters" loading="lazy"></button>
+        <button type="button" class="photo-tile-art" data-full="assets/kunstwerken-kids/kasteel-van-kaas.jpeg"><span class="photo-tag">Art</span><img src="assets/kunstwerken-kids/thumbs/kasteel-van-kaas.jpg" alt="Kasteel van kaas, digitaal kunstwerk gemaakt door een kind tijdens een AI-workshop" loading="lazy"></button>
+        <button type="button" class="photo-tile-art" data-full="assets/kunstwerken-kids/kat-vogel.jpeg"><span class="photo-tag">Art</span><img src="assets/kunstwerken-kids/thumbs/kat-vogel.jpg" alt="Kat en vogel, digitaal kunstwerk gemaakt door een kind tijdens een AI-workshop" loading="lazy"></button>
+        <button type="button" class="photo-tile-art" data-full="assets/kunstwerken-kids/krokodil.jpeg"><span class="photo-tag">Art</span><img src="assets/kunstwerken-kids/thumbs/krokodil.jpg" alt="Krokodil, digitaal kunstwerk gemaakt door een kind tijdens een AI-workshop" loading="lazy"></button>
+        <button type="button" class="photo-tile-art" data-full="assets/kunstwerken-kids/super-chicken.jpeg"><span class="photo-tag">Art</span><img src="assets/kunstwerken-kids/thumbs/super-chicken.jpg" alt="Super Chicken, digitaal kunstwerk gemaakt door een kind tijdens een AI-workshop" loading="lazy"></button>
       </div>
       <p class="media-note">Deze fotobibliotheek groeit mee: er komen meer foto's bij naarmate er meer workshops en events zijn geweest.</p>
     </div>

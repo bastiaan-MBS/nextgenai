@@ -127,6 +127,28 @@ beschikbaar zijn: zet ze in `assets/nieuws/` met de bestandsnaam die
 overeenkomt met de slug (zie `assets/nieuws/LEESMIJ.md`), en laat alle
 placeholders in één keer vervangen door `<img>`-tags.
 
+## SEO
+Alle 18 pagina's hebben nu:
+- Unieke `<title>` en `<meta name="description">`.
+- `<link rel="canonical">`, Open Graph- en Twitter Card-tags (`og:title`,
+  `og:description`, `og:image`, `twitter:card`, etc.).
+- Eén `<h1>` per pagina, logische H2/H3-opbouw daaronder.
+- `favicon-32.png` en `apple-touch-icon.png` (gegenereerd uit `assets/logo.png`).
+- Structured data (JSON-LD): `Organization` op de homepage, `NewsArticle` op
+  elke pagina in `nieuws/`.
+- `bedankt.html` staat op `noindex` (dankpagina's horen niet in zoekresultaten)
+  en is uitgesloten in `robots.txt`.
+
+`robots.txt` en `sitemap.xml` staan in de root en verwijzen naar elkaar.
+
+**Let op:** canonical- en Open Graph-URL's wijzen bewust al naar het
+toekomstige domein `https://nextgen-ai.club`, niet naar de huidige
+demo-omgeving (`nextgen.mbscs.nl`). Dat betekent dat social-media-previews
+van de demo-link nu geen werkende afbeelding tonen (de afbeelding staat nog
+niet op dat domein) — dat lost zichzelf op zodra de site live gaat op
+`nextgen-ai.club`. Wil je dat de demo-omgeving ook correcte previews heeft,
+laat dat dan weten, dan zet ik de URL's tijdelijk om.
+
 ## Over ons-pagina
 `overons.html` bevat, ook geïnspireerd op de Junior AI League-opzet:
 - Het ontstaan: NextGen AI komt voort uit ACTNOW B.V., dat sinds 2016 werkt
