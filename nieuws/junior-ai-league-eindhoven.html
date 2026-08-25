@@ -16,10 +16,18 @@
     background: var(--color-navy); color: #fff; margin-bottom: var(--space-2);
   }
   .article-date { color: var(--color-ink-soft); font-size: 0.92rem; font-weight: 600; margin-bottom: var(--space-2); }
-  .article-photo { border-radius: var(--radius-lg); overflow: hidden; margin: var(--space-4) 0; max-height: 420px; }
+  .article-photo {
+    border-radius: var(--radius-lg); overflow: hidden; margin: var(--space-4) 0; max-height: 420px;
+  }
   .article-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .article-photo-placeholder {
+    height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.6em; background: var(--color-bg-alt); border: 2px dashed var(--color-line); color: var(--color-ink-soft);
+  }
+  .article-photo-placeholder svg { width: 40px; height: 40px; color: var(--color-navy); opacity: 0.6; }
+  .article-photo-placeholder span { font-size: 0.85rem; font-weight: 600; }
   .article-body { max-width: 68ch; font-size: 1.05rem; line-height: 1.7; }
-  .article-body p { margin-bottom: var(--space-2); }
+  .article-body p { margin-bottom: var(--space-3); }
   .sources-card {
     background: var(--color-bg-alt); border: 2px solid var(--color-line); border-radius: var(--radius-lg);
     padding: var(--space-3) var(--space-4); margin-top: var(--space-4); max-width: 68ch;
@@ -87,12 +95,17 @@
   </section>
 
   <section class="section-tight container">
-    <div class="article-photo">
-      <img src="../assets/hero-photo-2.jpg" alt="Lancering Junior AI League in Brainport Eindhoven">
+    <!-- Foto volgt: sla een bestand op als assets/nieuws/junior-ai-league-eindhoven.jpg en vervang dit
+         placeholder-blok door <img src="../assets/nieuws/junior-ai-league-eindhoven.jpg" alt="Lancering Junior AI League in Brainport Eindhoven">.
+         data-nieuws-foto maakt dit blok makkelijk terug te vinden voor een latere batch-vervanging. -->
+    <div class="article-photo article-photo-placeholder" data-nieuws-foto="junior-ai-league-eindhoven">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="9" r="1.4" fill="currentColor"/></svg>
+      <span>Foto volgt</span>
     </div>
     <div class="article-body">
-      <p>Op 18 juni 2026 vindt de aftrap van de Junior AI League in Brainport Eindhoven plaats, in het Evoluon/Next Nature Museum.</p>
-      <p>Met deze lancering bereikt de Junior AI League Nederlands belangrijkste technologie- en innovatieregio. De aftrap staat in het teken van AI-weerbaarheid.</p>
+      <p>Op 18 juni 2026 vindt de aftrap van de Junior AI League in Brainport Eindhoven plaats, in het Evoluon/Next Nature Museum — een iconische locatie voor een regio die zichzelf al decennia lang profileert als technologie- en innovatiehart van Nederland.</p>
+      <p>Met deze lancering bereikt de Junior AI League, na Breda en Tilburg, de derde regio in ruim een jaar tijd. De aftrap staat in het teken van AI-weerbaarheid: hoe leren kinderen niet alleen wát AI kan, maar ook hoe ze er kritisch en zelfstandig mee om kunnen gaan. Net als in Breda en Tilburg zullen scholen en lokale partners in de komende maanden hackathons organiseren die uitmonden in een regionale finale.</p>
+      <p>Dat de League juist in Brainport Eindhoven van start gaat, onderstreept de ambitie van NextGen AI om kinderen niet alleen te leren omgaan met AI, maar hen ook in aanraking te brengen met de regio's waar technologie en innovatie de dagelijkse praktijk zijn.</p>
     </div>
 
     <div class="sources-card">
@@ -177,7 +190,7 @@
     </div>
     <div class="container footer-bottom">
       <span>&copy; 2026 NextGen AI, onderdeel van ACTNOW B.V.</span>
-      <span>Nieuwsartikel · versie 0.1</span>
+      <span>Nieuwsartikel · versie 0.2</span>
     </div>
   </div>
 </footer>

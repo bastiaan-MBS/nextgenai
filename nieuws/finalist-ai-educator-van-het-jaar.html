@@ -16,10 +16,18 @@
     background: var(--color-navy); color: #fff; margin-bottom: var(--space-2);
   }
   .article-date { color: var(--color-ink-soft); font-size: 0.92rem; font-weight: 600; margin-bottom: var(--space-2); }
-  .article-photo { border-radius: var(--radius-lg); overflow: hidden; margin: var(--space-4) 0; max-height: 420px; }
+  .article-photo {
+    border-radius: var(--radius-lg); overflow: hidden; margin: var(--space-4) 0; max-height: 420px;
+  }
   .article-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .article-photo-placeholder {
+    height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.6em; background: var(--color-bg-alt); border: 2px dashed var(--color-line); color: var(--color-ink-soft);
+  }
+  .article-photo-placeholder svg { width: 40px; height: 40px; color: var(--color-navy); opacity: 0.6; }
+  .article-photo-placeholder span { font-size: 0.85rem; font-weight: 600; }
   .article-body { max-width: 68ch; font-size: 1.05rem; line-height: 1.7; }
-  .article-body p { margin-bottom: var(--space-2); }
+  .article-body p { margin-bottom: var(--space-3); }
   .sources-card {
     background: var(--color-bg-alt); border: 2px solid var(--color-line); border-radius: var(--radius-lg);
     padding: var(--space-3) var(--space-4); margin-top: var(--space-4); max-width: 68ch;
@@ -87,12 +95,17 @@
   </section>
 
   <section class="section-tight container">
-    <div class="article-photo">
-      <img src="../assets/hero-photo-4.jpg" alt="Finalist AI Educator van het Jaar">
+    <!-- Foto volgt: sla een bestand op als assets/nieuws/finalist-ai-educator-van-het-jaar.jpg en vervang dit
+         placeholder-blok door <img src="../assets/nieuws/finalist-ai-educator-van-het-jaar.jpg" alt="Finalist AI Educator van het Jaar">.
+         data-nieuws-foto maakt dit blok makkelijk terug te vinden voor een latere batch-vervanging. -->
+    <div class="article-photo article-photo-placeholder" data-nieuws-foto="finalist-ai-educator-van-het-jaar">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="9" r="1.4" fill="currentColor"/></svg>
+      <span>Foto volgt</span>
     </div>
     <div class="article-body">
-      <p>Op 15 januari 2026 wordt bekend dat NextGen AI bij de vijf landelijke finalisten van de Nationale AI Awards eindigt, in de categorie AI Educator van het Jaar.</p>
-      <p>Dat levert erkenning op naast grote en gevestigde opleiders zoals Computrain en Vijfhart.</p>
+      <p>Op 15 januari 2026 wordt bekend dat NextGen AI tot de finalisten behoort in de categorie AI Educator van het Jaar, onderdeel van de Nationale AI Awards. Naast NextGen AI zijn ook AI Advies & Training, Vijfhart Opleidingen en Adwise Academy genomineerd.</p>
+      <p>De award in deze categorie gaat uiteindelijk naar Computrain, een gevestigde opleider die volgens de jury “een cruciale bijdrage levert aan structurele AI-volwassenheid” op de Nederlandse arbeidsmarkt, met een aanbod dat technische expertise voor specialisten combineert met zakelijke relevantie voor managers.</p>
+      <p>Dat NextGen AI als jonge, op kinderen gerichte organisatie tussen gevestigde namen als Computrain en Vijfhart een finaleplek behaalt, levert erkenning op ver buiten de eigen doelgroep: het bevestigt dat AI-educatie voor kinderen wordt gezien als een volwaardig onderdeel van het bredere Nederlandse AI-opleidingslandschap.</p>
     </div>
 
     <div class="sources-card">
@@ -176,7 +189,7 @@
     </div>
     <div class="container footer-bottom">
       <span>&copy; 2026 NextGen AI, onderdeel van ACTNOW B.V.</span>
-      <span>Nieuwsartikel · versie 0.1</span>
+      <span>Nieuwsartikel · versie 0.2</span>
     </div>
   </div>
 </footer>

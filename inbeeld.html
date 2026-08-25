@@ -28,6 +28,11 @@
   .media-card { overflow: hidden; padding: 0; display: flex; flex-direction: column; }
   .media-card-media { position: relative; aspect-ratio: 4/3; }
   .media-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .media-card-photo-placeholder {
+    display: flex; align-items: center; justify-content: center; background: var(--color-bg-alt);
+    border-bottom: 2px dashed var(--color-line);
+  }
+  .media-card-photo-placeholder svg { width: 32px; height: 32px; color: var(--color-ink-soft); opacity: 0.5; }
   .media-card-tag {
     position: absolute; top: 0.7em; left: 0.7em; font-family: var(--font-display); font-weight: 700;
     font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.35em 0.8em;
@@ -140,8 +145,8 @@
 
     <div class="media-grid" id="mediaGrid">
       <article class="card media-card" data-category="nieuws">
-        <div class="media-card-media">
-          <img src="assets/hero-photo-3.jpg" alt="Founding Member van BRAIN Nederland">
+        <div class="media-card-media media-card-photo-placeholder" data-nieuws-foto="founding-member-brain-nederland">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="9" r="1.4" fill="currentColor"/></svg>
           <span class="media-card-tag">Nieuws</span>
         </div>
         <div class="media-card-body">
@@ -152,8 +157,8 @@
       </article>
 
       <article class="card media-card" data-category="nieuws">
-        <div class="media-card-media">
-          <img src="assets/hero-photo-2.jpg" alt="Lancering Junior AI League in Brainport Eindhoven">
+        <div class="media-card-media media-card-photo-placeholder" data-nieuws-foto="junior-ai-league-eindhoven">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="9" r="1.4" fill="currentColor"/></svg>
           <span class="media-card-tag">Nieuws</span>
         </div>
         <div class="media-card-body">
@@ -164,8 +169,8 @@
       </article>
 
       <article class="card media-card" data-category="media">
-        <div class="media-card-media">
-          <img src="assets/hero-photo-1.jpg" alt="Junior AI League groeit door naar Tilburg">
+        <div class="media-card-media media-card-photo-placeholder" data-nieuws-foto="junior-ai-league-tilburg">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="9" r="1.4" fill="currentColor"/></svg>
           <span class="media-card-tag">In de media</span>
         </div>
         <div class="media-card-body">
@@ -176,8 +181,8 @@
       </article>
 
       <article class="card media-card" data-category="media">
-        <div class="media-card-media">
-          <img src="assets/hero-photo-4.jpg" alt="Finalist AI Educator van het Jaar">
+        <div class="media-card-media media-card-photo-placeholder" data-nieuws-foto="finalist-ai-educator-van-het-jaar">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="9" r="1.4" fill="currentColor"/></svg>
           <span class="media-card-tag">In de media</span>
         </div>
         <div class="media-card-body">
@@ -188,8 +193,8 @@
       </article>
 
       <article class="card media-card" data-category="media">
-        <div class="media-card-media">
-          <img src="assets/hero-photo-3.jpg" alt="Eerste AI Family Festival">
+        <div class="media-card-media media-card-photo-placeholder" data-nieuws-foto="eerste-ai-family-festival">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="9" r="1.4" fill="currentColor"/></svg>
           <span class="media-card-tag">In de media</span>
         </div>
         <div class="media-card-body">
@@ -200,8 +205,8 @@
       </article>
 
       <article class="card media-card" data-category="media">
-        <div class="media-card-media">
-          <img src="assets/hero-photo-2.jpg" alt="Top drie Dutch Applied AI Award">
+        <div class="media-card-media media-card-photo-placeholder" data-nieuws-foto="dutch-applied-ai-award-top3">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="9" r="1.4" fill="currentColor"/></svg>
           <span class="media-card-tag">In de media</span>
         </div>
         <div class="media-card-body">
@@ -212,8 +217,8 @@
       </article>
 
       <article class="card media-card" data-category="media">
-        <div class="media-card-media">
-          <img src="assets/hero-photo-1.jpg" alt="Eerste Junior AI League in Breda">
+        <div class="media-card-media media-card-photo-placeholder" data-nieuws-foto="eerste-junior-ai-league-breda">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="9" r="1.4" fill="currentColor"/></svg>
           <span class="media-card-tag">In de media</span>
         </div>
         <div class="media-card-body">
@@ -224,8 +229,8 @@
       </article>
 
       <article class="card media-card" data-category="media">
-        <div class="media-card-media">
-          <img src="assets/hero-photo-4.jpg" alt="NextGen AI verzorgt workshop voor winnaars MediaMasters 2024">
+        <div class="media-card-media media-card-photo-placeholder" data-nieuws-foto="workshop-mediamasters-winnaars">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="9" r="1.4" fill="currentColor"/></svg>
           <span class="media-card-tag">In de media</span>
         </div>
         <div class="media-card-body">
@@ -236,8 +241,8 @@
       </article>
 
       <article class="card media-card" data-category="nieuws">
-        <div class="media-card-media">
-          <img src="assets/hero-photo-3.jpg" alt="Eigen veilige Botbuilder ontwikkeld">
+        <div class="media-card-media media-card-photo-placeholder" data-nieuws-foto="botbuilder-gelanceerd">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="9" r="1.4" fill="currentColor"/></svg>
           <span class="media-card-tag">Nieuws</span>
         </div>
         <div class="media-card-body">
@@ -248,8 +253,8 @@
       </article>
 
       <article class="card media-card" data-category="media">
-        <div class="media-card-media">
-          <img src="assets/hero-photo-2.jpg" alt="Eerste landelijk zichtbare doorbraak">
+        <div class="media-card-media media-card-photo-placeholder" data-nieuws-foto="eerste-landelijke-doorbraak">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="9" r="1.4" fill="currentColor"/></svg>
           <span class="media-card-tag">In de media</span>
         </div>
         <div class="media-card-body">
@@ -260,8 +265,8 @@
       </article>
 
       <article class="card media-card" data-category="nieuws">
-        <div class="media-card-media">
-          <img src="assets/hero-photo-1.jpg" alt="Oprichting van NextGen AI">
+        <div class="media-card-media media-card-photo-placeholder" data-nieuws-foto="oprichting-nextgen-ai">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="9" r="1.4" fill="currentColor"/></svg>
           <span class="media-card-tag">Nieuws</span>
         </div>
         <div class="media-card-body">
@@ -271,7 +276,7 @@
         </div>
       </article>
     </div>
-    <p class="media-note">Overzicht van nieuws en media-aandacht over NextGen AI. Klik op een tegel voor het volledige artikel en de oorspronkelijke bron.</p>
+    <p class="media-note">Overzicht van nieuws en media-aandacht over NextGen AI. De fotovakken zijn placeholders; die worden vervangen zodra de echte beelden per artikel beschikbaar zijn. Klik op een tegel voor het volledige artikel en de oorspronkelijke bron.</p>
   </section>
 
   <!-- FOTOBIBLIOTHEEK -->

@@ -16,10 +16,18 @@
     background: var(--color-navy); color: #fff; margin-bottom: var(--space-2);
   }
   .article-date { color: var(--color-ink-soft); font-size: 0.92rem; font-weight: 600; margin-bottom: var(--space-2); }
-  .article-photo { border-radius: var(--radius-lg); overflow: hidden; margin: var(--space-4) 0; max-height: 420px; }
+  .article-photo {
+    border-radius: var(--radius-lg); overflow: hidden; margin: var(--space-4) 0; max-height: 420px;
+  }
   .article-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .article-photo-placeholder {
+    height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.6em; background: var(--color-bg-alt); border: 2px dashed var(--color-line); color: var(--color-ink-soft);
+  }
+  .article-photo-placeholder svg { width: 40px; height: 40px; color: var(--color-navy); opacity: 0.6; }
+  .article-photo-placeholder span { font-size: 0.85rem; font-weight: 600; }
   .article-body { max-width: 68ch; font-size: 1.05rem; line-height: 1.7; }
-  .article-body p { margin-bottom: var(--space-2); }
+  .article-body p { margin-bottom: var(--space-3); }
   .sources-card {
     background: var(--color-bg-alt); border: 2px solid var(--color-line); border-radius: var(--radius-lg);
     padding: var(--space-3) var(--space-4); margin-top: var(--space-4); max-width: 68ch;
@@ -87,12 +95,20 @@
   </section>
 
   <section class="section-tight container">
-    <div class="article-photo">
-      <img src="../assets/hero-photo-2.jpg" alt="Eerste landelijk zichtbare doorbraak">
+    <!-- Foto volgt: sla een bestand op als assets/nieuws/eerste-landelijke-doorbraak.jpg en vervang dit
+         placeholder-blok door <img src="../assets/nieuws/eerste-landelijke-doorbraak.jpg" alt="Eerste landelijk zichtbare doorbraak">.
+         data-nieuws-foto maakt dit blok makkelijk terug te vinden voor een latere batch-vervanging. -->
+    <div class="article-photo article-photo-placeholder" data-nieuws-foto="eerste-landelijke-doorbraak">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="9" r="1.4" fill="currentColor"/></svg>
+      <span>Foto volgt</span>
     </div>
     <div class="article-body">
-      <p>Op 26 februari 2024 vertelt Peter in de podcast AI Today Live over AI for Kids en de landelijke ambitie van NextGen AI.</p>
-      <p>Een maand later, op 27 maart 2024, organiseert NextGen AI samen met Info Support een gratis AI-workshop waarin kinderen onder andere hun eigen GPT-assistent bouwen. Dat markeert het moment waarop NextGen AI voor het eerst landelijk zichtbaar wordt.</p>
+      <p>Op 26 februari 2024 is Peter Brouwers te gast in de podcast AI Today Live (seizoen 6, aflevering 17: “Leren door doen: AI for Kids”), waarin hij uitlegt waarom het volgens hem essentieel is kinderen al op jonge leeftijd met AI te laten kennismaken. In de aflevering vertelt hij over de opzet van de AI for Kids-workshops: interactieve gesprekken over wat AI is en waar het wordt toegepast, debat over ethische vraagstukken, en praktische maakopdrachten zoals digitale kunst, verhalen schrijven en games programmeren.</p>
+      <p>“Iedereen moet toegang hebben tot technologie… laten we het alsjeblieft inclusief houden,” benadrukt Brouwers in de podcast — een uitgangspunt dat terugkomt in de gratis deelname aan workshops, mede mogelijk gemaakt door sponsoring.</p>
+      <p>Een maand later, op 27 maart 2024, wordt dat uitgangspunt in de praktijk gebracht: NextGen AI organiseert samen met Info Support een gratis AI-workshop bij het kantoor van Info Support in Veenendaal, voor kinderen vanaf acht jaar. Deelnemers bouwen hun eigen GPT-assistent en kiezen daarna uit creatieve opdrachten als digitale kunst, verhalen schrijven, muziek maken en game-programmeren.</p>
+      <p>Joop Snijder, Head of AI bij het Info Support Research Center, licht toe waarom dit initiatief volgens hem nodig is: “We komen in ons dagelijks leven steeds vaker AI tegen, en de rol van deze technologie in de maatschappij blijft groeien. Het is daarom essentieel dat niet alleen volwassenen, maar ook nieuwe generaties begrijpen wat AI is, welke mogelijkheden het biedt en waar ze op moeten letten bij het gebruik ervan.”</p>
+      <p>Peter Brouwers vult aan: “Bij NextGen AI geloven we in de kracht van creativiteit en innovatie bij kinderen. We willen ze de kans geven om AI nu en in de toekomst te omarmen en vorm te geven.”</p>
+      <p>Samen markeren de podcast en de workshop het moment waarop NextGen AI voor het eerst landelijk zichtbaar wordt.</p>
     </div>
 
     <div class="sources-card">
@@ -177,7 +193,7 @@
     </div>
     <div class="container footer-bottom">
       <span>&copy; 2026 NextGen AI, onderdeel van ACTNOW B.V.</span>
-      <span>Nieuwsartikel · versie 0.1</span>
+      <span>Nieuwsartikel · versie 0.2</span>
     </div>
   </div>
 </footer>

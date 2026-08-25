@@ -5,11 +5,13 @@
 index.html             → homepage
 workshops.html         → workshoppagina met alle workshops en boeken per workshop
 partnerprogramma.html  → partnerpagina met aanbod, kennismaking en huidige partners
-inbeeld.html           → mediapagina: verslagen, video's, fotobibliotheek en impacttijdlijn
+inbeeld.html           → mediapagina: nieuwsoverzicht, fotobibliotheek en impacttijdlijn
+nieuws/                → losse artikelpagina's, één per mijlpaal uit inbeeld.html
 overons.html           → team, missie en ontstaansgeschiedenis
 bedankt.html           → bedankpagina na een succesvolle aanvraag
 css/styles.css         → sitewide design tokens en componenten (kleur, typografie, header, footer, ticker)
 assets/                → logo, merk-blobs en foto's
+assets/nieuws/         → foto's per nieuwsartikel (zie assets/nieuws/LEESMIJ.md voor de naamgeving)
 ```
 
 ## Bestandsnamen (belangrijk voor later)
@@ -90,21 +92,40 @@ foto beschikbaar; die tonen een duidelijk gelabelde placeholder met het
 bijpassende icoon in de themakleur.
 
 ## In beeld-pagina
-`inbeeld.html` is nu opgezet als echte mediapagina, qua opzet geïnspireerd op
-junioraileague.nl/in-beeld, maar in de eigen NextGen AI-huisstijl (de
-gradient-banner van de Junior AI League is teruggedraaid naar de normale
-witte page-hero die op alle andere pagina's wordt gebruikt):
-- Filtertabs (Alles, Workshops, Video, In de media, Foto's) die de
-  mediagrid filteren.
-- Mediagrid met voorbeeldkaarten (verslag, video, perslink). **Dit is
-  duidelijk gelabelde voorbeeldcontent** ("Voorbeeld · datum") die vervangen
-  moet worden door echte verslagen, video's en persberichten.
+`inbeeld.html` is de mediapagina van de site, met echte content (geen
+voorbeeldcontent meer):
+- Filtertabs (Alles, Nieuws, In de media) die de mediagrid filteren op
+  `data-category`.
+- Mediagrid met 11 echte mijlpalen uit de geschiedenis van NextGen AI (van de
+  oprichting in 2023 tot het founding member-schap van BRAIN Nederland in
+  2026), elk als tegel met datum, titel en link naar het volledige artikel.
+  Eigen aankondigingen staan onder **Nieuws**, persaandacht van derden onder
+  **In de media**.
 - Een fotobibliotheek met de beschikbare workshopfoto's, klikbaar voor een
   vergrote weergave (lightbox). Deze bibliotheek groeit mee naarmate er meer
   foto's beschikbaar komen.
 
 De interactieve impacttijdlijn staat niet meer op deze pagina (hoort hier
 niet thuis) en blijft alleen op de homepage staan.
+
+## Nieuwsartikelen (`nieuws/`)
+Elke tegel op `inbeeld.html` linkt naar een eigen artikelpagina in
+`nieuws/`, opgebouwd met dezelfde header/footer als de rest van de site.
+Elk artikel bevat een uitgebreide, in eigen bewoording geschreven tekst
+(gebaseerd op de feiten uit de bronnen, met korte letterlijke citaten waar
+relevant, altijd met attributie) en een "Bronnen"-blok met links naar de
+oorspronkelijke publicaties. **Er wordt bewust geen volledige tekst of
+beeldmateriaal van externe media overgenomen** — dat is auteursrechtelijk
+beschermd. Voor het overnemen van tekst geldt het citaatrecht (kort en met
+bronvermelding), voor beeldmateriaal is toestemming van de rechthebbende
+nodig.
+
+**Foto's staan nog op placeholder.** Zowel de tegels in `inbeeld.html` als
+de artikelpagina's zelf tonen nu een placeholder-blok
+(`data-nieuws-foto="<slug>"`). Zodra er eigen foto's per artikel
+beschikbaar zijn: zet ze in `assets/nieuws/` met de bestandsnaam die
+overeenkomt met de slug (zie `assets/nieuws/LEESMIJ.md`), en laat alle
+placeholders in één keer vervangen door `<img>`-tags.
 
 ## Over ons-pagina
 `overons.html` bevat, ook geïnspireerd op de Junior AI League-opzet:

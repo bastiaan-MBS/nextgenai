@@ -16,10 +16,18 @@
     background: var(--color-navy); color: #fff; margin-bottom: var(--space-2);
   }
   .article-date { color: var(--color-ink-soft); font-size: 0.92rem; font-weight: 600; margin-bottom: var(--space-2); }
-  .article-photo { border-radius: var(--radius-lg); overflow: hidden; margin: var(--space-4) 0; max-height: 420px; }
+  .article-photo {
+    border-radius: var(--radius-lg); overflow: hidden; margin: var(--space-4) 0; max-height: 420px;
+  }
   .article-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .article-photo-placeholder {
+    height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.6em; background: var(--color-bg-alt); border: 2px dashed var(--color-line); color: var(--color-ink-soft);
+  }
+  .article-photo-placeholder svg { width: 40px; height: 40px; color: var(--color-navy); opacity: 0.6; }
+  .article-photo-placeholder span { font-size: 0.85rem; font-weight: 600; }
   .article-body { max-width: 68ch; font-size: 1.05rem; line-height: 1.7; }
-  .article-body p { margin-bottom: var(--space-2); }
+  .article-body p { margin-bottom: var(--space-3); }
   .sources-card {
     background: var(--color-bg-alt); border: 2px solid var(--color-line); border-radius: var(--radius-lg);
     padding: var(--space-3) var(--space-4); margin-top: var(--space-4); max-width: 68ch;
@@ -87,12 +95,18 @@
   </section>
 
   <section class="section-tight container">
-    <div class="article-photo">
-      <img src="../assets/hero-photo-2.jpg" alt="Top drie Dutch Applied AI Award">
+    <!-- Foto volgt: sla een bestand op als assets/nieuws/dutch-applied-ai-award-top3.jpg en vervang dit
+         placeholder-blok door <img src="../assets/nieuws/dutch-applied-ai-award-top3.jpg" alt="Top drie Dutch Applied AI Award">.
+         data-nieuws-foto maakt dit blok makkelijk terug te vinden voor een latere batch-vervanging. -->
+    <div class="article-photo article-photo-placeholder" data-nieuws-foto="dutch-applied-ai-award-top3">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="9" r="1.4" fill="currentColor"/></svg>
+      <span>Foto volgt</span>
     </div>
     <div class="article-body">
-      <p>In november 2025 wordt NextGen AI geselecteerd als één van de drie meest impactvolle Nederlandse toepassingen van toegepaste AI, bij de Dutch Applied AI Award.</p>
-      <p>De nominatie onderstreept dat het programma niet alleen educatief, maar ook technologisch en maatschappelijk vernieuwend wordt gevonden.</p>
+      <p>In november 2025 wordt NextGen AI genomineerd als één van de drie meest impactvolle Nederlandse toepassingen van AI, bij de Dutch Applied AI Award. Naar aanleiding daarvan zijn oprichters Peter Brouwers en Bastiaan Arkenbout te gast in een podcastspecial van De Dataloog, onderdeel van de Computable Awards-reeks, gepresenteerd door Anouk Dutrée.</p>
+      <p>In de aflevering, getiteld “NextGenAI – AI-geletterdheid voor de nieuwe generatie”, lichten de oprichters de missie van de organisatie toe: jongeren voorbereiden op een toekomst waarin kunstmatige intelligentie een alledaagse vaardigheid is. “Via workshops en evenementen leren ze kinderen niet alleen hoe ze generatieve AI-tools kunnen gebruiken, maar ook hoe ze er kritisch over kunnen nadenken,” zo wordt de aanpak omschreven.</p>
+      <p>De Dutch Applied AI Award bekroont jaarlijks de drie meest impactvolle AI-toepassingen in Nederland, met een focus op oplossingen die op een intelligente, ethische en maatschappelijk verantwoorde manier zijn ingezet, over sectoren als zorg, onderwijs, duurzaamheid en het bedrijfsleven heen.</p>
+      <p>De nominatie van NextGen AI onderstreept dat het programma niet alleen educatief, maar ook technologisch en maatschappelijk vernieuwend wordt gevonden — een erkenning naast toepassingen uit heel andere sectoren dan het onderwijs.</p>
     </div>
 
     <div class="sources-card">
@@ -177,7 +191,7 @@
     </div>
     <div class="container footer-bottom">
       <span>&copy; 2026 NextGen AI, onderdeel van ACTNOW B.V.</span>
-      <span>Nieuwsartikel · versie 0.1</span>
+      <span>Nieuwsartikel · versie 0.2</span>
     </div>
   </div>
 </footer>

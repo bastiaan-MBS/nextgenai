@@ -16,10 +16,18 @@
     background: var(--color-navy); color: #fff; margin-bottom: var(--space-2);
   }
   .article-date { color: var(--color-ink-soft); font-size: 0.92rem; font-weight: 600; margin-bottom: var(--space-2); }
-  .article-photo { border-radius: var(--radius-lg); overflow: hidden; margin: var(--space-4) 0; max-height: 420px; }
+  .article-photo {
+    border-radius: var(--radius-lg); overflow: hidden; margin: var(--space-4) 0; max-height: 420px;
+  }
   .article-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .article-photo-placeholder {
+    height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.6em; background: var(--color-bg-alt); border: 2px dashed var(--color-line); color: var(--color-ink-soft);
+  }
+  .article-photo-placeholder svg { width: 40px; height: 40px; color: var(--color-navy); opacity: 0.6; }
+  .article-photo-placeholder span { font-size: 0.85rem; font-weight: 600; }
   .article-body { max-width: 68ch; font-size: 1.05rem; line-height: 1.7; }
-  .article-body p { margin-bottom: var(--space-2); }
+  .article-body p { margin-bottom: var(--space-3); }
   .sources-card {
     background: var(--color-bg-alt); border: 2px solid var(--color-line); border-radius: var(--radius-lg);
     padding: var(--space-3) var(--space-4); margin-top: var(--space-4); max-width: 68ch;
@@ -87,12 +95,18 @@
   </section>
 
   <section class="section-tight container">
-    <div class="article-photo">
-      <img src="../assets/hero-photo-3.jpg" alt="Eigen veilige Botbuilder ontwikkeld">
+    <!-- Foto volgt: sla een bestand op als assets/nieuws/botbuilder-gelanceerd.jpg en vervang dit
+         placeholder-blok door <img src="../assets/nieuws/botbuilder-gelanceerd.jpg" alt="Eigen veilige Botbuilder ontwikkeld">.
+         data-nieuws-foto maakt dit blok makkelijk terug te vinden voor een latere batch-vervanging. -->
+    <div class="article-photo article-photo-placeholder" data-nieuws-foto="botbuilder-gelanceerd">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="9" r="1.4" fill="currentColor"/></svg>
+      <span>Foto volgt</span>
     </div>
     <div class="article-body">
-      <p>Op 19 november 2024 introduceert NextGen AI de eigen Botbuilder: een platform waarmee kinderen zonder eigen accounts bij grote AI-platforms chatbots, games, verhalen en muziek kunnen ontwikkelen.</p>
-      <p>Met de Botbuilder zet NextGen AI de stap van workshopaanbieder naar edtechplatform. De software is gebouwd om honderden deelnemers tegelijk te kunnen ondersteunen.</p>
+      <p>Op 19 november 2024 introduceert NextGen AI de eigen Botbuilder: een platform waarmee kinderen van 8 tot 13 jaar zonder eigen account bij grote technologiebedrijven als OpenAI of Google chatbots, games, verhalen en muziek kunnen ontwikkelen.</p>
+      <p>Met de Botbuilder zet NextGen AI de stap van workshopaanbieder naar edtechplatform. De software is bewust laagdrempelig ontworpen: kinderen loggen niet in bij een extern AI-platform, maar werken via een chatgebaseerde interface die NextGen AI zelf beheert en die is gebouwd om honderden deelnemers tegelijk te kunnen ondersteunen.</p>
+      <p>Een uitbreiding, de Solution Builder Bot, maakt het platform ook geschikt voor hackathons, waarbij kinderen niet alleen chatbots bouwen maar ook oplossingen voor concrete vraagstukken.</p>
+      <p>In de eerste periode na de lancering maken al meer dan honderd kinderen tijdens workshops kennis met AI-ontwikkeling en bouwen zij zelfstandig een werkende chatbot — een resultaat dat volgens de ontwikkelaars vooral draaide om de balans tussen schaalbaarheid en eenvoud: een ervaring die voor jonge gebruikers intuïtief aanvoelt, terwijl de techniek onder de motorkap flexibel genoeg blijft om met verschillende AI-technologieën te werken.</p>
     </div>
 
     <div class="sources-card">
@@ -177,7 +191,7 @@
     </div>
     <div class="container footer-bottom">
       <span>&copy; 2026 NextGen AI, onderdeel van ACTNOW B.V.</span>
-      <span>Nieuwsartikel · versie 0.1</span>
+      <span>Nieuwsartikel · versie 0.2</span>
     </div>
   </div>
 </footer>
