@@ -1,3 +1,4 @@
 # Oude paginanaam: partnerprogramma.html is hernoemd naar organisaties.html.
 # Deze redirect voorkomt dode links voor eventuele bestaande bladwijzers/verwijzingen.
-Redirect 301 /partnerprogramma.html /organisaties.html
+# Expliciet https, anders bouwt Apache het doel soms als http op.
+Redirect 301 /partnerprogramma.html https://nextgen.mbscs.nl/organisaties.html

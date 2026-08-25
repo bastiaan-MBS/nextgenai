@@ -237,6 +237,9 @@ demo), niet op het uiteindelijke domein. Zodra de site live gaat op het echte do
   moeten komen.
 - De bestaande mailto-links in de code (`info@nextgen-ai.club`) kunnen
   blijven staan, die verwijzen al naar het toekomstige domein.
+- **`.htaccess`**: de redirect van de oude paginanaam (`partnerprogramma.html`
+  → `organisaties.html`) heeft het domein hardcoded (`nextgen.mbscs.nl`).
+  Aanpassen naar `nextgen-ai.club` bij livegang.
 
 ## Volgende stappen
 1. Calendly-link en partnerlogo's/links vervangen door de echte gegevens.
