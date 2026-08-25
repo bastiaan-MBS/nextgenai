@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eerste Junior AI League in Breda: NextGen AI in beeld</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+  .page-hero { padding-block: var(--space-6) var(--space-4); }
+  .article-tag {
+    display: inline-block; font-family: var(--font-display); font-weight: 700; font-size: 0.72rem;
+    letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3em 0.8em; border-radius: var(--radius-pill);
+    background: var(--color-navy); color: #fff; margin-bottom: var(--space-2);
+  }
+  .article-date { color: var(--color-ink-soft); font-size: 0.92rem; font-weight: 600; margin-bottom: var(--space-2); }
+  .article-photo { border-radius: var(--radius-lg); overflow: hidden; margin: var(--space-4) 0; max-height: 420px; }
+  .article-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .article-body { max-width: 68ch; font-size: 1.05rem; line-height: 1.7; }
+  .article-body p { margin-bottom: var(--space-2); }
+  .sources-card {
+    background: var(--color-bg-alt); border: 2px solid var(--color-line); border-radius: var(--radius-lg);
+    padding: var(--space-3) var(--space-4); margin-top: var(--space-4); max-width: 68ch;
+  }
+  .sources-card h2 { font-size: 1.05rem; margin-bottom: 0.6em; }
+  .sources-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5em; }
+  .sources-card a { color: var(--color-navy); font-weight: 600; text-decoration: none; }
+  .sources-card a:hover { text-decoration: underline; }
+  .back-link { display: inline-flex; align-items: center; gap: 0.5em; margin-top: var(--space-4); font-weight: 600; color: var(--color-navy); text-decoration: none; }
+  .back-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <img class="blob-edge is-right" src="../assets/blob-pink-clean.png" alt="" style="--blob-w:130px; --blob-top:20%;">
+  <div class="container nav-inner">
+    <a href="../index.html" class="logo-mark"><img src="../assets/logo.png" alt="NextGen AI logo"></a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="../workshops.html">Workshops</a></li>
+        <li><a href="../partnerprogramma.html">Organisaties</a></li>
+        <li><a href="../inbeeld.html" class="is-active">In Beeld</a></li>
+        <li><a href="../overons.html">Over Ons</a></li>
+        <li><a href="../index.html#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="nav-ctas">
+      <a href="../partnerprogramma.html" class="btn btn-outline-light">Voor organisaties</a>
+      <a href="../workshops.html" class="btn btn-cta-large">
+        Boek een workshop
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <button type="button" class="hamburger" id="hamburgerBtn" aria-label="Menu openen" aria-expanded="false" aria-controls="mobileMenu">
+      <svg class="icon-menu" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <ul>
+        <li><a class="nav-link" href="../workshops.html">Workshops</a></li>
+        <li><a class="nav-link" href="../partnerprogramma.html">Organisaties</a></li>
+        <li><a class="nav-link" href="../inbeeld.html">In Beeld</a></li>
+        <li><a class="nav-link" href="../overons.html">Over Ons</a></li>
+        <li><a class="nav-link" href="../index.html#faq">FAQ</a></li>
+      </ul>
+      <div class="mobile-menu-ctas">
+        <a href="../partnerprogramma.html" class="btn btn-outline-light" style="border-color:var(--color-navy-ink); color:#fff; background:rgba(255,255,255,0.08);">Voor organisaties</a>
+        <a href="../workshops.html" class="btn btn-cta-large">
+          Boek een workshop
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="page-hero container">
+    <span class="article-tag">In de media</span>
+    <h1>Eerste Junior AI League in Breda</h1>
+    <p class="article-date">april – 17 september 2025</p>
+  </section>
+
+  <section class="section-tight container">
+    <div class="article-photo">
+      <img src="../assets/hero-photo-1.jpg" alt="Eerste Junior AI League in Breda">
+    </div>
+    <div class="article-body">
+      <p>Tussen april en 17 september 2025 vindt de eerste Junior AI League in Breda plaats. In zes wijkhackathons werken 230 kinderen aan oplossingen voor thema's als gezondheid, veiligheid en leefbaarheid.</p>
+      <p>Tijdens de finale in poppodium MEZZ wint basisschool De Rietvink met een AI-beweegapp voor in de klas. Deze mijlpaal laat zien hoe AI-educatie leidt tot een concrete maatschappelijke oplossing, bedacht en gebouwd door kinderen zelf.</p>
+    </div>
+
+    <div class="sources-card">
+      <h2>Bronnen</h2>
+      <ul>
+        <li><a href="https://www.bredavandaag.nl/algemeen/algemeen/458056/leerlingen-basisschool-rietvink-winnen-junior-ai-league-met-e" target="_blank" rel="noopener">BredaVandaag →</a></li>
+        <li><a href="https://bredata.nl/finale-ai-league-kinderen-bouwen-aan-de-wereld-van-morgen/" target="_blank" rel="noopener">Bredata →</a></li>
+        <li><a href="https://www.nextgen-ai.club/junior-ai-league" target="_blank" rel="noopener">NextGen AI – Junior AI League →</a></li>
+      </ul>
+    </div>
+
+    <a href="../inbeeld.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Terug naar In Beeld
+    </a>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="footer-cta">
+    <div class="container">
+      <span class="eyebrow">Contact</span>
+      <h2>Neem contact met ons op.</h2>
+      <p class="intro">Kies hieronder waar jouw vraag over gaat.</p>
+
+      <div class="contact-choice">
+        <a href="../partnerprogramma.html" class="choice-card">
+          <span class="choice-title"><span class="dot" style="background:var(--color-green);"></span>Ik wil dit voor mijn organisatie</span>
+          <p>Een doorlopend lesprogramma onder eigen naam, inclusief software en ondersteuning.</p>
+          <span class="choice-link-btn">
+            <span class="choice-link-label">Neem contact op</span>
+            <span class="choice-link-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
+        </a>
+        <a href="../workshops.html" class="choice-card">
+          <span class="choice-title"><span class="dot" style="background:var(--color-cyan);"></span>Ik wil een workshop boeken</span>
+          <p>Eén programma, één datum, direct resultaat voor een groep kinderen.</p>
+          <span class="choice-link-btn">
+            <span class="choice-link-label">Boek een workshop</span>
+            <span class="choice-link-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-legal">
+    <img class="blob-edge is-right" src="../assets/blob-cyan-clean.png" alt="" style="--blob-w:200px; top:auto; bottom:-30px;">
+    <div class="container footer-grid">
+      <div class="footer-brand-col">
+        <img src="../assets/logo.png" alt="NextGen AI" style="height:128px; margin-bottom:var(--space-2); margin-left:-14px;">
+        <p style="color:rgba(255,255,255,0.6); font-size:0.9rem; max-width:32ch;">Elk kind toegang geven tot AI-educatie, zodat zij morgen de oplossingen creëren die de toekomst nodig heeft.</p>
+      </div>
+      <div>
+        <h4>Sitemap</h4>
+        <ul>
+          <li><a href="../workshops.html">Workshops</a></li>
+          <li><a href="../partnerprogramma.html">Voor organisaties</a></li>
+          <li><a href="../inbeeld.html">In beeld</a></li>
+          <li><a href="../overons.html">Over ons</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Organisatie</h4>
+        <ul>
+          <li>ACTNOW B.V.</li>
+          <li>info@nextgen-ai.club</li>
+          <li>+31 (0)00 000 00 00</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Juridisch</h4>
+        <ul>
+          <li><a href="#">Privacyverklaring</a></li>
+          <li><a href="#">Cookiebeleid</a></li>
+          <li><a href="#">Algemene voorwaarden</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>&copy; 2026 NextGen AI, onderdeel van ACTNOW B.V.</span>
+      <span>Nieuwsartikel · versie 0.1</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById('hamburgerBtn');
+    var menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    function close() {
+      btn.classList.remove('is-open');
+      menu.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      btn.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  })();
+</script>
+</body>
+</html>
