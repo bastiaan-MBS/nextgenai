@@ -74,10 +74,6 @@
     gap: 0.4em; position: relative; background: var(--wc-tint, var(--color-bg-alt));
   }
   .wc-photo-placeholder svg { width: 36px; height: 36px; color: var(--wc-color, var(--color-navy)); opacity: 0.85; }
-  .wc-photo-placeholder .ph-label {
-    font-size: 0.68rem; font-weight: 600; color: rgba(11,16,48,0.55); background: rgba(255,255,255,0.75);
-    padding: 0.25em 0.6em; border-radius: var(--radius-pill); position: absolute; bottom: 0.4em; left: 0.4em;
-  }
 
   /* ---- Boekingsmodule (rechts, omkaderd in themakleur) ---- */
   .wc-booking { border: 2px solid var(--wc-color, var(--color-navy)); background: var(--wc-tint, var(--color-bg-alt)); border-radius: var(--radius-md); padding: var(--space-3); align-self: stretch; }
@@ -320,7 +316,6 @@
           </div>
           <div class="wc-photo"><div class="wc-photo-placeholder">
             <svg viewBox="0 0 24 24" fill="none"><path d="M9 18V5l10-2v13M9 18a3 3 0 1 1-3-3 3 3 0 0 1 3 3Zm10-2a3 3 0 1 1-3-3 3 3 0 0 1 3 3Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="ph-label">Voorbeeldbeeld, echte foto volgt</span>
           </div></div>
           <p>Kinderen ontdekken hoe AI kan helpen bij het maken van muziek. Ze experimenteren
             met AI-tools om beats, melodieën en samples te genereren, en zetten die zelf in
@@ -356,7 +351,6 @@
           </div>
           <div class="wc-photo"><div class="wc-photo-placeholder">
             <svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5V6a2 2 0 0 1 2-2h5v16H6a2 2 0 0 0-2 2Zm16-15.5H13v16h5a2 2 0 0 1 2 2V4Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="ph-label">Voorbeeldbeeld, echte foto volgt</span>
           </div></div>
           <p>Kinderen schrijven met hulp van AI hun eigen verhaal. Ze bedenken personages en
             een plot, en ontdekken hoe AI kan meedenken over wendingen, dialogen en sfeer,
@@ -392,7 +386,6 @@
           </div>
           <div class="wc-photo"><div class="wc-photo-placeholder">
             <svg viewBox="0 0 24 24" fill="none"><path d="M7 9v4M5 11h4m5-1h.01M17 12h.01M6 7h12a3 3 0 0 1 3 3.4l-.7 5A3 3 0 0 1 17.3 18c-.8 0-1.5-.3-2-.9L14 15h-4l-1.3 2.1c-.5.6-1.2.9-2 .9a3 3 0 0 1-3-2.6l-.7-5A3 3 0 0 1 6 7Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="ph-label">Voorbeeldbeeld, echte foto volgt</span>
           </div></div>
           <p>Kinderen ontwerpen met AI hun eigen game-idee of level. Ze bedenken een concept,
             laten AI meedenken over personages, werelden en regels, en zien hun idee tot
@@ -428,7 +421,6 @@
           </div>
           <div class="wc-photo"><div class="wc-photo-placeholder">
             <svg viewBox="0 0 24 24" fill="none"><path d="M4 20 15 9M18 3l3 3-3.5 3.5-3-3ZM4 20l1.5-4.5L11 10l3 3-5.5 5.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="ph-label">Voorbeeldbeeld, echte foto volgt</span>
           </div></div>
           <p>Kinderen maken met AI hun eigen visuele kunstwerk. Ze experimenteren met
             AI-beeldtools, ontdekken hoe prompts werken, en leren waar menselijke
@@ -740,7 +732,10 @@
     </div>
     <div class="container footer-bottom">
       <span>&copy; 2026 NextGen AI | website by <a href="https://www.mrbluesky.nl" target="_blank" rel="noopener">Mr. Blue Sky</a></span>
-      <span class="footer-badge-mini" title="Founding member van BRAIN Nederland"><img src="assets/brain-nederland-logo.png" alt="BRAIN Nederland"></span>
+      <span class="footer-bottom-right">
+        <a href="https://www.linkedin.com/company/nextgeneration-ai" target="_blank" rel="noopener" class="footer-social-link" aria-label="NextGen AI op LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.7c0-1.36-.02-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3v5.8h-4V9Z"/></svg></a>
+        <span class="footer-badge-mini" title="Founding member van BRAIN Nederland"><img src="assets/brain-nederland-logo.png" alt="BRAIN Nederland"></span>
+      </span>
     </div>
   </div>
 </footer>
