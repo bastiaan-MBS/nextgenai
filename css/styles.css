@@ -445,16 +445,18 @@ nav.main-nav a:hover, nav.main-nav a.is-active { border-color: var(--color-yello
 
 .footer-legal .footer-bottom a { color: rgba(255,255,255,0.85); text-decoration: underline; }
 .footer-legal .footer-bottom a:hover { color: #fff; }
-.footer-bottom-right { display: inline-flex; align-items: center; gap: 0.8em; }
-.footer-social-link {
-  width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.1);
-  display: flex; align-items: center; justify-content: center; color: #fff;
-  transition: background var(--transition);
+.footer-bottom-right { display: inline-flex; align-items: center; gap: 1em; flex-wrap: wrap; }
+.footer-social-btn {
+  display: inline-flex; align-items: center; gap: 0.55em;
+  padding: 0.5em 1em; border-radius: var(--radius-pill);
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.3);
+  color: #fff; font-size: 0.82rem; font-weight: 600; text-decoration: none;
+  transition: background var(--transition), border-color var(--transition);
 }
-.footer-social-link:hover { background: rgba(255,255,255,0.22); }
-.footer-social-link svg { width: 15px; height: 15px; }
+.footer-social-btn:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.55); }
+.footer-social-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
 .footer-badge-mini { display: inline-flex; align-items: center; }
-.footer-badge-mini img { height: 6.7px; width: auto; background: #fff; border-radius: 2px; padding: 1px 2px; }
+.footer-badge-mini img { height: 20px; width: auto; background: #fff; border-radius: 4px; padding: 2px 4px; }
 
 @media (max-width: 760px) {
   .contact-choice, .field-grid, .workshop-options { grid-template-columns: 1fr; }
