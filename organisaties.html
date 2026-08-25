@@ -28,23 +28,7 @@
   .usp-row h3 { margin-bottom: 0.3em; }
   @media (max-width: 900px) { .usp-grid { grid-template-columns: 1fr; } }
 
-  /* ---- Aanbod: 3 duidelijke keuzes (offer-list/.check staan sitewide in css/styles.css) ---- */
-  .choices-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-4); }
-  @media (min-width: 900px) { .choices-grid { grid-template-columns: repeat(3, 1fr); } }
-  .choice-plan {
-    border: 2px solid var(--color-line); border-radius: var(--radius-lg); padding: var(--space-4);
-    display: flex; flex-direction: column; background: var(--color-surface);
-  }
-  .choice-plan.is-featured { border-color: var(--color-navy); background: var(--color-bg-alt); position: relative; }
-  .choice-plan .plan-tag {
-    display: inline-block; font-family: var(--font-display); font-weight: 700; font-size: 0.72rem;
-    letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3em 0.8em; border-radius: var(--radius-pill);
-    margin-bottom: var(--space-2); align-self: flex-start;
-  }
-  .choice-plan h3 { margin-bottom: 0.3em; }
-  .choice-plan .plan-desc { color: var(--color-ink-soft); font-size: 0.95rem; }
-  .choice-plan .offer-list { flex: 1; }
-  .choice-plan .btn { margin-top: var(--space-3); width: 100%; justify-content: center; }
+  /* ---- Aanbod: 3 duidelijke keuzes staan sitewide in css/styles.css (.choices-grid/.choice-plan), zodat de homepage dezelfde sectie kan hergebruiken ---- */
 
   .cta-card { background: var(--color-navy); color: #fff; border-radius: var(--radius-lg); padding: var(--space-4); position: relative; overflow: hidden; }
   .cta-card h3 { color: #fff; }
@@ -314,27 +298,27 @@
     <p style="max-width:60ch;">Dit zijn organisaties die al met veel plezier een workshop of licentie bij ons hebben afgenomen.</p>
     <div class="logo-ticker" style="margin-top: var(--space-4);">
       <div class="logo-ticker-track">
-        <span class="logo-ticker-item"><img src="assets/Organisaties/Bredata_Logo_GeelVlak.png" alt="Bredata"></span>
-        <span class="logo-ticker-item"><img src="assets/Organisaties/Discovery%20museum%20logo.png" alt="Discovery Museum"></span>
-        <span class="logo-ticker-item"><img src="assets/Organisaties/Montessori%20nieuwekerk%20ad%20ijssel%20logo.png" alt="Montessori Nieuwerkerk aan den IJssel"></span>
-        <span class="logo-ticker-item"><img src="assets/Organisaties/Ontdekstation-logo.png" alt="Ontdekstation"></span>
         <span class="logo-ticker-item"><img src="assets/Organisaties/bibliotheek%20logo%20bollenstreek.jpeg" alt="Bibliotheek Bollenstreek"></span>
+        <span class="logo-ticker-item"><img src="assets/Organisaties/Bredata_Logo_GeelVlak.png" alt="Bredata"></span>
         <span class="logo-ticker-item"><img src="assets/Organisaties/bibliotheek%20logo%20groene%20hart.jpeg" alt="Bibliotheek Groene Hart"></span>
+        <span class="logo-ticker-item"><img src="assets/Organisaties/Discovery%20museum%20logo.png" alt="Discovery Museum"></span>
         <span class="logo-ticker-item"><img src="assets/Organisaties/bibliotheek%20logo%20ijmond%20noord.png" alt="Bibliotheek IJmond Noord"></span>
+        <span class="logo-ticker-item"><img src="assets/Organisaties/Montessori%20nieuwekerk%20ad%20ijssel%20logo.png" alt="Montessori Nieuwerkerk aan den IJssel"></span>
         <span class="logo-ticker-item"><img src="assets/Organisaties/bibliotheek%20logo%20rijk%20en%20venen.png" alt="Bibliotheek Rijn en Venen"></span>
+        <span class="logo-ticker-item"><img src="assets/Organisaties/Ontdekstation-logo.png" alt="Ontdekstation"></span>
         <span class="logo-ticker-item"><img src="assets/Organisaties/bibliotheek%20logo%20venlo.jpeg" alt="Bibliotheek Venlo"></span>
         <span class="logo-ticker-item"><img src="assets/Organisaties/de%20overlaat%20logo.png" alt="De Overlaat"></span>
         <span class="logo-ticker-item"><img src="assets/Organisaties/petje%20af%20logo.png" alt="Petje Af"></span>
         <span class="logo-ticker-item"><img src="assets/Organisaties/zomerschool%20maks%20logo.png" alt="Zomerschool MAKS"></span>
         <!-- lijst herhaald voor naadloze loop -->
-        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/Bredata_Logo_GeelVlak.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/Discovery%20museum%20logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/Montessori%20nieuwekerk%20ad%20ijssel%20logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/Ontdekstation-logo.png"></span>
         <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/bibliotheek%20logo%20bollenstreek.jpeg"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/Bredata_Logo_GeelVlak.png"></span>
         <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/bibliotheek%20logo%20groene%20hart.jpeg"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/Discovery%20museum%20logo.png"></span>
         <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/bibliotheek%20logo%20ijmond%20noord.png"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/Montessori%20nieuwekerk%20ad%20ijssel%20logo.png"></span>
         <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/bibliotheek%20logo%20rijk%20en%20venen.png"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/Ontdekstation-logo.png"></span>
         <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/bibliotheek%20logo%20venlo.jpeg"></span>
         <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/de%20overlaat%20logo.png"></span>
         <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/petje%20af%20logo.png"></span>
@@ -546,7 +530,7 @@
     </div>
     <div class="container footer-bottom">
       <span>&copy; 2026 NextGen AI | website by <a href="https://www.mrbluesky.nl" target="_blank" rel="noopener">Mr. Blue Sky</a></span>
-      <span class="footer-badge-mini" title="Founding member van BRAIN Nederland"><img src="assets/assets/brain-nederland-logo.png" alt="BRAIN Nederland"></span>
+      <span class="footer-badge-mini" title="Founding member van BRAIN Nederland"><img src="assets/brain-nederland-logo.png" alt="BRAIN Nederland"></span>
     </div>
   </div>
 </footer>

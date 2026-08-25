@@ -25,21 +25,15 @@
   .mission-quote { max-width: 74ch; font-size: 1.1rem; line-height: 1.6; }
 
   /* ---- Team ---- */
-  .team-photo-note { font-size: 0.85rem; color: var(--color-ink-soft); font-style: italic; margin-top: 0.5em; max-width: 60ch; }
   .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); margin-top: var(--space-4); }
   @media (min-width: 700px) { .team-grid { grid-template-columns: repeat(4, 1fr); } }
   .team-card { text-align: center; padding: var(--space-3); }
   .team-avatar {
     position: relative; width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 0.7em;
-    display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
     font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; color: #fff;
   }
-  .team-avatar-icon {
-    position: absolute; bottom: -4px; right: -4px; width: 26px; height: 26px; border-radius: 50%;
-    background: #fff; color: var(--color-ink-soft); border: 2px solid var(--color-bg);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .team-avatar-icon svg { width: 14px; height: 14px; }
+  .team-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .team-card .team-name { font-family: var(--font-display); font-weight: 700; font-size: 1rem; margin-bottom: 0.2em; }
   .team-card .team-role { font-size: 0.85rem; color: var(--color-ink-soft); }
   .team-group { grid-column: 1 / -1; margin-top: var(--space-3); }
@@ -150,34 +144,24 @@
     <span class="eyebrow">Het team</span>
     <h2>Een klein team, met een grote missie.</h2>
     <p style="max-width:60ch;">We houden het team bewust klein en werken samen met een vaste groep trainers.</p>
-    <p class="team-photo-note">De gekleurde cirkels zijn placeholders voor profielfoto's. Zodra er echte foto's zijn, komen die hiervoor in de plaats.</p>
-
     <div class="team-grid">
       <div class="card team-card">
-        <span class="team-avatar" style="background:var(--color-pink);">G<span class="team-avatar-icon">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 0 1 2-2h1l1-2h8l1 2h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
-        </span></span>
+        <span class="team-avatar"><img src="assets/team/Geraldine.jpg" alt="Geraldine"></span>
         <div class="team-name">Geraldine</div>
         <div class="team-role">CEO</div>
       </div>
       <div class="card team-card">
-        <span class="team-avatar" style="background:var(--color-green);">P<span class="team-avatar-icon">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 0 1 2-2h1l1-2h8l1 2h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
-        </span></span>
+        <span class="team-avatar"><img src="assets/team/Peter.jpg" alt="Peter"></span>
         <div class="team-name">Peter</div>
         <div class="team-role">CGO</div>
       </div>
       <div class="card team-card">
-        <span class="team-avatar" style="background:var(--color-navy);">B<span class="team-avatar-icon">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 0 1 2-2h1l1-2h8l1 2h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
-        </span></span>
+        <span class="team-avatar"><img src="assets/team/Bastiaan.jpg" alt="Bastiaan"></span>
         <div class="team-name">Bastiaan</div>
         <div class="team-role">CPO</div>
       </div>
       <div class="card team-card">
-        <span class="team-avatar" style="background:var(--color-yellow); color:var(--color-navy);">D<span class="team-avatar-icon">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 0 1 2-2h1l1-2h8l1 2h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
-        </span></span>
+        <span class="team-avatar"><img src="assets/team/Daniel.jpg" alt="Daniel"></span>
         <div class="team-name">Daniel</div>
         <div class="team-role">Tech support</div>
       </div>
@@ -186,23 +170,17 @@
         <h3>Trainers</h3>
       </div>
       <div class="card team-card">
-        <span class="team-avatar" style="background:var(--color-cyan); color:var(--color-navy);">L<span class="team-avatar-icon">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 0 1 2-2h1l1-2h8l1 2h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
-        </span></span>
+        <span class="team-avatar"><img src="assets/team/Laurens.jpg" alt="Laurens"></span>
         <div class="team-name">Laurens</div>
         <div class="team-role">Trainer</div>
       </div>
       <div class="card team-card">
-        <span class="team-avatar" style="background:var(--color-red);">S<span class="team-avatar-icon">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 0 1 2-2h1l1-2h8l1 2h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
-        </span></span>
+        <span class="team-avatar"><img src="assets/team/Sjors.jpg" alt="Sjors"></span>
         <div class="team-name">Sjors</div>
         <div class="team-role">Trainer</div>
       </div>
       <div class="card team-card">
-        <span class="team-avatar" style="background:var(--color-navy);">JW<span class="team-avatar-icon">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 0 1 2-2h1l1-2h8l1 2h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
-        </span></span>
+        <span class="team-avatar"><img src="assets/team/Jan-Willem.jpg" alt="Jan-Willem"></span>
         <div class="team-name">Jan-Willem</div>
         <div class="team-role">Trainer</div>
       </div>
@@ -278,7 +256,7 @@
     </div>
     <div class="container footer-bottom">
       <span>&copy; 2026 NextGen AI | website by <a href="https://www.mrbluesky.nl" target="_blank" rel="noopener">Mr. Blue Sky</a></span>
-      <span class="footer-badge-mini" title="Founding member van BRAIN Nederland"><img src="assets/assets/brain-nederland-logo.png" alt="BRAIN Nederland"></span>
+      <span class="footer-badge-mini" title="Founding member van BRAIN Nederland"><img src="assets/brain-nederland-logo.png" alt="BRAIN Nederland"></span>
     </div>
   </div>
 </footer>

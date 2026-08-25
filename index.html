@@ -61,14 +61,6 @@
   .usp-row .num { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--color-yellow); }
   .usp-row h3 { margin-bottom: 0.3em; }
 
-  /* ---- AANBOD ---- */
-  .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); margin-top: var(--space-4); }
-  .offer-card.workshop { border-color: var(--color-cyan); }
-  .offer-card.partner  { border-color: var(--color-green); }
-  .tag-workshop { background: var(--color-cyan);  color: var(--color-navy); }
-  .tag-partner  { background: var(--color-green); color: var(--color-navy); }
-  .offer-card ul { margin: var(--space-2) 0 var(--space-3); padding-left: 1.1em; color: var(--color-ink-soft); font-size: 0.95rem; }
-  .offer-card li { margin-bottom: 0.4em; }
 
   /* ---- IMPACT: interactieve tijdlijn ---- */
   .impact-chart-card {
@@ -190,7 +182,7 @@
   .footer-cta h2 { max-width: 34ch; }
 
   @media (max-width: 960px) {
-    .hero-grid, .usp-grid, .offer-grid, .mission-band .container, .footer-grid { grid-template-columns: 1fr; }
+    .hero-grid, .usp-grid, .mission-band .container, .footer-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -332,34 +324,48 @@
     </ul>
   </section>
 
-  <!-- AANBOD -->
-  <section class="section container">
-    <span class="eyebrow">Wat we bieden</span>
-    <h2>Eén workshop, of een compleet programma voor je organisatie.</h2>
-    <p style="max-width:60ch;">Beide routes starten laagdrempelig. Veel organisaties beginnen zelf met één workshop en groeien later door naar een lessenreeks of licentie.</p>
+  <!-- AANBOD: DRIE KEUZES (zelfde drieluik als op organisaties.html) -->
+  <section class="section container" id="voor-organisaties">
+    <span class="eyebrow">Drie manieren om te starten</span>
+    <h2>Van volledig verzorgd tot volledig zelf georganiseerd.</h2>
+    <p style="max-width:60ch;">Kies wat past bij jouw organisatie. Alle drie starten met dezelfde kindveilige NextGen AI-software.</p>
 
-    <div class="offer-grid">
-      <div class="card offer-card workshop" id="workshops">
-        <span class="tag tag-workshop">Workshops</span>
-        <h3>Boek een workshop</h3>
-        <p>Eén programma, één datum, direct resultaat. Ideaal om kennis te maken of een eenmalig event te organiseren.</p>
-        <ul>
-          <li>7 workshops, van AI for Kids tot de AI Hackathon</li>
-          <li>Ook als complete lessenreeks van 6 lessen te boeken</li>
-          <li>Gastdocent of Train-de-Trainer mogelijk</li>
+    <div class="choices-grid">
+      <div class="choice-plan" id="workshops">
+        <span class="plan-tag" style="background:var(--color-cyan); color:var(--color-navy);">Workshop</span>
+        <h3>Wij verzorgen de workshop</h3>
+        <p class="plan-desc">Een complete AI-ervaring, verzorgd door NextGen AI. Ideaal om kennis te maken of voor een eenmalig evenement.</p>
+        <ul class="offer-list">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Eén of meerdere workshops op locatie</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Eigen trainer van NextGen AI</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Geen voorbereiding nodig</li>
         </ul>
-        <a href="workshops.html" class="btn btn-secondary">Bekijk alle workshops</a>
+        <a href="workshops.html" class="btn btn-secondary">Bekijk de workshops</a>
       </div>
-      <div class="card offer-card partner" id="voor-organisaties">
-        <span class="tag tag-partner">Voor organisaties · aanbevolen: licentie</span>
-        <h3>Ga zelf aan de slag met een licentie</h3>
-        <p>Eigen leeromgeving, het volledige programma en Train-de-Trainer voor je eigen mensen. De meest gekozen route om structureel AI-educatie aan te bieden. Ook een verzorgde lessenreeks of losse workshop is mogelijk.</p>
-        <ul>
-          <li>Eigen leeromgeving voor jouw locatie of organisatie</li>
-          <li>Doorlopende updates van lesinhoud</li>
-          <li>Persoonlijke begeleiding bij de opstart</li>
+
+      <div class="choice-plan is-featured">
+        <span class="plan-tag" style="background:var(--color-green); color:#fff;">Licentie · aanbevolen</span>
+        <h3>Ga zelf aan de slag</h3>
+        <p class="plan-desc">Een licentie op de NextGen AI-software en het volledige programma. Train je eigen mensen en organiseer structureel AI-activiteiten.</p>
+        <ul class="offer-list">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Licentie op de NextGen AI-leeromgeving</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Het volledige programma, alle 7 workshops</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Train-de-Trainer voor je eigen begeleiders</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Doorlopende updates van de lesinhoud</li>
         </ul>
-        <a href="organisaties.html" class="btn btn-secondary">Bekijk de mogelijkheden</a>
+        <a href="organisaties.html#kennismaking" class="btn btn-primary">Plan een kennismaking</a>
+      </div>
+
+      <div class="choice-plan">
+        <span class="plan-tag" style="background:var(--color-yellow); color:var(--color-navy);">Lessenreeks</span>
+        <h3>Een complete lessenreeks</h3>
+        <p class="plan-desc">Een doorlopende reeks van 6 lessen voor een vaste groep kinderen, die stap voor stap dieper op AI ingaat. Verzorgd door NextGen AI.</p>
+        <ul class="offer-list">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>6 lessen, opgebouwd van basis tot verdieping</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Verzorgd door NextGen AI-trainers</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Vast programma, makkelijk in te plannen</li>
+        </ul>
+        <a href="organisaties.html#kennismaking" class="btn btn-secondary">Vraag de lessenreeks aan</a>
       </div>
     </div>
   </section>
@@ -479,14 +485,14 @@
     <p style="max-width:60ch;">Dit zijn organisaties waar we al eerder een workshop hebben verzorgd of een licentie aan hebben geleverd, en partners waarmee we hebben samengewerkt aan onze missie.</p>
     <div class="logo-ticker" style="margin-top: var(--space-4);">
       <div class="logo-ticker-track">
-        <span class="logo-ticker-item"><img src="assets/Organisaties/Bredata_Logo_GeelVlak.png" alt="Bredata"></span>
-        <span class="logo-ticker-item"><img src="assets/Organisaties/Discovery%20museum%20logo.png" alt="Discovery Museum"></span>
-        <span class="logo-ticker-item"><img src="assets/Organisaties/Montessori%20nieuwekerk%20ad%20ijssel%20logo.png" alt="Montessori Nieuwerkerk aan den IJssel"></span>
-        <span class="logo-ticker-item"><img src="assets/Organisaties/Ontdekstation-logo.png" alt="Ontdekstation"></span>
         <span class="logo-ticker-item"><img src="assets/Organisaties/bibliotheek%20logo%20bollenstreek.jpeg" alt="Bibliotheek Bollenstreek"></span>
+        <span class="logo-ticker-item"><img src="assets/Organisaties/Bredata_Logo_GeelVlak.png" alt="Bredata"></span>
         <span class="logo-ticker-item"><img src="assets/Organisaties/bibliotheek%20logo%20groene%20hart.jpeg" alt="Bibliotheek Groene Hart"></span>
+        <span class="logo-ticker-item"><img src="assets/Organisaties/Discovery%20museum%20logo.png" alt="Discovery Museum"></span>
         <span class="logo-ticker-item"><img src="assets/Organisaties/bibliotheek%20logo%20ijmond%20noord.png" alt="Bibliotheek IJmond Noord"></span>
+        <span class="logo-ticker-item"><img src="assets/Organisaties/Montessori%20nieuwekerk%20ad%20ijssel%20logo.png" alt="Montessori Nieuwerkerk aan den IJssel"></span>
         <span class="logo-ticker-item"><img src="assets/Organisaties/bibliotheek%20logo%20rijk%20en%20venen.png" alt="Bibliotheek Rijn en Venen"></span>
+        <span class="logo-ticker-item"><img src="assets/Organisaties/Ontdekstation-logo.png" alt="Ontdekstation"></span>
         <span class="logo-ticker-item"><img src="assets/Organisaties/bibliotheek%20logo%20venlo.jpeg" alt="Bibliotheek Venlo"></span>
         <span class="logo-ticker-item"><img src="assets/Organisaties/de%20overlaat%20logo.png" alt="De Overlaat"></span>
         <span class="logo-ticker-item"><img src="assets/Organisaties/petje%20af%20logo.png" alt="Petje Af"></span>
@@ -496,14 +502,14 @@
         <span class="logo-ticker-item"><img src="assets/Samenwerkingspartners/Logo-Tilburg-University-1-768x195-1.webp" alt="Tilburg University"></span>
         <span class="logo-ticker-item"><img src="assets/Samenwerkingspartners/mindlabslogo_0.webp" alt="MindLabs"></span>
         <!-- lijst herhaald voor naadloze loop -->
-        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/Bredata_Logo_GeelVlak.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/Discovery%20museum%20logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/Montessori%20nieuwekerk%20ad%20ijssel%20logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/Ontdekstation-logo.png"></span>
         <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/bibliotheek%20logo%20bollenstreek.jpeg"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/Bredata_Logo_GeelVlak.png"></span>
         <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/bibliotheek%20logo%20groene%20hart.jpeg"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/Discovery%20museum%20logo.png"></span>
         <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/bibliotheek%20logo%20ijmond%20noord.png"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/Montessori%20nieuwekerk%20ad%20ijssel%20logo.png"></span>
         <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/bibliotheek%20logo%20rijk%20en%20venen.png"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/Ontdekstation-logo.png"></span>
         <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/bibliotheek%20logo%20venlo.jpeg"></span>
         <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/de%20overlaat%20logo.png"></span>
         <span class="logo-ticker-item" aria-hidden="true"><img src="assets/Organisaties/petje%20af%20logo.png"></span>
@@ -616,7 +622,7 @@
     </div>
     <div class="container footer-bottom">
       <span>&copy; 2026 NextGen AI | website by <a href="https://www.mrbluesky.nl" target="_blank" rel="noopener">Mr. Blue Sky</a></span>
-      <span class="footer-badge-mini" title="Founding member van BRAIN Nederland"><img src="assets/assets/brain-nederland-logo.png" alt="BRAIN Nederland"></span>
+      <span class="footer-badge-mini" title="Founding member van BRAIN Nederland"><img src="assets/brain-nederland-logo.png" alt="BRAIN Nederland"></span>
     </div>
   </div>
 </footer>
