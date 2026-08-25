@@ -77,6 +77,14 @@
     border-radius: 50%; background: #fff; color: var(--color-navy); border: none; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
   }
+
+  /* ---- Video-lightbox (Shorts, portretformaat) ---- */
+  .video-lightbox-frame {
+    width: min(360px, 86vw); aspect-ratio: 9/16; border-radius: var(--radius-md);
+    overflow: hidden; box-shadow: var(--shadow-soft); background: #000;
+  }
+  .video-lightbox-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .media-card-media-video { cursor: pointer; }
 </style>
 </head>
 <body>
@@ -170,8 +178,8 @@
       </article>
 
       <article class="card media-card" data-category="media">
-        <div class="media-card-media media-card-photo-placeholder" data-nieuws-foto="junior-ai-league-tilburg">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="9" r="1.4" fill="currentColor"/></svg>
+        <div class="media-card-media" data-nieuws-foto="junior-ai-league-tilburg">
+          <img src="assets/nieuws/junior-ai-league-tilburg.jpg" alt="Junior AI League groeit door naar Tilburg">
           <span class="media-card-tag">In de media</span>
         </div>
         <div class="media-card-body">
@@ -278,8 +286,8 @@
       </article>
 
 
-      <article class="card media-card" data-category="video">
-        <div class="media-card-media">
+      <article class="card media-card" data-category="video" data-video-id="-wqWrjOMo8c">
+        <div class="media-card-media media-card-media-video">
           <img src="https://i.ytimg.com/vi/-wqWrjOMo8c/hq2.jpg" alt="Waarom we dit organiseren">
           <span class="media-card-tag">Short</span>
           <span class="media-card-play"><span>
@@ -293,8 +301,8 @@
         </div>
       </article>
 
-      <article class="card media-card" data-category="video">
-        <div class="media-card-media">
+      <article class="card media-card" data-category="video" data-video-id="K1rZd8-cJOY">
+        <div class="media-card-media media-card-media-video">
           <img src="https://i.ytimg.com/vi/K1rZd8-cJOY/hq2.jpg" alt="NGAI Uniek platform">
           <span class="media-card-tag">Short</span>
           <span class="media-card-play"><span>
@@ -308,8 +316,8 @@
         </div>
       </article>
 
-      <article class="card media-card" data-category="video">
-        <div class="media-card-media">
+      <article class="card media-card" data-category="video" data-video-id="eI4dsFXKW5U">
+        <div class="media-card-media media-card-media-video">
           <img src="https://i.ytimg.com/vi/eI4dsFXKW5U/hq2.jpg" alt="Missie AI Family Festival">
           <span class="media-card-tag">Short</span>
           <span class="media-card-play"><span>
@@ -323,8 +331,8 @@
         </div>
       </article>
 
-      <article class="card media-card" data-category="video">
-        <div class="media-card-media">
+      <article class="card media-card" data-category="video" data-video-id="TMhQAVoMlWY">
+        <div class="media-card-media media-card-media-video">
           <img src="https://i.ytimg.com/vi/TMhQAVoMlWY/hq2.jpg" alt="Meegeven aan bezoekers docenten, onderwijs">
           <span class="media-card-tag">Short</span>
           <span class="media-card-play"><span>
@@ -338,8 +346,8 @@
         </div>
       </article>
 
-      <article class="card media-card" data-category="video">
-        <div class="media-card-media">
+      <article class="card media-card" data-category="video" data-video-id="dZImXqxKD3g">
+        <div class="media-card-media media-card-media-video">
           <img src="https://i.ytimg.com/vi/dZImXqxKD3g/hq2.jpg" alt="Mede organisatie onderwijscongres">
           <span class="media-card-tag">Short</span>
           <span class="media-card-play"><span>
@@ -353,8 +361,8 @@
         </div>
       </article>
 
-      <article class="card media-card" data-category="video">
-        <div class="media-card-media">
+      <article class="card media-card" data-category="video" data-video-id="z16PeNtog90">
+        <div class="media-card-media media-card-media-video">
           <img src="https://i.ytimg.com/vi/z16PeNtog90/hq2.jpg" alt="Junior AI League">
           <span class="media-card-tag">Short</span>
           <span class="media-card-play"><span>
@@ -368,8 +376,8 @@
         </div>
       </article>
 
-      <article class="card media-card" data-category="video">
-        <div class="media-card-media">
+      <article class="card media-card" data-category="video" data-video-id="aMZpd-MAejI">
+        <div class="media-card-media media-card-media-video">
           <img src="https://i.ytimg.com/vi/aMZpd-MAejI/hq2.jpg" alt="Contact met NGAI">
           <span class="media-card-tag">Short</span>
           <span class="media-card-play"><span>
@@ -383,8 +391,8 @@
         </div>
       </article>
 
-      <article class="card media-card" data-category="video">
-        <div class="media-card-media">
+      <article class="card media-card" data-category="video" data-video-id="_4TPZoV9LDM">
+        <div class="media-card-media media-card-media-video">
           <img src="https://i.ytimg.com/vi/_4TPZoV9LDM/hq2.jpg" alt="Als je nu nog niks met AI doet">
           <span class="media-card-tag">Short</span>
           <span class="media-card-play"><span>
@@ -398,8 +406,8 @@
         </div>
       </article>
 
-      <article class="card media-card" data-category="video">
-        <div class="media-card-media">
+      <article class="card media-card" data-category="video" data-video-id="F3_HZxuwSvo">
+        <div class="media-card-media media-card-media-video">
           <img src="https://i.ytimg.com/vi/F3_HZxuwSvo/hq2.jpg" alt="AI is nu">
           <span class="media-card-tag">Short</span>
           <span class="media-card-play"><span>
@@ -424,10 +432,32 @@
       <p style="max-width:60ch;">Klik op een foto om deze vergroot te bekijken.</p>
 
       <div class="photo-masonry" id="photoMasonry">
-        <button type="button" data-full="assets/hero-photo-1.jpg"><img src="assets/hero-photo-1.jpg" alt="AI for Kids workshop"></button>
-        <button type="button" data-full="assets/hero-photo-2.jpg"><img src="assets/hero-photo-2.jpg" alt="NextGen AI op een evenement"></button>
-        <button type="button" data-full="assets/hero-photo-3.jpg"><img src="assets/hero-photo-3.jpg" alt="Samenwerken tijdens een workshop"></button>
-        <button type="button" data-full="assets/hero-photo-4.jpg"><img src="assets/hero-photo-4.jpg" alt="AI Hackathon"></button>
+        <button type="button" data-full="assets/fotobibliotheek/AI%20Family%20Festival.jpeg"><img src="assets/fotobibliotheek/thumbs/AI%20Family%20Festival.jpg" alt="AI Family Festival" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/AI%20Game%20Masters.png"><img src="assets/fotobibliotheek/thumbs/AI%20Game%20Masters.jpg" alt="AI Game Masters" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/IMG_1268.jpeg"><img src="assets/fotobibliotheek/thumbs/IMG_1268.jpg" alt="NextGen AI foto 1268" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/IMG_1290.jpeg"><img src="assets/fotobibliotheek/thumbs/IMG_1290.jpg" alt="NextGen AI foto 1290" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/IMG_1326.jpeg"><img src="assets/fotobibliotheek/thumbs/IMG_1326.jpg" alt="NextGen AI foto 1326" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/IMG_1337.jpeg"><img src="assets/fotobibliotheek/thumbs/IMG_1337.jpg" alt="NextGen AI foto 1337" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/Junior%20AI%20hackathon%202024%20..jpeg"><img src="assets/fotobibliotheek/thumbs/Junior%20AI%20hackathon%202024%20..jpg" alt="Junior AI hackathon 2024" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/Junior%20AI%20hackathon%202024.jpeg"><img src="assets/fotobibliotheek/thumbs/Junior%20AI%20hackathon%202024.jpg" alt="Junior AI hackathon 2024" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-bij-CM.com_1.jpeg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-bij-CM.com_1.jpg" alt="NextGen AI bij CM.com 1" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-bij-CM.com_2.jpeg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-bij-CM.com_2.jpg" alt="NextGen AI bij CM.com 2" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-bij-CM.com_3.jpeg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-bij-CM.com_3.jpg" alt="NextGen AI bij CM.com 3" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-hackathon_1.jpeg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-hackathon_1.jpg" alt="NextGen AI hackathon 1" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-hackathon_2.jpeg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-hackathon_2.jpg" alt="NextGen AI hackathon 2" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-hackathon_3.jpeg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-hackathon_3.jpg" alt="NextGen AI hackathon 3" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-stadsfinale-hackathon-gemeente-breda-in-Mezz.jpg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-stadsfinale-hackathon-gemeente-breda-in-Mezz.jpg" alt="NextGen AI stadsfinale hackathon gemeente breda in Mezz" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-workshop-1.jpeg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-workshop-1.jpg" alt="NextGen AI workshop 1" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-workshop-2.jpeg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-workshop-2.jpg" alt="NextGen AI workshop 2" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-workshop-4.png"><img src="assets/fotobibliotheek/thumbs/NextgenAI-workshop-4.jpg" alt="NextGen AI workshop 4" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-workshop-for-kids_1.jpg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-workshop-for-kids_1.jpg" alt="NextGen AI workshop for kids 1" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-workshop-for-kids_2.jpg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-workshop-for-kids_2.jpg" alt="NextGen AI workshop for kids 2" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-workshop-for-kids_3.png"><img src="assets/fotobibliotheek/thumbs/NextgenAI-workshop-for-kids_3.jpg" alt="NextGen AI workshop for kids 3" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-workshop-games.jpeg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-workshop-games.jpg" alt="NextGen AI workshop games" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-workshop-kunst-maken-met-ai.jpeg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-workshop-kunst-maken-met-ai.jpg" alt="NextGen AI workshop kunst maken met ai" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-workshop-muziekjpeg.jpeg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-workshop-muziekjpeg.jpg" alt="NextGen AI workshop muziekjpeg" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-workshop-train-je-eigen-chatbot.jpeg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-workshop-train-je-eigen-chatbot.jpg" alt="NextGen AI workshop train je eigen chatbot" loading="lazy"></button>
+        <button type="button" data-full="assets/fotobibliotheek/NextgenAI-workshop-verhalen-schrijven.jpeg"><img src="assets/fotobibliotheek/thumbs/NextgenAI-workshop-verhalen-schrijven.jpg" alt="NextGen AI workshop verhalen schrijven" loading="lazy"></button>
       </div>
       <p class="media-note">Deze fotobibliotheek groeit mee: er komen meer foto's bij naarmate er meer workshops en events zijn geweest.</p>
     </div>
@@ -440,6 +470,15 @@
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
   </button>
   <img id="lightboxImg" src="" alt="">
+</div>
+
+<div class="lightbox" id="videoLightbox">
+  <button type="button" class="lightbox-close" id="videoLightboxClose" aria-label="Sluiten">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+  </button>
+  <div class="video-lightbox-frame">
+    <iframe id="videoLightboxFrame" src="" title="NextGenAI Short" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
 </div>
 
 <footer id="contact">
@@ -509,7 +548,7 @@
     </div>
     <div class="container footer-bottom">
       <span>&copy; 2026 NextGen AI, onderdeel van ACTNOW B.V.</span>
-      <span>Prototype in beeld-pagina · versie 0.4</span>
+      <span>Prototype in beeld-pagina · versie 0.5</span>
     </div>
   </div>
 </footer>
@@ -564,6 +603,39 @@
     function close() { lightbox.classList.remove('is-open'); lightboxImg.src = ''; }
     closeBtn.addEventListener('click', close);
     lightbox.addEventListener('click', function (e) { if (e.target === lightbox) close(); });
+    window.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  })();
+
+  // Video-lightbox: Shorts direct embedden en afspelen i.p.v. doorlinken naar YouTube
+  (function () {
+    var videoLightbox = document.getElementById('videoLightbox');
+    var frame = document.getElementById('videoLightboxFrame');
+    var closeBtn = document.getElementById('videoLightboxClose');
+    if (!videoLightbox || !frame) return;
+
+    function openVideo(id) {
+      frame.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
+      videoLightbox.classList.add('is-open');
+    }
+    function close() { videoLightbox.classList.remove('is-open'); frame.src = ''; }
+
+    document.querySelectorAll('.media-card[data-video-id]').forEach(function (card) {
+      var id = card.getAttribute('data-video-id');
+      var media = card.querySelector('.media-card-media-video');
+      var link = card.querySelector('.media-card-link');
+      if (media) {
+        media.addEventListener('click', function () { openVideo(id); });
+      }
+      if (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          openVideo(id);
+        });
+      }
+    });
+
+    closeBtn.addEventListener('click', close);
+    videoLightbox.addEventListener('click', function (e) { if (e.target === videoLightbox) close(); });
     window.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   })();
 
