@@ -36,9 +36,30 @@ vervangen is voldoende, de site hoeft niet aangepast te worden.
 - Foto's krijgen afgeronde hoeken met een zachte schaduw (`class="photo"`).
 - Geen koppelstreepjes (—) in lopende tekst tenzij echt nodig.
 
+## Hoofdnavigatie en submenu
+De hoofdnavigatie bestaat bewust uit precies 5 items: Home, Workshops
+(`/ai-workshops/`), Organisaties, In Beeld, Over Ons. `/licentie/` en
+`/ai-lessenreeks/` staan hier NIET in — dit is een expliciete klantkeuze: het
+zijn onderliggende proposities, bereikbaar via een submenu onder
+"Organisaties" en via interne links elders op de site.
+
+Het submenu (Licentie, Lessenreeks) werkt op desktop en mobiel verschillend:
+- **Desktop**: verschijnt alleen bij `:hover`/`:focus-within` op "Organisaties"
+  (classes `.nav-has-dropdown`/`.nav-dropdown` in `css/styles.css`), niet
+  standaard zichtbaar.
+- **Mobiel**: staat standaard ingeklapt en wordt via een apart pijltje-knopje
+  naast "Organisaties" getoond/verborgen (`.nav-dropdown-toggle`,
+  `aria-expanded`, class `.nav-dropdown-mobile.is-open`). De link naar
+  `/organisaties/` zelf blijft los daarvan gewoon aanklikbaar.
+
+Dit is sitewide identiek op alle 20 pagina's; nieuwe pagina's moeten dezelfde
+header-markup en de bijbehorende JS-blokken (twee losse IIFE's: één voor het
+desktop-dropdown-gedrag, één voor de mobiele toggle) overnemen.
+
 ## Mobiele navigatie
 Vanaf 960px breed schakelt de header om naar een hamburgermenu met dezelfde
-links en knoppen. Dit staat sitewide in `css/styles.css`, met de bijbehorende
+links en knoppen (zie ook "Hoofdnavigatie en submenu" hierboven voor het
+submenu-gedrag). Dit staat sitewide in `css/styles.css`, met de bijbehorende
 JS onderaan elke pagina, dus nieuwe pagina's werken hier automatisch mee
 zolang ze dezelfde header-markup gebruiken.
 
@@ -48,6 +69,16 @@ duidelijke kaarten met een geel rond knopje: "Ik wil partner worden" (linkt
 naar `/organisaties/`) en "Ik wil een workshop boeken" (linkt naar
 `/ai-workshops/`). Onder de witte kaarten volgt de donkerblauwe balk met
 sitemap, organisatiegegevens en juridische links.
+
+In de kolom "Organisatie" staat, onder de contactgegevens
+(`Peter Brouwers: +31 6 11 73 60 39`), het BRAIN Nederland-logo
+(`.footer-org-badge`, ca. 60px hoog — bewust 3x groter dan de eerdere,
+kleinere variant die in de onderste balk stond). De LinkedIn-knop
+(`.footer-social-btn`, onderin) is een gele, duidelijk klikbare knop zonder
+onderlijning; let bij wijzigingen op de CSS-specificiteit van de regel
+`.footer-legal .footer-bottom a.footer-social-btn` — die moet minstens even
+specifiek blijven als `.footer-legal .footer-bottom a` (die laatste zet
+standaard `text-decoration: underline` op alle links in de onderste balk).
 
 ## Homepage
 De hero heeft een automatische fotoslideshow (4 foto's, wisselt elke 4,5
@@ -130,7 +161,7 @@ overeenkomt met de slug (zie `assets/nieuws/LEESMIJ.md`), en laat alle
 placeholders in één keer vervangen door `<img>`-tags.
 
 ## SEO
-Alle 18 pagina's hebben nu:
+Alle 20 pagina's (inclusief `/licentie/` en `/ai-lessenreeks/`) hebben nu:
 - Unieke `<title>` en `<meta name="description">`.
 - `<link rel="canonical">`, Open Graph- en Twitter Card-tags (`og:title`,
   `og:description`, `og:image`, `twitter:card`, etc.).
@@ -164,28 +195,93 @@ laat dat dan weten, dan zet ik de URL's tijdelijk om.
   echte foto's vervangen worden.
 
 ## Organisaties-pagina
-`/organisaties/` beschrijft het aanbod (licentie, volledig
-programma, Train-de-Trainer) met een CTA-kaart die twee opties biedt: direct
-een afspraak plannen via een Calendly-link, of een kennismakingsformulier
-uitklappen. Dat formulier staat nu als volledige-breedte-blok onder de
-aanbodsectie (niet meer verstopt in de smalle donkerblauwe kaart, waar
-eerder velden werden afgekapt).
+`/organisaties/` is de centrale overzichtspagina voor scholen, bibliotheken
+en andere organisaties, opgebouwd als:
+- **Wat levert dit op**: algemene voordelen, met een informatie-CTA.
+- **Logo-slider**: scrollende logo's van organisaties die al een workshop of
+  licentie hebben afgenomen (`.logo-ticker`, bestanden in
+  `assets/Organisaties/`). Deze sectie hoort hier en NIET op `/licentie/` —
+  dat is in een eerdere feedbackronde per ongeluk verward met de aparte
+  "licentiehouders"-carrousel (zie hieronder bij `/licentie/`).
+- **Drie keuzes**: een `.choices-grid`/`.choice-plan`-blok met de 3 manieren
+  om met NextGen AI te werken — AI-workshop boeken (→ `/ai-workshops/`),
+  AI-lessenreeks (→ `/ai-lessenreeks/`) en licentie (→ `/licentie/`, visueel
+  aanbevolen/`is-featured`, want dit heeft de voorkeur van de klant als
+  meest structurele propositie).
+- **Kennismaking**: een CTA-kaart met twee opties — direct een demo plannen
+  via de Calendly-link van Peter Brouwers
+  (`https://calendly.com/peter-impact`, zijn echte agenda-link), of een
+  kennismakingsformulier uitklappen. Dat formulier staat als
+  volledige-breedte-blok onder de aanbodsectie.
+- **Junior AI League**: een blok over dit gelieerde programma, met een link
+  naar junioraileague.nl.
+- **Wat u krijgt als partner**: dezelfde kindveilige-software-boodschap als
+  op de homepage, herschreven vanuit het perspectief van de bezoeker.
 
-Onderaan de pagina, vlak boven de footer, staat "Wat u krijgt als partner":
-dezelfde kindveilige-software-boodschap als op de homepage, maar herschreven
-vanuit het perspectief van de bezoeker (wat ze krijgen, niet wat ons
-onderscheidt).
+Verspreid over de pagina staan meerdere extra CTA-knoppen ("Vraag
+vrijblijvend informatie aan" / "Plan direct een demo bij Peter") die naar het
+juiste contactelement op dezelfde pagina scrollen — zie "Formulieren en
+CTA-gedrag" hieronder voor hoe dat technisch werkt.
 
-De Calendly-link (`https://calendly.com/peter-impact`) is de echte agenda-link
-van Peter Brouwers en staat al verwerkt op deze pagina en op `/licentie/`.
+De partnerlogo's-websitelinks in de logo-slider zijn echte bestanden; vul
+eventueel ontbrekende namen/logo's aan zodra bekend.
 
-Onder de partners-carrousel staat nu ook een blok over de Junior AI League
-(gelieerd programma), met een link naar junioraileague.nl.
+## Licentiepagina
+`/licentie/` (niet in de hoofdnav, wel bereikbaar via het submenu bij
+"Organisaties" en via interne links) is opgebouwd als:
+- **Hero**: tekst + een echte foto uit de fotobibliotheek
+  (`assets/fotobibliotheek/IMG_1290-licentie-hero.jpg`, apart gecomprimeerd
+  naar ca. 300KB — het origineel in `assets/fotobibliotheek/` blijft
+  ongemoeid voor de lightbox op `/in-beeld/`).
+- **Licentiehouders**: een doorscrolbare carrousel (`.testi-carousel`,
+  gedeelde CSS met de vergelijkbare carrousel-stijl) met voorbeeld-
+  licentiehouders (bibliotheken/jeugdorganisaties). Deze sectie stond eerder
+  op `/organisaties/` onder de kop "Wie werken er al met ons" en is bewust
+  hierheen verplaatst en herkaderd naar licentie-specifieke tekst.
+- **Voor wie / Wat kun je zelfstandig organiseren**: bij die laatste sectie
+  staat het NextGen AI-logo zichtbaar (niet als vaag watermerk) linksonder de
+  introtekst, op klantverzoek.
+- **Wat levert een licentie op**: bewust GEEN concrete prijzen (die zijn op
+  klantverzoek verwijderd) — in plaats daarvan een voordelenblok dat uitlegt
+  wanneer een licentie zich terugverdient (bij meerdere workshops per jaar)
+  en verwijst naar het aanvraagformulier voor een prijsopgave op maat.
+- **Ondersteuning / Waarom een licentie**: bewust met verschillende
+  ontwerpprincipes (vinklijst vs. genummerde kaarten) voor visuele
+  afwisseling, zelfde inhoud.
+- **Vergelijking**: hetzelfde 3-koloms `.compare-grid`/`.compare-card`-blok
+  (workshop / lessenreeks / licentie, licentie aanbevolen) als op
+  `/ai-lessenreeks/` — CSS staat sitewide in `css/styles.css`.
+- **Hoe word je licentiehouder**: een tijdlijn met de globale stappen.
+- **Aanvragen**: twee losstaande, wederzijds exclusieve opties — "Vraag
+  informatie aan" opent het contactformulier, "Vraag een demo aan" opent
+  in plaats daarvan een apart blok met uitleg dat Peter Brouwers de demo's
+  persoonlijk verzorgt plus zijn Calendly-link. Zie "Formulieren en
+  CTA-gedrag" hieronder.
 
-Daaronder staat een doorscrolbare carrousel met huidige partners (naam,
-regio, korte toelichting, review en een link naar hun eigen website). De
-websitelinks staan nu op `#` als placeholder; vul de echte adressen in
-zodra die bekend zijn, en vervang de voorbeeldpartners door de echte namen.
+**Openstaande TODO's in de code** (bewust niet verzonnen, staan als HTML-
+comment op de pagina): exacte contractduur/opzegtermijn/facturatiewijze van
+de licentie, en de exacte aanvraagprocedure/doorlooptijd tot de licentie
+ingaat.
+
+## AI-lessenreeks-pagina
+`/ai-lessenreeks/` (niet in de hoofdnav, wel bereikbaar via het submenu bij
+"Organisaties") beschrijft de voormalige propositie "Project Reboot" — die
+naam wordt nergens meer gebruikt, de propositie heet nu simpelweg
+"AI-lessenreeks digitale geletterdheid". Opgebouwd als:
+- **Hero**: tekst + foto (`IMG_1268-lessenreeks.jpg`, gecomprimeerde kopie).
+- **Kenmerken**: met een tweede foto (`NextgenAI-hackathon_1-lessenreeks.jpg`)
+  en het NextGen AI-logo als decoratief watermerk verderop op de pagina.
+- **Leerdoelen / Praktische informatie**: BEWUST geen vast aantal lessen of
+  vaste lesduur genoemd (op klantverzoek verwijderd, was eerder "18 lessen
+  van 30 minuten") — omschreven als flexibele lessenreeks die passend wordt
+  gemaakt binnen onderwijs/projectperiode/planning.
+- **Andere manieren om te starten**: hetzelfde `.compare-grid`-drieluik als
+  op `/licentie/`, met de licentie-kaart aanbevolen.
+- **Aanvragen**: een informatie-CTA (opent het formulier) én een directe
+  Calendly-link voor een demo bij Peter Brouwers.
+
+**Openstaande TODO in de code**: de exacte prijsopgave en aanvraagprocedure
+voor de AI-lessenreeks.
 
 ## Bedankpagina
 `/bedankt/` verschijnt automatisch na een succesvol verzonden formulier
@@ -203,24 +299,62 @@ afwachten of de aanvraag echt is gelukt voordat je doorstuurt naar
 stuurt het formulier door zodra het geldig is ingevuld, en wordt de data op
 de achtergrond verstuurd.
 
-## Formulieren
-Er zijn twee formulieren, allebei aangesloten op dezelfde verwerker:
-- Het boekingsformulier per workshop op `/ai-workshops/`.
-- Het kennismakingsformulier op `/organisaties/`.
+## Formulieren en CTA-gedrag
+Er zijn meerdere formulier-contexten, allemaal aangesloten op dezelfde
+verwerker (`formulier/send.php`):
+- Het boekingsformulier per workshop op `/ai-workshops/` (`_pagina=workshops`).
+- Het kennismakingsformulier op `/organisaties/` (`_pagina=organisaties`).
+- Het aanvraagformulier op `/licentie/`, met twee waarden voor `_pagina`
+  afhankelijk van welke knop is gebruikt: `licentie-info` (informatie
+  aanvragen) of `licentie-demo` (gebruikt vóór de Calendly-omzetting
+  hieronder; deze waarde staat nog in `formulier/send.php` en
+  `formulier/mail-templates.php` maar wordt momenteel niet meer vanuit de
+  pagina verstuurd — zie volgende punt).
+- Het aanvraagformulier op `/ai-lessenreeks/` (`_pagina=ai-lessenreeks`).
 
-Beide posten naar `formulier/send.php` (PHP-script, zie
-"Mailverwerking" hieronder). Voor beide geldt verder:
+**Informatie vs. demo, bewust verschillend afgehandeld.** Op `/licentie/`
+en `/ai-lessenreeks/` opent "Vraag informatie aan" altijd het contactformulier
+(dat via `formulier/send.php` mailt). "Vraag een demo aan" doet dat NIET meer
+— die knop toont in plaats daarvan een apart blok met uitleg dat Peter
+Brouwers de demo's persoonlijk verzorgt, met een directe link naar zijn
+Calendly (`https://calendly.com/peter-impact`). Op `/licentie/` zijn deze
+twee blokken (`#introFields` / `#demoFields`) wederzijds exclusief: het
+openen van de één sluit de ander. Dezelfde Calendly-link wordt ook gebruikt
+op `/organisaties/` bij "Plan direct in de agenda".
+
+**Meerdere CTA-knoppen per pagina.** Op `/organisaties/`, `/licentie/` en
+`/ai-lessenreeks/` staan bewust meerdere CTA-knoppen verspreid over de
+pagina (niet alleen onderaan), die allemaal naar hetzelfde contactelement op
+dezelfde pagina linken. Dit werkt via herbruikbare classes i.p.v. losse
+`id`'s, zodat je knoppen kunt toevoegen zonder JS aan te passen:
+- `.js-open-intro-form` (met `data-pagina="..."`) opent het formulier —
+  gebruikt door alle "Vraag informatie aan"-knoppen op een pagina.
+- `.js-open-demo-block` opent het demo-blok op `/licentie/` (was eerder een
+  uniek `id="toggleDemoBlock"`, gerefactored naar een class toen er meerdere
+  demo-knoppen op de pagina kwamen).
+
+**Scroll-gedrag.** Bij het openen van een formulier/demo-blok wordt de
+pagina er smooth naartoe gescrold, maar pas ná de uitklap-animatie
+(`grid-template-rows`-transitie van 420ms) — de `scrollIntoView`-aanroep zit
+in een `setTimeout(..., 450)`. Doe je dit niet, dan berekent de browser de
+scrollpositie op basis van de nog niet volledig uitgeklapte (dus te kleine)
+hoogte, en schiet de pagina te ver door zodra de animatie de hoogte alsnog
+laat groeien. Voeg je een nieuwe uitklapbare sectie toe: pas dit patroon toe.
+
+Voor alle formulieren geldt verder:
 - Alle velden hebben een `name`-attribuut dat als POST-data binnenkomt
   (voornaam, achternaam, email, telefoon, organisatie, regio, workshop,
   gewenste/alternatieve datum, aantal kinderen, leeftijd/groep, locatie,
   factuurgegevens, bericht/opmerkingen).
-- Er zit een verborgen honeypot-veld (`website`) in voor basale
-  spambescherming.
+- Er zit een verborgen honeypot-veld (checkbox, `_bevestig`) en een
+  server-uitgegeven/server-vergeleken token (`formulier/token.php`) in voor
+  spambescherming. **Bewust niet client-clock-gebaseerd** — dat heeft eerder
+  tot bugs geleid waarbij echte inzendingen stil werden geweigerd.
 - Bij een serverfout verschijnt een foutmelding met een directe
   mailto-link naar info@nextgen-ai.club, zodat er nooit een dode knop is.
 
 ## Mailverwerking
-`formulier/send.php` verwerkt beide formulieren en verstuurt via SMTP
+`formulier/send.php` verwerkt alle formulier-contexten hierboven en verstuurt via SMTP
 (PHPMailer, bestanden in `lib/PHPMailer/`) twee e-mails per inzending:
 1. Een interne melding met alle ingevulde velden naar `owner_email`
    (momenteel `peter@lead2deal.nl`), met BCC naar `owner_bcc`
@@ -270,8 +404,14 @@ demo), niet op het uiteindelijke domein. Zodra de site live gaat op het echte do
   League-website (`junioraileague.nl`).
 
 ## Volgende stappen
-1. Partnerlogo's/links vervangen door de echte gegevens (de Calendly-link is
-   al de echte agenda-link van Peter Brouwers).
+1. **Openstaande TODO's** (bewust niet verzonnen, staan als HTML-comment in
+   de code — vul aan zodra bekend, verzin niets):
+   - `/licentie/`: exacte contractduur, opzegtermijn en facturatiewijze;
+     exacte stappen/doorlooptijd van onboarding; exacte aanvraagprocedure en
+     doorlooptijd tot de licentie ingaat.
+   - `/ai-lessenreeks/`: exacte prijsopgave en aanvraagprocedure.
+   - `/organisaties/`: partnerlogo's/websitelinks en voorbeeldpartners in de
+     carrousels vervangen door de echte gegevens zodra bekend.
 2. Teksten laten uitschrijven en aanscherpen.
 3. Eigen CMS bouwen zodat teksten, impactcijfers en testimonials buiten de
    code om aan te passen zijn.
