@@ -228,6 +228,39 @@ nav.main-nav ul { list-style: none; display: flex; gap: var(--space-4); margin: 
 nav.main-nav a { text-decoration: none; font-weight: 500; font-size: 0.95rem; color: #fff; border-bottom: 2px solid transparent; padding-bottom: 4px; }
 nav.main-nav a:hover, nav.main-nav a.is-active { border-color: var(--color-yellow); }
 
+/* ---- Dropdown-submenu bij "Organisaties" (desktop), sitewide ---- */
+.nav-has-dropdown { position: relative; }
+.nav-dropdown {
+  position: absolute; top: 100%; left: 0; z-index: 60;
+  min-width: 210px;
+  background: var(--color-navy-ink);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  padding: 14px 0.5em 0.5em;
+  display: grid; gap: 0.15em;
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+}
+.nav-has-dropdown:hover .nav-dropdown,
+.nav-has-dropdown:focus-within .nav-dropdown {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+.nav-dropdown a {
+  display: block; font-family: var(--font-display); font-weight: 600; font-size: 0.9rem;
+  color: #fff; padding: 0.65em 0.9em; border-radius: var(--radius-md); border-bottom: none;
+  white-space: nowrap;
+  transition: background var(--transition), color var(--transition);
+}
+.nav-dropdown a:hover, .nav-dropdown a:focus-visible { background: rgba(255,255,255,0.1); color: var(--color-yellow); }
+
+/* ---- Submenu bij "Organisaties" in het mobiele menu: altijd zichtbaar, ingesprongen ---- */
+.mobile-menu .nav-dropdown-mobile { list-style: none; margin: 0; padding: 0 0 0.4em var(--space-3); display: grid; gap: 0; }
+.mobile-menu .nav-dropdown-mobile a.nav-sublink {
+  font-size: 0.92rem; font-weight: 500; color: rgba(255,255,255,0.78);
+  padding: 0.6em 0.2em; border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.mobile-menu .nav-dropdown-mobile a.nav-sublink::before { content: "→ "; color: var(--color-yellow); }
+
 .hamburger {
   display: none; background: none; border: none; color: #fff; cursor: pointer;
   padding: 0.5em; flex-shrink: 0; width: 44px; height: 44px; align-items: center; justify-content: center;
@@ -382,6 +415,24 @@ nav.main-nav a:hover, nav.main-nav a.is-active { border-color: var(--color-yello
 .choice-plan .plan-desc { color: var(--color-ink-soft); font-size: 0.95rem; }
 .choice-plan .offer-list { flex: 1; }
 .choice-plan .btn { margin-top: var(--space-3); width: 100%; justify-content: center; }
+
+/* ---- Vergelijking van de drie manieren (workshop/lessenreeks/licentie), sitewide
+   (gebruikt op /licentie/ en /ai-lessenreeks/) ---- */
+.compare-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-4); }
+@media (min-width: 900px) { .compare-grid { grid-template-columns: repeat(3, 1fr); } }
+.compare-card {
+  border: 2px solid var(--color-line); border-radius: var(--radius-lg); padding: var(--space-4);
+  display: flex; flex-direction: column; gap: var(--space-2);
+}
+.compare-card.is-current { border-color: var(--color-navy); background: var(--color-bg-alt); }
+.compare-card h3 { margin: 0; }
+.compare-card p { margin: 0; color: var(--color-ink-soft); font-size: 0.95rem; flex: 1; }
+.compare-card a { margin-top: auto; }
+.compare-card .plan-tag {
+  background: var(--color-green); color: #fff; display: inline-block; width: fit-content;
+  padding: 0.3em 0.9em; border-radius: var(--radius-pill); font-family: var(--font-display);
+  font-weight: 700; font-size: 0.78rem;
+}
 
 /* ---- Veiligheid-callout, sitewide ---- */
 .safety-callout {

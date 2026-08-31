@@ -65,15 +65,6 @@
   .info-row .info-label { font-weight: 600; color: var(--color-ink-soft); }
   .info-row .info-value { font-weight: 600; color: var(--color-ink); text-align: right; }
 
-  /* ---- Testimonials ---- */
-  .quote-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-4); }
-  @media (min-width: 800px) { .quote-grid { grid-template-columns: 1fr 1fr; } }
-  .quote-card {
-    background: var(--color-navy); color: #fff; border-radius: var(--radius-lg); padding: var(--space-4);
-  }
-  .quote-card p.quote { font-size: 1rem; margin: 0 0 var(--space-2); }
-  .quote-card .quote-role { color: rgba(255,255,255,0.65); font-size: 0.85rem; font-weight: 600; }
-
   /* ---- Aanvraagformulier (zelfde patroon als /organisaties/) ---- */
   .cta-card { background: var(--color-navy); color: #fff; border-radius: var(--radius-lg); padding: var(--space-4); position: relative; overflow: hidden; }
   .cta-card h3 { color: #fff; }
@@ -103,7 +94,13 @@
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/ai-workshops/">Workshops</a></li>
-        <li><a href="/organisaties/">Organisaties</a></li>
+        <li class="nav-has-dropdown">
+          <a href="/organisaties/" aria-haspopup="true" aria-expanded="false">Organisaties</a>
+          <div class="nav-dropdown">
+            <a href="/licentie/">Licentie</a>
+            <a href="/ai-lessenreeks/">Lessenreeks</a>
+          </div>
+        </li>
         <li><a href="/in-beeld/">In Beeld</a></li>
         <li><a href="/over-ons/">Over Ons</a></li>
       </ul>
@@ -125,7 +122,13 @@
       <ul>
         <li><a class="nav-link" href="/">Home</a></li>
         <li><a class="nav-link" href="/ai-workshops/">Workshops</a></li>
-        <li><a class="nav-link" href="/organisaties/">Organisaties</a></li>
+        <li class="nav-has-dropdown">
+          <a class="nav-link" href="/organisaties/">Organisaties</a>
+          <ul class="nav-dropdown-mobile">
+            <li><a class="nav-link nav-sublink" href="/licentie/">Licentie</a></li>
+            <li><a class="nav-link nav-sublink" href="/ai-lessenreeks/">Lessenreeks</a></li>
+          </ul>
+        </li>
         <li><a class="nav-link" href="/in-beeld/">In Beeld</a></li>
         <li><a class="nav-link" href="/over-ons/">Over Ons</a></li>
       </ul>
@@ -219,27 +222,28 @@
     <!-- TODO: ontbrekende info, aan te vullen door klant: exacte prijsopgave en aanvraagprocedure voor de AI-lessenreeks. -->
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="section-tight container">
-    <span class="eyebrow">Wat anderen zeggen</span>
-    <h2>Ervaringen uit de klas.</h2>
-    <div class="quote-grid">
-      <div class="quote-card">
-        <p class="quote">"Onze leerlingen waren zo enthousiast dat ze thuis doorpraatten over de lessen. Voor het eerst zag ik ze echt begrijpen wat AI betekent voor hun toekomst."</p>
-        <div class="quote-role">Leerkracht groep 8</div>
-      </div>
-      <div class="quote-card">
-        <p class="quote">"Eindelijk een programma dat aansluit op onze ambities voor digitale geletterdheid zonder dat we zelf experts hoeven te worden."</p>
-        <div class="quote-role">Directeur basisschool</div>
-      </div>
-    </div>
-  </section>
-
   <!-- ANDERE MANIEREN -->
   <section class="section-tight container">
     <span class="eyebrow">Andere manieren om te starten</span>
     <h2>Liever een losse workshop, of alles zelf organiseren?</h2>
-    <p style="max-width:64ch;">Naast de AI-lessenreeks bieden we ook losse <a href="/ai-workshops/" style="color:var(--color-navy); font-weight:600;">AI-workshops</a> aan, en voor organisaties die AI-educatie structureel willen aanbieden is er de <a href="/licentie/" style="color:var(--color-navy); font-weight:600;">NextGen AI-licentie</a>, de meest structurele manier om met NextGen AI te werken. Bekijk alle mogelijkheden op de <a href="/organisaties/" style="color:var(--color-navy); font-weight:600;">organisatiespagina</a>.</p>
+    <p style="max-width:64ch;">De AI-lessenreeks is niet de enige manier om met NextGen AI te werken. Vergelijk de drie manieren:</p>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h3>Losse AI-workshop</h3>
+        <p>Eén of meerdere workshops, verzorgd door een trainer van NextGen AI. Ideaal om kennis te maken of voor een eenmalig evenement.</p>
+        <a href="/ai-workshops/" class="btn btn-secondary">Bekijk de workshops</a>
+      </div>
+      <div class="compare-card">
+        <h3>AI-lessenreeks</h3>
+        <p>Een doorlopende lessenreeks digitale geletterdheid, verzorgd door NextGen AI, passend binnen uw onderwijs of programma.</p>
+      </div>
+      <div class="compare-card is-current">
+        <span class="plan-tag">Aanbevolen</span>
+        <h3>NextGen AI-licentie</h3>
+        <p>De meest structurele manier om met NextGen AI te werken: zelfstandig AI-educatie organiseren, onder eigen naam, met volledige ondersteuning.</p>
+        <a href="/licentie/" class="btn btn-primary">Ontdek de licentie</a>
+      </div>
+    </div>
   </section>
 
   <!-- AANVRAGEN -->
@@ -385,6 +389,22 @@
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  })();
+
+  // Toegankelijk dropdown-submenu bij "Organisaties" (desktop): stuurt aria-expanded mee
+  (function () {
+    document.querySelectorAll('.nav-has-dropdown').forEach(function (item) {
+      var link = item.querySelector(':scope > a');
+      if (!link) return;
+      function open() { link.setAttribute('aria-expanded', 'true'); }
+      function close() { link.setAttribute('aria-expanded', 'false'); }
+      item.addEventListener('mouseenter', open);
+      item.addEventListener('mouseleave', close);
+      item.addEventListener('focusin', open);
+      item.addEventListener('focusout', function (e) {
+        if (!item.contains(e.relatedTarget)) close();
+      });
+    });
   })();
 
   // Aanvraagformulier tonen/verbergen

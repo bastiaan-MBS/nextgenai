@@ -42,28 +42,36 @@
   .usp-row h3 { margin-bottom: 0.3em; }
   @media (max-width: 900px) { .usp-grid { grid-template-columns: 1fr; } }
 
-  /* ---- Prijzen ---- */
-  .price-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-4); }
-  @media (min-width: 700px) { .price-grid { grid-template-columns: 1fr 1fr; } }
-  .price-card {
-    background: var(--color-surface); border: 2px solid var(--color-line); border-radius: var(--radius-lg);
-    padding: var(--space-4);
-  }
-  .price-card .price-figure { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.6rem, 1.3rem + 1vw, 2.2rem); color: var(--color-navy); display: block; }
-  .price-card .price-note { color: var(--color-ink-soft); font-size: 0.9rem; margin-top: 0.3em; }
-  .price-card ul { margin-top: var(--space-2); }
+  /* ---- Hero: tekst + foto naast elkaar ---- */
+  .hero-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); align-items: center; }
+  @media (min-width: 900px) { .hero-grid { grid-template-columns: 1.1fr 0.9fr; } }
+  .hero-photo-wrap .photo { aspect-ratio: 4 / 3; object-fit: cover; }
 
-  /* ---- Vergelijking van de drie manieren ---- */
-  .compare-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-4); }
-  @media (min-width: 900px) { .compare-grid { grid-template-columns: repeat(3, 1fr); } }
-  .compare-card {
-    border: 2px solid var(--color-line); border-radius: var(--radius-lg); padding: var(--space-4);
-    display: flex; flex-direction: column; gap: var(--space-2);
+  /* ---- Voordelenblok (vervangt de vroegere prijzensectie) ---- */
+  .benefit-card .benefit-icon {
+    width: 46px; height: 46px; border-radius: 50%; background: var(--color-bg-alt);
+    color: var(--color-navy); display: flex; align-items: center; justify-content: center;
+    margin-bottom: var(--space-2);
   }
-  .compare-card.is-current { border-color: var(--color-navy); background: var(--color-bg-alt); }
-  .compare-card h3 { margin: 0; }
-  .compare-card p { margin: 0; color: var(--color-ink-soft); font-size: 0.95rem; flex: 1; }
-  .compare-card a { margin-top: auto; }
+  .benefit-card .benefit-icon svg { width: 22px; height: 22px; }
+  .benefit-card h3 { margin-bottom: 0.35em; }
+  .benefit-card p { margin: 0; }
+
+  /* ---- Waarom een licentie: kaartvorm i.p.v. vinklijst, voor visuele afwisseling ---- */
+  .why-card { text-align: left; }
+  .why-card .why-num {
+    font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; color: var(--color-navy);
+    display: block; margin-bottom: 0.4em;
+  }
+  .why-card h3 { margin-bottom: 0.3em; }
+  .why-card p { margin: 0; }
+
+  /* ---- Subtiel logo-watermerk, decoratief (zelfde principe als de merk-blobs) ---- */
+  .logo-watermark {
+    position: absolute; z-index: 0; pointer-events: none;
+    width: var(--wm-w, 280px); opacity: var(--wm-opacity, 0.07);
+    right: var(--wm-right, -20px); bottom: var(--wm-bottom, -20px); top: var(--wm-top, auto);
+  }
 
   /* ---- Stappen: hoe word je licentiehouder ---- */
   .timeline { max-width: 720px; margin-top: var(--space-4); }
@@ -110,7 +118,13 @@
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/ai-workshops/">Workshops</a></li>
-        <li><a href="/organisaties/">Organisaties</a></li>
+        <li class="nav-has-dropdown">
+          <a href="/organisaties/" aria-haspopup="true" aria-expanded="false">Organisaties</a>
+          <div class="nav-dropdown">
+            <a href="/licentie/">Licentie</a>
+            <a href="/ai-lessenreeks/">Lessenreeks</a>
+          </div>
+        </li>
         <li><a href="/in-beeld/">In Beeld</a></li>
         <li><a href="/over-ons/">Over Ons</a></li>
       </ul>
@@ -132,7 +146,13 @@
       <ul>
         <li><a class="nav-link" href="/">Home</a></li>
         <li><a class="nav-link" href="/ai-workshops/">Workshops</a></li>
-        <li><a class="nav-link" href="/organisaties/">Organisaties</a></li>
+        <li class="nav-has-dropdown">
+          <a class="nav-link" href="/organisaties/">Organisaties</a>
+          <ul class="nav-dropdown-mobile">
+            <li><a class="nav-link nav-sublink" href="/licentie/">Licentie</a></li>
+            <li><a class="nav-link nav-sublink" href="/ai-lessenreeks/">Lessenreeks</a></li>
+          </ul>
+        </li>
         <li><a class="nav-link" href="/in-beeld/">In Beeld</a></li>
         <li><a class="nav-link" href="/over-ons/">Over Ons</a></li>
       </ul>
@@ -151,18 +171,65 @@
 
   <!-- PAGE HERO -->
   <section class="page-hero container">
-    <span class="eyebrow">Licentie</span>
-    <h1>Word NextGen AI-licentiehouder en organiseer zelfstandig AI-workshops in jouw regio.</h1>
-    <p class="intro">
-      Als NextGen AI-licentiehouder krijgt u toegang tot ons innovatieve online platform
-      BotBuilder en kunt u zelfstandig AI-workshops organiseren in uw regio. U krijgt alle
-      tools in handen om uw eigen trainers te beheren, workshops in te richten en
-      deelnemers te begeleiden in hun AI-leertraject.
-    </p>
-    <div class="page-chips">
-      <span>Eigen trainers opleiden</span>
-      <span>Platform BotBuilder</span>
-      <span>Structureel in je regio</span>
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Licentie</span>
+        <h1>Word NextGen AI-licentiehouder en organiseer zelfstandig AI-workshops in jouw regio.</h1>
+        <p class="intro">
+          Als NextGen AI-licentiehouder krijgt u toegang tot ons innovatieve online platform
+          BotBuilder en kunt u zelfstandig AI-workshops organiseren in uw regio. U krijgt alle
+          tools in handen om uw eigen trainers te beheren, workshops in te richten en
+          deelnemers te begeleiden in hun AI-leertraject.
+        </p>
+        <div class="page-chips">
+          <span>Eigen trainers opleiden</span>
+          <span>Platform BotBuilder</span>
+          <span>Structureel in je regio</span>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <img class="photo" src="/assets/fotobibliotheek/IMG_1290-licentie-hero.jpg" alt="Kinderen tijdens een NextGen AI-workshop, aan het werk met de kindveilige leeromgeving." loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGOSLIDER: ORGANISATIES MET WORKSHOP OF LICENTIE -->
+  <section class="section-tight container" style="padding-top: 0;">
+    <span class="eyebrow">Met veel plezier</span>
+    <h2>Organisaties die al een workshop of licentie hebben afgenomen.</h2>
+    <p style="max-width:60ch;">Dit zijn organisaties die al met veel plezier een workshop of licentie bij ons hebben afgenomen.</p>
+    <div class="logo-ticker" style="margin-top: var(--space-4);">
+      <div class="logo-ticker-track">
+        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20logo%20bollenstreek.jpeg" alt="Bibliotheek Bollenstreek"></span>
+        <span class="logo-ticker-item"><img src="/assets/Organisaties/Bredata_Logo_GeelVlak.png" alt="Bredata"></span>
+        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20logo%20groene%20hart.jpeg" alt="Bibliotheek Groene Hart"></span>
+        <span class="logo-ticker-item"><img src="/assets/Organisaties/Discovery%20museum%20logo.png" alt="Discovery Museum"></span>
+        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20logo%20ijmond%20noord.png" alt="Bibliotheek IJmond Noord"></span>
+        <span class="logo-ticker-item"><img src="/assets/Organisaties/Montessori%20nieuwekerk%20ad%20ijssel%20logo.png" alt="Montessori Nieuwerkerk aan den IJssel"></span>
+        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20logo%20rijk%20en%20venen.png" alt="Bibliotheek Rijn en Venen"></span>
+        <span class="logo-ticker-item"><img src="/assets/Organisaties/Ontdekstation-logo.png" alt="Ontdekstation"></span>
+        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20logo%20venlo.jpeg" alt="Bibliotheek Venlo"></span>
+        <span class="logo-ticker-item"><img src="/assets/Organisaties/Tech4kids%20logo.png" alt="Tech4Kids"></span>
+        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20westland%20logo.png" alt="Bibliotheek Westland"></span>
+        <span class="logo-ticker-item"><img src="/assets/Organisaties/de%20overlaat%20logo.png" alt="De Overlaat"></span>
+        <span class="logo-ticker-item"><img src="/assets/Organisaties/petje%20af%20logo.png" alt="Petje Af"></span>
+        <span class="logo-ticker-item"><img src="/assets/Organisaties/zomerschool%20maks%20logo.png" alt="Zomerschool MAKS"></span>
+        <!-- lijst herhaald voor naadloze loop -->
+        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20logo%20bollenstreek.jpeg"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/Bredata_Logo_GeelVlak.png"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20logo%20groene%20hart.jpeg"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/Discovery%20museum%20logo.png"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20logo%20ijmond%20noord.png"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/Montessori%20nieuwekerk%20ad%20ijssel%20logo.png"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20logo%20rijk%20en%20venen.png"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/Ontdekstation-logo.png"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20logo%20venlo.jpeg"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/Tech4kids%20logo.png"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20westland%20logo.png"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/de%20overlaat%20logo.png"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/petje%20af%20logo.png"></span>
+        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/zomerschool%20maks%20logo.png"></span>
+      </div>
     </div>
   </section>
 
@@ -180,7 +247,8 @@
   </section>
 
   <!-- WAT KUN JE ZELFSTANDIG ORGANISEREN -->
-  <section class="section-tight on-dark" id="wat-je-kunt">
+  <section class="section-tight on-dark" id="wat-je-kunt" style="position:relative; overflow:hidden;">
+    <img class="logo-watermark" src="/assets/logo.png" alt="" aria-hidden="true" style="--wm-w:340px; --wm-opacity:0.08; --wm-right:-60px; --wm-bottom:-60px;">
     <div class="container usp-grid">
       <div>
         <span class="eyebrow">Wat je zelfstandig kunt organiseren</span>
@@ -216,20 +284,27 @@
     </div>
   </section>
 
-  <!-- PRIJZEN -->
-  <section class="section-tight container" id="prijzen">
-    <span class="eyebrow">Wat kost de licentie</span>
-    <h2>Transparante jaarlijkse licentiekosten.</h2>
-    <div class="price-grid">
-      <div class="price-card">
-        <span class="price-figure">€ 1.950</span>
-        <span class="price-note">excl. btw, eerste jaar</span>
-        <p style="margin-top:var(--space-2);">De jaarlijkse licentie bedraagt € 1.950 exclusief btw in het eerste jaar. Vanaf het tweede jaar daalt dit naar € 1.500 exclusief btw.</p>
+  <!-- WAT LEVERT EEN LICENTIE OP (voorheen prijzensectie) -->
+  <section class="section-tight container" id="waarde">
+    <span class="eyebrow">Waarom investeren in een licentie</span>
+    <h2>Waardevol vanaf het moment dat u structureel actief bent.</h2>
+    <p style="max-width:64ch;">Een licentie is vooral interessant zodra AI-educatie geen eenmalige activiteit meer is, maar een vast onderdeel van uw aanbod wordt.</p>
+    <div class="grid-3">
+      <div class="card benefit-card">
+        <span class="benefit-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <h3>Voordeliger bij meerdere workshops per jaar</h3>
+        <p>Wilt u meerdere keren per jaar een AI-workshop organiseren? Dan is een licentie in veel gevallen verhoudingsgewijs voordeliger dan telkens losse workshops boeken.</p>
       </div>
-      <div class="price-card">
-        <span class="price-figure">€ 2,50</span>
-        <span class="price-note">excl. btw, per deelnemer per maand</span>
-        <p style="margin-top:var(--space-2);">Per deelnemer betaalt u € 2,50 exclusief btw, geldig voor één maand. Dit is inclusief volledig gebruik van BotBuilder, AI-verbruik, opdrachten en lesmateriaal, en technische ondersteuning.</p>
+      <div class="card benefit-card">
+        <span class="benefit-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <h3>Eén doorlopende regeling, geen losse boekingen</h3>
+        <p>In plaats van voor elke activiteit opnieuw te boeken, werkt u met één licentie die meegroeit met uw organisatie en uw regio.</p>
+      </div>
+      <div class="card benefit-card">
+        <span class="benefit-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7l-9-5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <h3>Benieuwd wat het kost?</h3>
+        <p>Vraag vrijblijvend de kosten voor uw organisatie op via het aanvraagformulier verderop op deze pagina.</p>
+        <a href="#aanvragen" class="btn btn-secondary" style="margin-top:var(--space-2);">Vraag informatie aan</a>
       </div>
     </div>
     <!-- TODO: ontbrekende info, aan te vullen door klant: exacte contractduur, opzegtermijn en facturatiewijze van de licentie. -->
@@ -258,11 +333,23 @@
   <section class="section-tight container">
     <span class="eyebrow">Waarom een licentie</span>
     <h2>Waarom organisaties kiezen voor een licentie.</h2>
-    <ul class="offer-list" style="max-width:70ch; margin-top: var(--space-3);">
-      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Volledige controle over uw eigen AI-programma</li>
-      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Flexibele schaal: van één locatie tot een provinciebrede aanpak</li>
-      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Professionele ondersteuning bij elke stap</li>
-    </ul>
+    <div class="grid-3" style="margin-top: var(--space-3);">
+      <div class="card why-card">
+        <span class="why-num">01</span>
+        <h3>Volledige controle</h3>
+        <p>U heeft volledige controle over uw eigen AI-programma, onder uw eigen naam en op uw eigen manier.</p>
+      </div>
+      <div class="card why-card">
+        <span class="why-num">02</span>
+        <h3>Flexibele schaal</h3>
+        <p>Van één locatie tot een provinciebrede aanpak: de licentie groeit mee met uw organisatie.</p>
+      </div>
+      <div class="card why-card">
+        <span class="why-num">03</span>
+        <h3>Professionele ondersteuning</h3>
+        <p>Bij elke stap staat u er niet alleen voor: professionele ondersteuning is inbegrepen.</p>
+      </div>
+    </div>
   </section>
 
   <!-- VERGELIJKING -->
@@ -282,7 +369,7 @@
         <a href="/ai-lessenreeks/" class="btn btn-secondary">Bekijk de AI-lessenreeks</a>
       </div>
       <div class="compare-card is-current">
-        <span class="plan-tag" style="background:var(--color-green); color:#fff; display:inline-block; width:fit-content; padding:0.3em 0.9em; border-radius:var(--radius-pill); font-family:var(--font-display); font-weight:700; font-size:0.78rem;">Aanbevolen</span>
+        <span class="plan-tag">Aanbevolen</span>
         <h3>NextGen AI-licentie</h3>
         <p>De meest structurele manier om met NextGen AI te werken: zelfstandig AI-educatie organiseren, onder eigen naam, met volledige ondersteuning.</p>
         <a href="#aanvragen" class="btn btn-primary">Vraag informatie aan</a>
@@ -322,6 +409,7 @@
     <p style="max-width:60ch;">Nog vragen, of eerst meer weten? Vraag vrijblijvend informatie aan, of vraag een demo van BotBuilder aan zodat u zelf kunt zien hoe het platform werkt.</p>
 
     <div class="cta-card" style="max-width:720px;">
+      <img class="logo-watermark" src="/assets/logo.png" alt="" aria-hidden="true" style="--wm-w:220px; --wm-opacity:0.1; --wm-right:-30px; --wm-top:-30px; --wm-bottom:auto;">
       <span class="eyebrow" style="color:var(--color-yellow);">Kies wat bij u past</span>
       <h3>Twee manieren om te starten</h3>
       <p>Wilt u eerst meer weten over de licentie? Of liever direct zien hoe BotBuilder werkt in een demo? Beide kan via het formulier.</p>
@@ -459,6 +547,22 @@
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  })();
+
+  // Toegankelijk dropdown-submenu bij "Organisaties" (desktop): stuurt aria-expanded mee
+  (function () {
+    document.querySelectorAll('.nav-has-dropdown').forEach(function (item) {
+      var link = item.querySelector(':scope > a');
+      if (!link) return;
+      function open() { link.setAttribute('aria-expanded', 'true'); }
+      function close() { link.setAttribute('aria-expanded', 'false'); }
+      item.addEventListener('mouseenter', open);
+      item.addEventListener('mouseleave', close);
+      item.addEventListener('focusin', open);
+      item.addEventListener('focusout', function (e) {
+        if (!item.contains(e.relatedTarget)) close();
+      });
+    });
   })();
 
   // Aanvraagformulier tonen/verbergen, met _pagina op "licentie-info" of "licentie-demo"

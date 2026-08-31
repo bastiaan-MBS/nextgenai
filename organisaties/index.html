@@ -121,7 +121,13 @@
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/ai-workshops/">Workshops</a></li>
-        <li><a href="/organisaties/" class="is-active">Organisaties</a></li>
+        <li class="nav-has-dropdown">
+          <a href="/organisaties/" class="is-active" aria-haspopup="true" aria-expanded="false">Organisaties</a>
+          <div class="nav-dropdown">
+            <a href="/licentie/">Licentie</a>
+            <a href="/ai-lessenreeks/">Lessenreeks</a>
+          </div>
+        </li>
         <li><a href="/in-beeld/">In Beeld</a></li>
         <li><a href="/over-ons/">Over Ons</a></li>
       </ul>
@@ -143,7 +149,13 @@
       <ul>
         <li><a class="nav-link" href="/">Home</a></li>
         <li><a class="nav-link" href="/ai-workshops/">Workshops</a></li>
-        <li><a class="nav-link" href="/organisaties/">Organisaties</a></li>
+        <li class="nav-has-dropdown">
+          <a class="nav-link" href="/organisaties/">Organisaties</a>
+          <ul class="nav-dropdown-mobile">
+            <li><a class="nav-link nav-sublink" href="/licentie/">Licentie</a></li>
+            <li><a class="nav-link nav-sublink" href="/ai-lessenreeks/">Lessenreeks</a></li>
+          </ul>
+        </li>
         <li><a class="nav-link" href="/in-beeld/">In Beeld</a></li>
         <li><a class="nav-link" href="/over-ons/">Over Ons</a></li>
       </ul>
@@ -302,46 +314,6 @@
             <div class="form-error" id="introError"><span>!</span><span>Er ging iets mis bij het versturen. Mail ons direct op <a href="mailto:info@nextgen-ai.club">info@nextgen-ai.club</a>.</span></div>
           </form>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LOGOSLIDER: ORGANISATIES MET WORKSHOP OF LICENTIE -->
-  <section class="section-tight container">
-    <span class="eyebrow">Met veel plezier</span>
-    <h2>Organisaties die al een workshop of licentie hebben afgenomen.</h2>
-    <p style="max-width:60ch;">Dit zijn organisaties die al met veel plezier een workshop of licentie bij ons hebben afgenomen.</p>
-    <div class="logo-ticker" style="margin-top: var(--space-4);">
-      <div class="logo-ticker-track">
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20logo%20bollenstreek.jpeg" alt="Bibliotheek Bollenstreek"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/Bredata_Logo_GeelVlak.png" alt="Bredata"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20logo%20groene%20hart.jpeg" alt="Bibliotheek Groene Hart"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/Discovery%20museum%20logo.png" alt="Discovery Museum"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20logo%20ijmond%20noord.png" alt="Bibliotheek IJmond Noord"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/Montessori%20nieuwekerk%20ad%20ijssel%20logo.png" alt="Montessori Nieuwerkerk aan den IJssel"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20logo%20rijk%20en%20venen.png" alt="Bibliotheek Rijn en Venen"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/Ontdekstation-logo.png" alt="Ontdekstation"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20logo%20venlo.jpeg" alt="Bibliotheek Venlo"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/Tech4kids%20logo.png" alt="Tech4Kids"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20westland%20logo.png" alt="Bibliotheek Westland"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/de%20overlaat%20logo.png" alt="De Overlaat"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/petje%20af%20logo.png" alt="Petje Af"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/zomerschool%20maks%20logo.png" alt="Zomerschool MAKS"></span>
-        <!-- lijst herhaald voor naadloze loop -->
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20logo%20bollenstreek.jpeg"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/Bredata_Logo_GeelVlak.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20logo%20groene%20hart.jpeg"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/Discovery%20museum%20logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20logo%20ijmond%20noord.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/Montessori%20nieuwekerk%20ad%20ijssel%20logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20logo%20rijk%20en%20venen.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/Ontdekstation-logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20logo%20venlo.jpeg"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/Tech4kids%20logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20westland%20logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/de%20overlaat%20logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/petje%20af%20logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/zomerschool%20maks%20logo.png"></span>
       </div>
     </div>
   </section>
@@ -575,6 +547,22 @@
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  })();
+
+  // Toegankelijk dropdown-submenu bij "Organisaties" (desktop): stuurt aria-expanded mee
+  (function () {
+    document.querySelectorAll('.nav-has-dropdown').forEach(function (item) {
+      var link = item.querySelector(':scope > a');
+      if (!link) return;
+      function open() { link.setAttribute('aria-expanded', 'true'); }
+      function close() { link.setAttribute('aria-expanded', 'false'); }
+      item.addEventListener('mouseenter', open);
+      item.addEventListener('mouseleave', close);
+      item.addEventListener('focusin', open);
+      item.addEventListener('focusout', function (e) {
+        if (!item.contains(e.relatedTarget)) close();
+      });
+    });
   })();
 
   // Kennismakingsformulier tonen/verbergen

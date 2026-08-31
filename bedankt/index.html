@@ -66,7 +66,13 @@
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/ai-workshops/">Workshops</a></li>
-        <li><a href="/organisaties/">Organisaties</a></li>
+        <li class="nav-has-dropdown">
+          <a href="/organisaties/" aria-haspopup="true" aria-expanded="false">Organisaties</a>
+          <div class="nav-dropdown">
+            <a href="/licentie/">Licentie</a>
+            <a href="/ai-lessenreeks/">Lessenreeks</a>
+          </div>
+        </li>
         <li><a href="/in-beeld/">In Beeld</a></li>
         <li><a href="/over-ons/">Over Ons</a></li>
       </ul>
@@ -88,7 +94,13 @@
       <ul>
         <li><a class="nav-link" href="/">Home</a></li>
         <li><a class="nav-link" href="/ai-workshops/">Workshops</a></li>
-        <li><a class="nav-link" href="/organisaties/">Organisaties</a></li>
+        <li class="nav-has-dropdown">
+          <a class="nav-link" href="/organisaties/">Organisaties</a>
+          <ul class="nav-dropdown-mobile">
+            <li><a class="nav-link nav-sublink" href="/licentie/">Licentie</a></li>
+            <li><a class="nav-link nav-sublink" href="/ai-lessenreeks/">Lessenreeks</a></li>
+          </ul>
+        </li>
         <li><a class="nav-link" href="/in-beeld/">In Beeld</a></li>
         <li><a class="nav-link" href="/over-ons/">Over Ons</a></li>
       </ul>
@@ -244,6 +256,22 @@
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  })();
+
+  // Toegankelijk dropdown-submenu bij "Organisaties" (desktop): stuurt aria-expanded mee
+  (function () {
+    document.querySelectorAll('.nav-has-dropdown').forEach(function (item) {
+      var link = item.querySelector(':scope > a');
+      if (!link) return;
+      function open() { link.setAttribute('aria-expanded', 'true'); }
+      function close() { link.setAttribute('aria-expanded', 'false'); }
+      item.addEventListener('mouseenter', open);
+      item.addEventListener('mouseleave', close);
+      item.addEventListener('focusin', open);
+      item.addEventListener('focusout', function (e) {
+        if (!item.contains(e.relatedTarget)) close();
+      });
+    });
   })();
 
   // Inhoud personaliseren op basis van de query-parameters die het formulier meegeeft
