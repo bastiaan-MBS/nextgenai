@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit('Method not allowed');
 }
 
-$referer = $_SERVER['HTTP_REFERER'] ?? '/index.html';
+$referer = $_SERVER['HTTP_REFERER'] ?? '/';
 
 // De pagina roept dit endpoint aan via fetch() met Accept: application/json.
 // In dat geval antwoorden we met JSON zodat de pagina pas doorstuurt zodra de
@@ -40,7 +40,7 @@ function stuur_succes(): void {
         echo json_encode(['success' => true]);
         exit;
     }
-    header('Location: bedankt.html');
+    header('Location: /bedankt/');
     exit;
 }
 
@@ -87,6 +87,9 @@ if (!$email || $voornaam === '' || $achternaam === '') {
 $onderwerpen = [
     'workshops' => 'Nieuwe workshopboeking',
     'organisaties' => 'Nieuwe kennismakingsaanvraag',
+    'licentie-info' => 'Informatie over de licentie aangevraagd',
+    'licentie-demo' => 'Demo van de licentie aangevraagd',
+    'ai-lessenreeks' => 'Informatie over de AI-lessenreeks aangevraagd',
 ];
 $onderwerp = $onderwerpen[$pagina] ?? 'Nieuw formulierbericht';
 

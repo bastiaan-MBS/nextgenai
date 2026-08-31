@@ -1,4 +1,9 @@
-# Oude paginanaam: partnerprogramma.html is hernoemd naar organisaties.html.
-# Deze redirect voorkomt dode links voor eventuele bestaande bladwijzers/verwijzingen.
-# Expliciet https, anders bouwt Apache het doel soms als http op.
-Redirect 301 /partnerprogramma.html https://nextgen.mbscs.nl/organisaties.html
+# Permanente 301-redirects van bekende oude live-site URL's (nextgen-ai.club)
+# naar de huidige, definitieve URL-structuur. Expliciet https, anders bouwt
+# Apache het doel soms als http op.
+Redirect 301 /ai-for-kids https://nextgen-ai.club/ai-workshops/
+Redirect 301 /licentiehouder https://nextgen-ai.club/licentie/
+Redirect 301 /sponsoring https://nextgen-ai.club/organisaties/
+Redirect 301 /digitale-vaardigheden https://nextgen-ai.club/ai-lessenreeks/
+Redirect 301 /digitale-geletterdheid-project-reboot https://nextgen-ai.club/ai-lessenreeks/
+Redirect 301 /junior-ai-league https://www.junioraileague.nl/

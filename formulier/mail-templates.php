@@ -70,6 +70,9 @@ function nextgen_mail_klant_html(string $voornaam, string $pagina, array $velden
     $intros = [
         'workshops' => 'Bedankt voor uw workshopboeking bij NextGen AI. Hieronder vindt u een overzicht van uw aanvraag.',
         'organisaties' => 'Bedankt voor uw kennismakingsaanvraag bij NextGen AI. Hieronder vindt u een overzicht van wat u heeft doorgegeven.',
+        'licentie-info' => 'Bedankt voor uw aanvraag voor meer informatie over de NextGen AI-licentie. Hieronder vindt u een overzicht van wat u heeft doorgegeven.',
+        'licentie-demo' => 'Bedankt voor uw aanvraag voor een demo van de NextGen AI-licentie. Hieronder vindt u een overzicht van wat u heeft doorgegeven.',
+        'ai-lessenreeks' => 'Bedankt voor uw aanvraag voor meer informatie over de AI-lessenreeks. Hieronder vindt u een overzicht van wat u heeft doorgegeven.',
     ];
     $intro = $intros[$pagina] ?? 'Bedankt voor uw aanvraag bij NextGen AI. Hieronder vindt u een overzicht van wat u heeft doorgegeven.';
 

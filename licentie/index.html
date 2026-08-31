@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NextGen AI-licentie: zelfstandig AI-workshops organiseren</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="description" content="Word NextGen AI-licentiehouder en organiseer zelfstandig AI-workshops in jouw regio, met het platform BotBuilder, eigen trainers en volledige ondersteuning.">
+<link rel="canonical" href="https://nextgen-ai.club/licentie/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NextGen AI-licentie: zelfstandig AI-workshops organiseren">
+<meta property="og:description" content="Word NextGen AI-licentiehouder en organiseer zelfstandig AI-workshops in jouw regio, met het platform BotBuilder, eigen trainers en volledige ondersteuning.">
+<meta property="og:url" content="https://nextgen-ai.club/licentie/">
+<meta property="og:image" content="https://nextgen-ai.club/assets/hero-photo-3.jpg">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:site_name" content="NextGen AI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NextGen AI-licentie: zelfstandig AI-workshops organiseren">
+<meta name="twitter:description" content="Word NextGen AI-licentiehouder en organiseer zelfstandig AI-workshops in jouw regio, met het platform BotBuilder, eigen trainers en volledige ondersteuning.">
+<meta name="twitter:image" content="https://nextgen-ai.club/assets/hero-photo-3.jpg">
+<style>
+  /* Paginaspecifieke opmaak. Algemene tokens en de header/footer-CSS staan
+     sitewide in css/styles.css, zodat elke pagina er identiek uitziet. */
+
+  .page-hero { padding-block: var(--space-6) var(--space-5); }
+  .page-hero .intro { font-size: 1.1rem; max-width: 62ch; }
+  .page-chips { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-top: var(--space-3); }
+  .page-chips span {
+    background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-pill);
+    padding: 0.5em 1.1em; font-size: 0.88rem; font-weight: 600; color: var(--color-navy);
+  }
+
+  .usp-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--space-5); align-items: start; }
+  .usp-list { display: grid; gap: 0; border-top: 1px solid rgba(255,255,255,0.18); }
+  .usp-row { display: grid; grid-template-columns: 52px 1fr; gap: var(--space-3); padding-block: var(--space-3); border-bottom: 1px solid rgba(255,255,255,0.18); }
+  .usp-row .num { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--color-yellow); }
+  .usp-row h3 { margin-bottom: 0.3em; }
+  @media (max-width: 900px) { .usp-grid { grid-template-columns: 1fr; } }
+
+  /* ---- Prijzen ---- */
+  .price-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-4); }
+  @media (min-width: 700px) { .price-grid { grid-template-columns: 1fr 1fr; } }
+  .price-card {
+    background: var(--color-surface); border: 2px solid var(--color-line); border-radius: var(--radius-lg);
+    padding: var(--space-4);
+  }
+  .price-card .price-figure { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.6rem, 1.3rem + 1vw, 2.2rem); color: var(--color-navy); display: block; }
+  .price-card .price-note { color: var(--color-ink-soft); font-size: 0.9rem; margin-top: 0.3em; }
+  .price-card ul { margin-top: var(--space-2); }
+
+  /* ---- Vergelijking van de drie manieren ---- */
+  .compare-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-4); }
+  @media (min-width: 900px) { .compare-grid { grid-template-columns: repeat(3, 1fr); } }
+  .compare-card {
+    border: 2px solid var(--color-line); border-radius: var(--radius-lg); padding: var(--space-4);
+    display: flex; flex-direction: column; gap: var(--space-2);
+  }
+  .compare-card.is-current { border-color: var(--color-navy); background: var(--color-bg-alt); }
+  .compare-card h3 { margin: 0; }
+  .compare-card p { margin: 0; color: var(--color-ink-soft); font-size: 0.95rem; flex: 1; }
+  .compare-card a { margin-top: auto; }
+
+  /* ---- Stappen: hoe word je licentiehouder ---- */
+  .timeline { max-width: 720px; margin-top: var(--space-4); }
+  .timeline-step { display: grid; grid-template-columns: 44px 1fr; gap: var(--space-3); position: relative; padding-bottom: var(--space-4); }
+  .timeline-step:last-child { padding-bottom: 0; }
+  .timeline-step .step-num {
+    width: 44px; height: 44px; border-radius: 50%; background: var(--color-navy); color: #fff;
+    display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700;
+    position: relative; z-index: 1; flex-shrink: 0;
+  }
+  .timeline-step:not(:last-child)::before {
+    content: ""; position: absolute; left: 22px; top: 44px; bottom: -8px; width: 2px; background: var(--color-line);
+  }
+  .timeline-step h3 { margin-bottom: 0.3em; }
+  .timeline-step p { margin: 0; }
+
+  /* ---- Kennismakingsformulier (zelfde patroon als /organisaties/) ---- */
+  .cta-card { background: var(--color-navy); color: #fff; border-radius: var(--radius-lg); padding: var(--space-4); position: relative; overflow: hidden; }
+  .cta-card h3 { color: #fff; }
+  .cta-card p { color: rgba(255,255,255,0.78); }
+  .cta-options { display: grid; gap: var(--space-2); margin-top: var(--space-3); position: relative; z-index: 1; }
+  @media (min-width: 640px) { .cta-options { grid-template-columns: 1fr 1fr; } }
+  .cta-options .btn { width: 100%; justify-content: center; }
+
+  .intro-fields {
+    display: grid; grid-template-rows: 0fr; opacity: 0;
+    transition: grid-template-rows 420ms cubic-bezier(.4,0,.2,1), opacity 320ms ease, margin-top 420ms cubic-bezier(.4,0,.2,1);
+  }
+  .intro-fields > div { overflow: hidden; }
+  .intro-fields.is-open { grid-template-rows: 1fr; opacity: 1; margin-top: var(--space-4); }
+  .intro-fields-inner-wide {
+    background: var(--color-bg-alt); border: 2px solid var(--color-line); border-radius: var(--radius-lg);
+    padding: var(--space-4);
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <img class="blob-edge is-right" src="/assets/blob-pink-clean.png" alt="" style="--blob-w:130px; --blob-top:20%;">
+  <div class="container nav-inner">
+    <a href="/" class="logo-mark"><img src="/assets/logo.png" alt="NextGen AI logo"></a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/ai-workshops/">Workshops</a></li>
+        <li><a href="/organisaties/">Organisaties</a></li>
+        <li><a href="/in-beeld/">In Beeld</a></li>
+        <li><a href="/over-ons/">Over Ons</a></li>
+      </ul>
+    </nav>
+    <div class="nav-ctas">
+      <a href="/organisaties/" class="btn btn-outline-light">Voor organisaties</a>
+      <a href="/ai-workshops/" class="btn btn-cta-large">
+        Boek een workshop
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <button type="button" class="hamburger" id="hamburgerBtn" aria-label="Menu openen" aria-expanded="false" aria-controls="mobileMenu">
+      <svg class="icon-menu" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <ul>
+        <li><a class="nav-link" href="/">Home</a></li>
+        <li><a class="nav-link" href="/ai-workshops/">Workshops</a></li>
+        <li><a class="nav-link" href="/organisaties/">Organisaties</a></li>
+        <li><a class="nav-link" href="/in-beeld/">In Beeld</a></li>
+        <li><a class="nav-link" href="/over-ons/">Over Ons</a></li>
+      </ul>
+      <div class="mobile-menu-ctas">
+        <a href="/organisaties/" class="btn btn-outline-light" style="border-color:var(--color-navy-ink); color:#fff; background:rgba(255,255,255,0.08);">Voor organisaties</a>
+        <a href="/ai-workshops/" class="btn btn-cta-large">
+          Boek een workshop
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- PAGE HERO -->
+  <section class="page-hero container">
+    <span class="eyebrow">Licentie</span>
+    <h1>Word NextGen AI-licentiehouder en organiseer zelfstandig AI-workshops in jouw regio.</h1>
+    <p class="intro">
+      Als NextGen AI-licentiehouder krijgt u toegang tot ons innovatieve online platform
+      BotBuilder en kunt u zelfstandig AI-workshops organiseren in uw regio. U krijgt alle
+      tools in handen om uw eigen trainers te beheren, workshops in te richten en
+      deelnemers te begeleiden in hun AI-leertraject.
+    </p>
+    <div class="page-chips">
+      <span>Eigen trainers opleiden</span>
+      <span>Platform BotBuilder</span>
+      <span>Structureel in je regio</span>
+    </div>
+  </section>
+
+  <!-- VOOR WIE -->
+  <section class="section-tight container" style="padding-top: var(--space-3);">
+    <span class="eyebrow">Voor wie</span>
+    <h2>Voor wie is de licentie bedoeld?</h2>
+    <p style="max-width:64ch;">De licentie is de meest structurele manier om met NextGen AI te werken: geschikt voor organisaties die AI-educatie een vaste plek willen geven, in plaats van een losse activiteit.</p>
+    <ul class="offer-list" style="max-width:70ch; margin-top: var(--space-3);">
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Onderwijsinstellingen</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Bibliotheken</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Organisaties gericht op digitale vaardigheden</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Initiatieven voor toegankelijk tech-onderwijs</li>
+    </ul>
+  </section>
+
+  <!-- WAT KUN JE ZELFSTANDIG ORGANISEREN -->
+  <section class="section-tight on-dark" id="wat-je-kunt">
+    <div class="container usp-grid">
+      <div>
+        <span class="eyebrow">Wat je zelfstandig kunt organiseren</span>
+        <h2>Alle tools om zelf AI-educatie aan te bieden.</h2>
+        <p>Met een licentie beheert u uw eigen programma volledig zelfstandig, onder uw eigen naam, met de kindveilige NextGen AI-leeromgeving als basis.</p>
+      </div>
+      <div class="usp-list">
+        <div class="usp-row">
+          <span class="num">01</span>
+          <div><h3>Trainers beheren</h3><p>Voeg eigen trainers en begeleiders toe en beheer wie welke workshops mag geven.</p></div>
+        </div>
+        <div class="usp-row">
+          <span class="num">02</span>
+          <div><h3>Workshops organiseren</h3><p>Richt zelf workshops en lessenreeksen in, plan data en beheer deelnemers.</p></div>
+        </div>
+        <div class="usp-row">
+          <span class="num">03</span>
+          <div><h3>Platform toegang (BotBuilder)</h3><p>Volledig gebruik van het BotBuilder-platform waarmee kinderen veilig met AI werken.</p></div>
+        </div>
+        <div class="usp-row">
+          <span class="num">04</span>
+          <div><h3>Educatief materiaal</h3><p>Toegang tot het lesmateriaal en de opdrachten die bij het programma horen.</p></div>
+        </div>
+        <div class="usp-row">
+          <span class="num">05</span>
+          <div><h3>Support &amp; training</h3><p>Ondersteuning en training zodat uw team zelfstandig aan de slag kan.</p></div>
+        </div>
+        <div class="usp-row">
+          <span class="num">06</span>
+          <div><h3>Eigen branding</h3><p>Bied het programma aan onder uw eigen naam en uitstraling.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIJZEN -->
+  <section class="section-tight container" id="prijzen">
+    <span class="eyebrow">Wat kost de licentie</span>
+    <h2>Transparante jaarlijkse licentiekosten.</h2>
+    <div class="price-grid">
+      <div class="price-card">
+        <span class="price-figure">€ 1.950</span>
+        <span class="price-note">excl. btw, eerste jaar</span>
+        <p style="margin-top:var(--space-2);">De jaarlijkse licentie bedraagt € 1.950 exclusief btw in het eerste jaar. Vanaf het tweede jaar daalt dit naar € 1.500 exclusief btw.</p>
+      </div>
+      <div class="price-card">
+        <span class="price-figure">€ 2,50</span>
+        <span class="price-note">excl. btw, per deelnemer per maand</span>
+        <p style="margin-top:var(--space-2);">Per deelnemer betaalt u € 2,50 exclusief btw, geldig voor één maand. Dit is inclusief volledig gebruik van BotBuilder, AI-verbruik, opdrachten en lesmateriaal, en technische ondersteuning.</p>
+      </div>
+    </div>
+    <!-- TODO: ontbrekende info, aan te vullen door klant: exacte contractduur, opzegtermijn en facturatiewijze van de licentie. -->
+  </section>
+
+  <!-- HOE WERKT HET IN DE PRAKTIJK -->
+  <section class="section-tight container">
+    <span class="eyebrow">Hoe het werkt</span>
+    <h2>Zo werkt een licentie in de praktijk.</h2>
+    <p style="max-width:64ch;">Na de start van uw licentie krijgt uw organisatie toegang tot BotBuilder en het volledige educatieve programma. Uw eigen trainers worden opgeleid, waarna u zelfstandig workshops en lessenreeksen in uw regio kunt plannen en aanbieden, onder eigen naam en op een schaal die bij uw organisatie past.</p>
+    <!-- TODO: ontbrekende info, aan te vullen door klant: exacte stappen en doorlooptijd van onboarding na ondertekening. -->
+  </section>
+
+  <!-- ONDERSTEUNING -->
+  <section class="section-tight container">
+    <span class="eyebrow">Ondersteuning</span>
+    <h2>U staat er nooit alleen voor.</h2>
+    <ul class="offer-list" style="max-width:70ch; margin-top: var(--space-3);">
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Training van uw eigen trainers, zodat zij zelfstandig workshops kunnen geven</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Technische ondersteuning bij het gebruik van BotBuilder</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Doorlopend educatief materiaal en opdrachten, inbegrepen bij de deelnemersbijdrage</li>
+    </ul>
+  </section>
+
+  <!-- WAAROM EEN LICENTIE -->
+  <section class="section-tight container">
+    <span class="eyebrow">Waarom een licentie</span>
+    <h2>Waarom organisaties kiezen voor een licentie.</h2>
+    <ul class="offer-list" style="max-width:70ch; margin-top: var(--space-3);">
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Volledige controle over uw eigen AI-programma</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Flexibele schaal: van één locatie tot een provinciebrede aanpak</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Professionele ondersteuning bij elke stap</li>
+    </ul>
+  </section>
+
+  <!-- VERGELIJKING -->
+  <section class="section-tight container">
+    <span class="eyebrow">Welke manier past bij jou?</span>
+    <h2>Workshop, AI-lessenreeks of licentie.</h2>
+    <p style="max-width:64ch;">De licentie is de meest structurele manier om met NextGen AI te werken. Twijfelt u nog? Vergelijk de drie manieren:</p>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h3>Losse AI-workshop</h3>
+        <p>Eén of meerdere workshops, verzorgd door een trainer van NextGen AI. Ideaal om kennis te maken of voor een eenmalig evenement.</p>
+        <a href="/ai-workshops/" class="btn btn-secondary">Bekijk de workshops</a>
+      </div>
+      <div class="compare-card">
+        <h3>AI-lessenreeks</h3>
+        <p>Een doorlopende lessenreeks digitale geletterdheid, verzorgd door NextGen AI, passend binnen uw onderwijs of programma.</p>
+        <a href="/ai-lessenreeks/" class="btn btn-secondary">Bekijk de AI-lessenreeks</a>
+      </div>
+      <div class="compare-card is-current">
+        <span class="plan-tag" style="background:var(--color-green); color:#fff; display:inline-block; width:fit-content; padding:0.3em 0.9em; border-radius:var(--radius-pill); font-family:var(--font-display); font-weight:700; font-size:0.78rem;">Aanbevolen</span>
+        <h3>NextGen AI-licentie</h3>
+        <p>De meest structurele manier om met NextGen AI te werken: zelfstandig AI-educatie organiseren, onder eigen naam, met volledige ondersteuning.</p>
+        <a href="#aanvragen" class="btn btn-primary">Vraag informatie aan</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOE WORD JE LICENTIEHOUDER -->
+  <section class="section-tight container">
+    <span class="eyebrow">Aan de slag</span>
+    <h2>Hoe wordt u licentiehouder?</h2>
+    <div class="timeline">
+      <div class="timeline-step">
+        <span class="step-num">1</span>
+        <div><h3>Neem contact op</h3><p>Vraag via het formulier hieronder informatie aan of plan een demo van BotBuilder.</p></div>
+      </div>
+      <div class="timeline-step">
+        <span class="step-num">2</span>
+        <div><h3>Kennismakingsgesprek</h3><p>We bespreken samen wat past bij uw organisatie, uw regio en uw ambities.</p></div>
+      </div>
+      <div class="timeline-step">
+        <span class="step-num">3</span>
+        <div><h3>Training van uw team</h3><p>Uw trainers worden opgeleid om zelfstandig met BotBuilder en het programma te werken.</p></div>
+      </div>
+      <div class="timeline-step">
+        <span class="step-num">4</span>
+        <div><h3>Zelfstandig van start</h3><p>U organiseert vanaf dat moment zelf AI-workshops en lessenreeksen in uw regio.</p></div>
+      </div>
+    </div>
+    <!-- TODO: ontbrekende info, aan te vullen door klant: exacte aanvraagprocedure en doorlooptijd tot de licentie ingaat. -->
+  </section>
+
+  <!-- AANVRAGEN -->
+  <section class="section-tight container" id="aanvragen" style="padding-top: var(--space-5);">
+    <span class="eyebrow">Vrijblijvend aanvragen</span>
+    <h2>Vraag informatie of een demo aan.</h2>
+    <p style="max-width:60ch;">Nog vragen, of eerst meer weten? Vraag vrijblijvend informatie aan, of vraag een demo van BotBuilder aan zodat u zelf kunt zien hoe het platform werkt.</p>
+
+    <div class="cta-card" style="max-width:720px;">
+      <span class="eyebrow" style="color:var(--color-yellow);">Kies wat bij u past</span>
+      <h3>Twee manieren om te starten</h3>
+      <p>Wilt u eerst meer weten over de licentie? Of liever direct zien hoe BotBuilder werkt in een demo? Beide kan via het formulier.</p>
+      <div class="cta-options">
+        <button type="button" class="btn btn-outline-light js-open-intro-form" data-pagina="licentie-info">Vraag informatie aan</button>
+        <button type="button" class="btn btn-outline-light js-open-intro-form" data-pagina="licentie-demo">Vraag een demo aan</button>
+      </div>
+    </div>
+
+    <div class="intro-fields" id="introFields">
+      <div>
+        <div class="intro-fields-inner intro-fields-inner-wide">
+          <form id="introForm" action="/formulier/send.php" method="POST" novalidate>
+            <input type="hidden" name="_pagina" id="pf-pagina" value="licentie-info">
+            <input type="hidden" name="_token" id="pf-token" value="">
+            <div class="field" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+              <label>Laat dit vinkje uit<input type="checkbox" name="_bevestig" tabindex="-1" autocomplete="off"></label>
+            </div>
+            <div class="field-grid">
+              <div class="field"><label for="pf-voornaam">Voornaam</label><input type="text" id="pf-voornaam" name="voornaam" autocomplete="given-name" required></div>
+              <div class="field"><label for="pf-achternaam">Achternaam</label><input type="text" id="pf-achternaam" name="achternaam" autocomplete="family-name" required></div>
+              <div class="field"><label for="pf-organisatie">Organisatie</label><input type="text" id="pf-organisatie" name="organisatie" required></div>
+              <div class="field"><label for="pf-email">E-mailadres</label><input type="email" id="pf-email" name="email" autocomplete="email" required></div>
+              <div class="field"><label for="pf-telefoon">Telefoonnummer</label><input type="tel" id="pf-telefoon" name="telefoon" autocomplete="tel"></div>
+            </div>
+            <div class="field field-full">
+              <label for="pf-bericht">Bericht</label>
+              <textarea id="pf-bericht" name="bericht" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" id="introSubmitBtn">Verstuur aanvraag</button>
+            <p class="form-note">We reageren doorgaans binnen twee werkdagen.</p>
+            <div class="form-error" id="introError"><span>!</span><span>Er ging iets mis bij het versturen. Mail ons direct op <a href="mailto:info@nextgen-ai.club">info@nextgen-ai.club</a>.</span></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <!-- FOOTER CTA (wit, sitewide identiek): twee duidelijke vervolgstappen i.p.v. een formulier -->
+  <div class="footer-cta">
+    <div class="container">
+      <span class="eyebrow">Contact</span>
+      <h2>Neem contact met ons op.</h2>
+      <p class="intro">Kies hieronder waar jouw vraag over gaat.</p>
+
+      <div class="contact-choice">
+        <a href="/organisaties/" class="choice-card">
+          <span class="choice-title"><span class="dot" style="background:var(--color-green);"></span>Ik wil dit voor mijn organisatie</span>
+          <p>Een doorlopend lesprogramma onder eigen naam, inclusief software en ondersteuning.</p>
+          <span class="choice-link-btn">
+            <span class="choice-link-label">Neem contact op</span>
+            <span class="choice-link-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
+        </a>
+        <a href="/ai-workshops/" class="choice-card">
+          <span class="choice-title"><span class="dot" style="background:var(--color-cyan);"></span>Ik wil een workshop boeken</span>
+          <p>Eén programma, één datum, direct resultaat voor een groep kinderen.</p>
+          <span class="choice-link-btn">
+            <span class="choice-link-label">Boek een workshop</span>
+            <span class="choice-link-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER LEGAL (donkerblauw, sitewide identiek) -->
+  <div class="footer-legal">
+    <img class="blob-edge is-right" src="/assets/blob-cyan-clean.png" alt="" style="--blob-w:200px; top:auto; bottom:-30px;">
+    <div class="container footer-grid">
+      <div class="footer-brand-col">
+        <img src="/assets/logo.png" alt="NextGen AI" style="height:128px; margin-bottom:var(--space-2); margin-left:-14px;">
+        <p style="color:rgba(255,255,255,0.6); font-size:0.9rem; max-width:32ch;">Elk kind toegang geven tot AI-educatie, zodat zij morgen de oplossingen creëren die de toekomst nodig heeft.</p>
+      </div>
+      <div>
+        <h4>Sitemap</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/ai-workshops/">Workshops</a></li>
+          <li><a href="/organisaties/">Voor organisaties</a></li>
+          <li><a href="/licentie/">Licentie</a></li>
+          <li><a href="/ai-lessenreeks/">AI-lessenreeks</a></li>
+          <li><a href="/in-beeld/">In beeld</a></li>
+          <li><a href="/over-ons/">Over ons</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Organisatie</h4>
+        <ul>
+          <li>NextGen AI</li>
+          <li>info@nextgen-ai.club</li>
+          <li>+31 6 11 73 60 39</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Juridisch</h4>
+        <ul>
+          <li><a href="#">Privacyverklaring</a></li>
+          <li><a href="#">Cookiebeleid</a></li>
+          <li><a href="#">Algemene voorwaarden</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>&copy; 2026 NextGen AI | website by <a href="https://www.mrbluesky.nl" target="_blank" rel="noopener">Mr. Blue Sky</a></span>
+      <span class="footer-bottom-right">
+        <a href="https://www.linkedin.com/company/nextgeneration-ai" target="_blank" rel="noopener" class="footer-social-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.7c0-1.36-.02-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3v5.8h-4V9Z"/></svg><span>Bezoek onze bedrijfspagina</span></a>
+        <span class="footer-badge-mini" title="Founding member van BRAIN Nederland"><img src="/assets/brain-nederland-logo.png" alt="BRAIN Nederland"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobiel hamburgermenu
+  (function () {
+    var btn = document.getElementById('hamburgerBtn');
+    var menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    function close() {
+      btn.classList.remove('is-open');
+      menu.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      btn.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  })();
+
+  // Aanvraagformulier tonen/verbergen, met _pagina op "licentie-info" of "licentie-demo"
+  (function () {
+    var fields = document.getElementById('introFields');
+    if (!fields) return;
+    var tokenField = document.getElementById('pf-token');
+    var paginaField = document.getElementById('pf-pagina');
+
+    function openForm(pagina) {
+      if (!fields.classList.contains('is-open')) {
+        fields.classList.add('is-open');
+      }
+      if (!tokenField.value) {
+        fetch('/formulier/token.php').then(function (r) { return r.json(); })
+          .then(function (data) { tokenField.value = data.token; })
+          .catch(function () {});
+      }
+      if (pagina) paginaField.value = pagina;
+    }
+
+    document.querySelectorAll('.js-open-intro-form').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        openForm(btn.getAttribute('data-pagina'));
+        fields.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    var form = document.getElementById('introForm');
+    var submitBtn = document.getElementById('introSubmitBtn');
+    var errorEl = document.getElementById('introError');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      var voornaam = form.querySelector('[name="voornaam"]').value;
+      var params = new URLSearchParams({ type: 'licentie', naam: voornaam });
+
+      submitBtn.disabled = true;
+      errorEl.classList.remove('is-visible');
+
+      fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+          if (!data.success) throw new Error('Verzenden mislukt');
+          window.location.href = '/bedankt/?' + params.toString();
+        })
+        .catch(function () {
+          submitBtn.disabled = false;
+          errorEl.classList.add('is-visible');
+        });
+    });
+  })();
+</script>
+</body>
+</html>

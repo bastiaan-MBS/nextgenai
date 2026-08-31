@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-lessenreeks digitale geletterdheid voor groep 7/8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="description" content="De AI-lessenreeks digitale geletterdheid laat leerlingen van groep 7/8 als digitale detectives een cyberaanval oplossen, en leert ze AI, veiligheid en digitaal burgerschap.">
+<link rel="canonical" href="https://nextgen-ai.club/ai-lessenreeks/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI-lessenreeks digitale geletterdheid voor groep 7/8">
+<meta property="og:description" content="De AI-lessenreeks digitale geletterdheid laat leerlingen van groep 7/8 als digitale detectives een cyberaanval oplossen, en leert ze AI, veiligheid en digitaal burgerschap.">
+<meta property="og:url" content="https://nextgen-ai.club/ai-lessenreeks/">
+<meta property="og:image" content="https://nextgen-ai.club/assets/hero-photo-2.jpg">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:site_name" content="NextGen AI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI-lessenreeks digitale geletterdheid voor groep 7/8">
+<meta name="twitter:description" content="De AI-lessenreeks digitale geletterdheid laat leerlingen van groep 7/8 als digitale detectives een cyberaanval oplossen, en leert ze AI, veiligheid en digitaal burgerschap.">
+<meta name="twitter:image" content="https://nextgen-ai.club/assets/hero-photo-2.jpg">
+<style>
+  /* Paginaspecifieke opmaak. Algemene tokens en de header/footer-CSS staan
+     sitewide in css/styles.css, zodat elke pagina er identiek uitziet. */
+
+  .page-hero { padding-block: var(--space-6) var(--space-5); }
+  .page-hero .intro { font-size: 1.1rem; max-width: 62ch; }
+  .page-chips { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-top: var(--space-3); }
+  .page-chips span {
+    background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-pill);
+    padding: 0.5em 1.1em; font-size: 0.88rem; font-weight: 600; color: var(--color-navy);
+  }
+
+  .usp-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--space-5); align-items: start; }
+  .usp-list { display: grid; gap: 0; border-top: 1px solid rgba(255,255,255,0.18); }
+  .usp-row { display: grid; grid-template-columns: 52px 1fr; gap: var(--space-3); padding-block: var(--space-3); border-bottom: 1px solid rgba(255,255,255,0.18); }
+  .usp-row .num { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--color-yellow); }
+  .usp-row h3 { margin-bottom: 0.3em; }
+  @media (max-width: 900px) { .usp-grid { grid-template-columns: 1fr; } }
+
+  /* ---- Kenmerken: vier kaarten ---- */
+  .feature-tiles { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-4); }
+  @media (min-width: 700px) { .feature-tiles { grid-template-columns: repeat(2, 1fr); } }
+  .feature-tile {
+    background: var(--color-surface); border: 2px solid var(--color-line); border-radius: var(--radius-lg);
+    padding: var(--space-4);
+  }
+  .feature-tile h3 { margin-bottom: 0.4em; }
+  .feature-tile p { margin: 0; color: var(--color-ink-soft); }
+
+  /* ---- Leerdoelen: drie kolommen ---- */
+  .goal-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-4); }
+  @media (min-width: 900px) { .goal-grid { grid-template-columns: repeat(3, 1fr); } }
+  .goal-card { border: 2px solid var(--color-line); border-radius: var(--radius-lg); padding: var(--space-4); }
+  .goal-card h3 { margin-bottom: 0.5em; }
+
+  /* ---- Praktische info ---- */
+  .info-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-2); margin-top: var(--space-4); }
+  @media (min-width: 700px) { .info-grid { grid-template-columns: repeat(2, 1fr); } }
+  .info-row { display: flex; justify-content: space-between; gap: var(--space-2); padding: 0.9em 1.1em; background: var(--color-bg-alt); border-radius: var(--radius-md); border: 1px solid var(--color-line); }
+  .info-row .info-label { font-weight: 600; color: var(--color-ink-soft); }
+  .info-row .info-value { font-weight: 600; color: var(--color-ink); text-align: right; }
+
+  /* ---- Testimonials ---- */
+  .quote-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-4); }
+  @media (min-width: 800px) { .quote-grid { grid-template-columns: 1fr 1fr; } }
+  .quote-card {
+    background: var(--color-navy); color: #fff; border-radius: var(--radius-lg); padding: var(--space-4);
+  }
+  .quote-card p.quote { font-size: 1rem; margin: 0 0 var(--space-2); }
+  .quote-card .quote-role { color: rgba(255,255,255,0.65); font-size: 0.85rem; font-weight: 600; }
+
+  /* ---- Aanvraagformulier (zelfde patroon als /organisaties/) ---- */
+  .cta-card { background: var(--color-navy); color: #fff; border-radius: var(--radius-lg); padding: var(--space-4); position: relative; overflow: hidden; }
+  .cta-card h3 { color: #fff; }
+  .cta-card p { color: rgba(255,255,255,0.78); }
+  .cta-options { display: grid; gap: var(--space-2); margin-top: var(--space-3); position: relative; z-index: 1; }
+  .cta-options .btn { width: 100%; justify-content: center; }
+
+  .intro-fields {
+    display: grid; grid-template-rows: 0fr; opacity: 0;
+    transition: grid-template-rows 420ms cubic-bezier(.4,0,.2,1), opacity 320ms ease, margin-top 420ms cubic-bezier(.4,0,.2,1);
+  }
+  .intro-fields > div { overflow: hidden; }
+  .intro-fields.is-open { grid-template-rows: 1fr; opacity: 1; margin-top: var(--space-4); }
+  .intro-fields-inner-wide {
+    background: var(--color-bg-alt); border: 2px solid var(--color-line); border-radius: var(--radius-lg);
+    padding: var(--space-4);
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <img class="blob-edge is-right" src="/assets/blob-pink-clean.png" alt="" style="--blob-w:130px; --blob-top:20%;">
+  <div class="container nav-inner">
+    <a href="/" class="logo-mark"><img src="/assets/logo.png" alt="NextGen AI logo"></a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/ai-workshops/">Workshops</a></li>
+        <li><a href="/organisaties/">Organisaties</a></li>
+        <li><a href="/in-beeld/">In Beeld</a></li>
+        <li><a href="/over-ons/">Over Ons</a></li>
+      </ul>
+    </nav>
+    <div class="nav-ctas">
+      <a href="/organisaties/" class="btn btn-outline-light">Voor organisaties</a>
+      <a href="/ai-workshops/" class="btn btn-cta-large">
+        Boek een workshop
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <button type="button" class="hamburger" id="hamburgerBtn" aria-label="Menu openen" aria-expanded="false" aria-controls="mobileMenu">
+      <svg class="icon-menu" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <ul>
+        <li><a class="nav-link" href="/">Home</a></li>
+        <li><a class="nav-link" href="/ai-workshops/">Workshops</a></li>
+        <li><a class="nav-link" href="/organisaties/">Organisaties</a></li>
+        <li><a class="nav-link" href="/in-beeld/">In Beeld</a></li>
+        <li><a class="nav-link" href="/over-ons/">Over Ons</a></li>
+      </ul>
+      <div class="mobile-menu-ctas">
+        <a href="/organisaties/" class="btn btn-outline-light" style="border-color:var(--color-navy-ink); color:#fff; background:rgba(255,255,255,0.08);">Voor organisaties</a>
+        <a href="/ai-workshops/" class="btn btn-cta-large">
+          Boek een workshop
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--color-navy)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- PAGE HERO -->
+  <section class="page-hero container">
+    <span class="eyebrow">AI-lessenreeks</span>
+    <h1>De AI-lessenreeks digitale geletterdheid: leerlingen als digitale detectives.</h1>
+    <p class="intro">
+      In deze lessenreeks kruipen leerlingen van groep 7/8 in de huid van digitale
+      detectives, die samen een grootschalige cyberaanval moeten oplossen. Onderweg leren
+      ze over AI, cyberveiligheid, digitale ethiek, online informatie, privacy, data en
+      digitale samenwerking, aansluitend op de SLO-leerlijn Digitale Geletterdheid.
+    </p>
+    <div class="page-chips">
+      <span>Groep 7/8, 10 t/m 12 jaar</span>
+      <span>Verhalend en interactief</span>
+      <span>Aansluitend op SLO Digitale Geletterdheid</span>
+    </div>
+  </section>
+
+  <!-- KENMERKEN -->
+  <section class="section-tight container" style="padding-top: var(--space-3);">
+    <span class="eyebrow">Kenmerken</span>
+    <h2>Wat de AI-lessenreeks bijzonder maakt.</h2>
+    <div class="feature-tiles">
+      <div class="feature-tile">
+        <h3>Verhaalgedreven leren</h3>
+        <p>Leerlingen volgen een doorlopend verhaal als digitale detectives, met digitale dossiers en uitdagingen die ze stap voor stap moeten oplossen.</p>
+      </div>
+      <div class="feature-tile">
+        <h3>Veilige AI-ervaring</h3>
+        <p>De lessenreeks maakt gebruik van BotBuilder, de kindveilige leeromgeving van NextGen AI. Leerlingen ontdekken zo de mogelijkheden én de grenzen en verantwoordelijkheden van AI.</p>
+      </div>
+      <div class="feature-tile">
+        <h3>Flexibele implementatie</h3>
+        <p>De lessenreeks is flexibel in te passen binnen uw onderwijs, projectperiode of planning, zodat deze aansluit op wat past bij uw groep.</p>
+      </div>
+      <div class="feature-tile">
+        <h3>Samenwerking centraal</h3>
+        <p>Leerlingen lossen de uitdagingen niet alleen op: samenwerken en met elkaar meedenken staat steeds centraal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEERDOELEN -->
+  <section class="section-tight on-dark" id="leerdoelen">
+    <div class="container">
+      <span class="eyebrow">Leerdoelen</span>
+      <h2>Wat leerlingen leren.</h2>
+      <div class="goal-grid">
+        <div class="goal-card">
+          <h3>Digitale vaardigheden</h3>
+          <p>Veilig omgaan met AI-tools, de mogelijkheden en beperkingen ervan begrijpen, cyberdreigingen herkennen, bewust omgaan met digitale veiligheid en online informatie kritisch beoordelen.</p>
+        </div>
+        <div class="goal-card">
+          <h3>21e-eeuwse vaardigheden</h3>
+          <p>Probleemoplossend denken, digitaal samenwerken en creatief gebruik van digitale hulpmiddelen.</p>
+        </div>
+        <div class="goal-card">
+          <h3>Digitale ethiek</h3>
+          <p>Verantwoord gebruik van AI, privacy en databescherming, en digitaal burgerschap.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRAKTISCHE INFO -->
+  <section class="section-tight container">
+    <span class="eyebrow">Praktische informatie</span>
+    <h2>Hoe de lessenreeks is opgebouwd.</h2>
+    <div class="info-grid">
+      <div class="info-row"><span class="info-label">Doelgroep</span><span class="info-value">Groep 7/8, 10 t/m 12 jaar</span></div>
+      <div class="info-row"><span class="info-label">Opzet</span><span class="info-value">Interactief verhaal met praktische opdrachten</span></div>
+      <div class="info-row"><span class="info-label">Platform</span><span class="info-value">Veilige, kindvriendelijke online omgeving (BotBuilder)</span></div>
+      <div class="info-row"><span class="info-label">Begeleiding</span><span class="info-value">Materialen en ondersteuning voor begeleiders, plus technische ondersteuning</span></div>
+    </div>
+    <p style="max-width:64ch; margin-top: var(--space-3);">De lessenreeks kent geen vast aantal lessen of vaste lesduur: de opzet is flexibel en wordt passend gemaakt binnen uw onderwijs, projectperiode of planning.</p>
+    <!-- TODO: ontbrekende info, aan te vullen door klant: exacte prijsopgave en aanvraagprocedure voor de AI-lessenreeks. -->
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section-tight container">
+    <span class="eyebrow">Wat anderen zeggen</span>
+    <h2>Ervaringen uit de klas.</h2>
+    <div class="quote-grid">
+      <div class="quote-card">
+        <p class="quote">"Onze leerlingen waren zo enthousiast dat ze thuis doorpraatten over de lessen. Voor het eerst zag ik ze echt begrijpen wat AI betekent voor hun toekomst."</p>
+        <div class="quote-role">Leerkracht groep 8</div>
+      </div>
+      <div class="quote-card">
+        <p class="quote">"Eindelijk een programma dat aansluit op onze ambities voor digitale geletterdheid zonder dat we zelf experts hoeven te worden."</p>
+        <div class="quote-role">Directeur basisschool</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANDERE MANIEREN -->
+  <section class="section-tight container">
+    <span class="eyebrow">Andere manieren om te starten</span>
+    <h2>Liever een losse workshop, of alles zelf organiseren?</h2>
+    <p style="max-width:64ch;">Naast de AI-lessenreeks bieden we ook losse <a href="/ai-workshops/" style="color:var(--color-navy); font-weight:600;">AI-workshops</a> aan, en voor organisaties die AI-educatie structureel willen aanbieden is er de <a href="/licentie/" style="color:var(--color-navy); font-weight:600;">NextGen AI-licentie</a>, de meest structurele manier om met NextGen AI te werken. Bekijk alle mogelijkheden op de <a href="/organisaties/" style="color:var(--color-navy); font-weight:600;">organisatiespagina</a>.</p>
+  </section>
+
+  <!-- AANVRAGEN -->
+  <section class="section-tight container" id="aanvragen" style="padding-top: var(--space-4);">
+    <span class="eyebrow">Interesse?</span>
+    <h2>Vraag meer informatie aan.</h2>
+    <p style="max-width:60ch;">Wilt u de AI-lessenreeks bij uw organisatie inzetten? Vraag vrijblijvend meer informatie aan via het formulier.</p>
+
+    <div class="cta-card" style="max-width:640px;">
+      <span class="eyebrow" style="color:var(--color-yellow);">Volgende stap</span>
+      <h3>Vraag meer informatie aan</h3>
+      <p>Vul het formulier in en we nemen contact met u op om de mogelijkheden voor uw groep te bespreken.</p>
+      <div class="cta-options">
+        <button type="button" class="btn btn-outline-light js-open-intro-form" data-pagina="ai-lessenreeks">Vraag meer informatie aan</button>
+      </div>
+    </div>
+
+    <div class="intro-fields" id="introFields">
+      <div>
+        <div class="intro-fields-inner intro-fields-inner-wide">
+          <form id="introForm" action="/formulier/send.php" method="POST" novalidate>
+            <input type="hidden" name="_pagina" id="pf-pagina" value="ai-lessenreeks">
+            <input type="hidden" name="_token" id="pf-token" value="">
+            <div class="field" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+              <label>Laat dit vinkje uit<input type="checkbox" name="_bevestig" tabindex="-1" autocomplete="off"></label>
+            </div>
+            <div class="field-grid">
+              <div class="field"><label for="pf-voornaam">Voornaam</label><input type="text" id="pf-voornaam" name="voornaam" autocomplete="given-name" required></div>
+              <div class="field"><label for="pf-achternaam">Achternaam</label><input type="text" id="pf-achternaam" name="achternaam" autocomplete="family-name" required></div>
+              <div class="field"><label for="pf-organisatie">Organisatie</label><input type="text" id="pf-organisatie" name="organisatie" required></div>
+              <div class="field"><label for="pf-email">E-mailadres</label><input type="email" id="pf-email" name="email" autocomplete="email" required></div>
+              <div class="field"><label for="pf-telefoon">Telefoonnummer</label><input type="tel" id="pf-telefoon" name="telefoon" autocomplete="tel"></div>
+            </div>
+            <div class="field field-full">
+              <label for="pf-bericht">Bericht</label>
+              <textarea id="pf-bericht" name="bericht" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" id="introSubmitBtn">Verstuur aanvraag</button>
+            <p class="form-note">We reageren doorgaans binnen twee werkdagen.</p>
+            <div class="form-error" id="introError"><span>!</span><span>Er ging iets mis bij het versturen. Mail ons direct op <a href="mailto:info@nextgen-ai.club">info@nextgen-ai.club</a>.</span></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <!-- FOOTER CTA (wit, sitewide identiek): twee duidelijke vervolgstappen i.p.v. een formulier -->
+  <div class="footer-cta">
+    <div class="container">
+      <span class="eyebrow">Contact</span>
+      <h2>Neem contact met ons op.</h2>
+      <p class="intro">Kies hieronder waar jouw vraag over gaat.</p>
+
+      <div class="contact-choice">
+        <a href="/organisaties/" class="choice-card">
+          <span class="choice-title"><span class="dot" style="background:var(--color-green);"></span>Ik wil dit voor mijn organisatie</span>
+          <p>Een doorlopend lesprogramma onder eigen naam, inclusief software en ondersteuning.</p>
+          <span class="choice-link-btn">
+            <span class="choice-link-label">Neem contact op</span>
+            <span class="choice-link-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
+        </a>
+        <a href="/ai-workshops/" class="choice-card">
+          <span class="choice-title"><span class="dot" style="background:var(--color-cyan);"></span>Ik wil een workshop boeken</span>
+          <p>Eén programma, één datum, direct resultaat voor een groep kinderen.</p>
+          <span class="choice-link-btn">
+            <span class="choice-link-label">Boek een workshop</span>
+            <span class="choice-link-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER LEGAL (donkerblauw, sitewide identiek) -->
+  <div class="footer-legal">
+    <img class="blob-edge is-right" src="/assets/blob-cyan-clean.png" alt="" style="--blob-w:200px; top:auto; bottom:-30px;">
+    <div class="container footer-grid">
+      <div class="footer-brand-col">
+        <img src="/assets/logo.png" alt="NextGen AI" style="height:128px; margin-bottom:var(--space-2); margin-left:-14px;">
+        <p style="color:rgba(255,255,255,0.6); font-size:0.9rem; max-width:32ch;">Elk kind toegang geven tot AI-educatie, zodat zij morgen de oplossingen creëren die de toekomst nodig heeft.</p>
+      </div>
+      <div>
+        <h4>Sitemap</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/ai-workshops/">Workshops</a></li>
+          <li><a href="/organisaties/">Voor organisaties</a></li>
+          <li><a href="/licentie/">Licentie</a></li>
+          <li><a href="/ai-lessenreeks/">AI-lessenreeks</a></li>
+          <li><a href="/in-beeld/">In beeld</a></li>
+          <li><a href="/over-ons/">Over ons</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Organisatie</h4>
+        <ul>
+          <li>NextGen AI</li>
+          <li>info@nextgen-ai.club</li>
+          <li>+31 6 11 73 60 39</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Juridisch</h4>
+        <ul>
+          <li><a href="#">Privacyverklaring</a></li>
+          <li><a href="#">Cookiebeleid</a></li>
+          <li><a href="#">Algemene voorwaarden</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>&copy; 2026 NextGen AI | website by <a href="https://www.mrbluesky.nl" target="_blank" rel="noopener">Mr. Blue Sky</a></span>
+      <span class="footer-bottom-right">
+        <a href="https://www.linkedin.com/company/nextgeneration-ai" target="_blank" rel="noopener" class="footer-social-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.7c0-1.36-.02-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3v5.8h-4V9Z"/></svg><span>Bezoek onze bedrijfspagina</span></a>
+        <span class="footer-badge-mini" title="Founding member van BRAIN Nederland"><img src="/assets/brain-nederland-logo.png" alt="BRAIN Nederland"></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobiel hamburgermenu
+  (function () {
+    var btn = document.getElementById('hamburgerBtn');
+    var menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    function close() {
+      btn.classList.remove('is-open');
+      menu.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      btn.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  })();
+
+  // Aanvraagformulier tonen/verbergen
+  (function () {
+    var fields = document.getElementById('introFields');
+    if (!fields) return;
+    var tokenField = document.getElementById('pf-token');
+    var paginaField = document.getElementById('pf-pagina');
+
+    function openForm(pagina) {
+      if (!fields.classList.contains('is-open')) {
+        fields.classList.add('is-open');
+      }
+      if (!tokenField.value) {
+        fetch('/formulier/token.php').then(function (r) { return r.json(); })
+          .then(function (data) { tokenField.value = data.token; })
+          .catch(function () {});
+      }
+      if (pagina) paginaField.value = pagina;
+    }
+
+    document.querySelectorAll('.js-open-intro-form').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        openForm(btn.getAttribute('data-pagina'));
+        fields.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    var form = document.getElementById('introForm');
+    var submitBtn = document.getElementById('introSubmitBtn');
+    var errorEl = document.getElementById('introError');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      var voornaam = form.querySelector('[name="voornaam"]').value;
+      var params = new URLSearchParams({ type: 'ai-lessenreeks', naam: voornaam });
+
+      submitBtn.disabled = true;
+      errorEl.classList.remove('is-visible');
+
+      fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+          if (!data.success) throw new Error('Verzenden mislukt');
+          window.location.href = '/bedankt/?' + params.toString();
+        })
+        .catch(function () {
+          submitBtn.disabled = false;
+          errorEl.classList.add('is-visible');
+        });
+    });
+  })();
+</script>
+</body>
+</html>
