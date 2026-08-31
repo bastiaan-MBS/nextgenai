@@ -42,6 +42,18 @@
   .usp-row h3 { margin-bottom: 0.3em; }
   @media (max-width: 900px) { .usp-grid { grid-template-columns: 1fr; } }
 
+  /* ---- Hero: tekst + foto naast elkaar (zelfde patroon als /licentie/) ---- */
+  .hero-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); align-items: center; }
+  @media (min-width: 900px) { .hero-grid { grid-template-columns: 1.1fr 0.9fr; } }
+  .hero-photo-wrap .photo { aspect-ratio: 4 / 3; object-fit: cover; }
+
+  /* ---- Subtiel logo-watermerk, decoratief (zelfde principe als op /licentie/) ---- */
+  .logo-watermark {
+    position: absolute; z-index: 0; pointer-events: none;
+    width: var(--wm-w, 280px); opacity: var(--wm-opacity, 0.07);
+    right: var(--wm-right, -20px); bottom: var(--wm-bottom, -20px); top: var(--wm-top, auto);
+  }
+
   /* ---- Kenmerken: vier kaarten ---- */
   .feature-tiles { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-4); }
   @media (min-width: 700px) { .feature-tiles { grid-template-columns: repeat(2, 1fr); } }
@@ -122,9 +134,14 @@
       <ul>
         <li><a class="nav-link" href="/">Home</a></li>
         <li><a class="nav-link" href="/ai-workshops/">Workshops</a></li>
-        <li class="nav-has-dropdown">
-          <a class="nav-link" href="/organisaties/">Organisaties</a>
-          <ul class="nav-dropdown-mobile">
+        <li class="nav-has-dropdown nav-has-dropdown-mobile">
+          <div class="nav-mobile-parent">
+            <a class="nav-link" href="/organisaties/">Organisaties</a>
+            <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-controls="mobileSubOrganisaties" aria-label="Submenu Organisaties tonen">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <ul class="nav-dropdown-mobile" id="mobileSubOrganisaties">
             <li><a class="nav-link nav-sublink" href="/licentie/">Licentie</a></li>
             <li><a class="nav-link nav-sublink" href="/ai-lessenreeks/">Lessenreeks</a></li>
           </ul>
@@ -147,18 +164,25 @@
 
   <!-- PAGE HERO -->
   <section class="page-hero container">
-    <span class="eyebrow">AI-lessenreeks</span>
-    <h1>De AI-lessenreeks digitale geletterdheid: leerlingen als digitale detectives.</h1>
-    <p class="intro">
-      In deze lessenreeks kruipen leerlingen van groep 7/8 in de huid van digitale
-      detectives, die samen een grootschalige cyberaanval moeten oplossen. Onderweg leren
-      ze over AI, cyberveiligheid, digitale ethiek, online informatie, privacy, data en
-      digitale samenwerking, aansluitend op de SLO-leerlijn Digitale Geletterdheid.
-    </p>
-    <div class="page-chips">
-      <span>Groep 7/8, 10 t/m 12 jaar</span>
-      <span>Verhalend en interactief</span>
-      <span>Aansluitend op SLO Digitale Geletterdheid</span>
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">AI-lessenreeks</span>
+        <h1>De AI-lessenreeks digitale geletterdheid: leerlingen als digitale detectives.</h1>
+        <p class="intro">
+          In deze lessenreeks kruipen leerlingen van groep 7/8 in de huid van digitale
+          detectives, die samen een grootschalige cyberaanval moeten oplossen. Onderweg leren
+          ze over AI, cyberveiligheid, digitale ethiek, online informatie, privacy, data en
+          digitale samenwerking, aansluitend op de SLO-leerlijn Digitale Geletterdheid.
+        </p>
+        <div class="page-chips">
+          <span>Groep 7/8, 10 t/m 12 jaar</span>
+          <span>Verhalend en interactief</span>
+          <span>Aansluitend op SLO Digitale Geletterdheid</span>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <img class="photo" src="/assets/fotobibliotheek/IMG_1268-lessenreeks.jpg" alt="Leerlingen aan het werk tijdens een NextGen AI-programma." loading="lazy">
+      </div>
     </div>
   </section>
 
@@ -166,6 +190,7 @@
   <section class="section-tight container" style="padding-top: var(--space-3);">
     <span class="eyebrow">Kenmerken</span>
     <h2>Wat de AI-lessenreeks bijzonder maakt.</h2>
+    <img class="photo" src="/assets/fotobibliotheek/NextgenAI-hackathon_1-lessenreeks.jpg" alt="Leerlingen werken samen tijdens een NextGen AI-programma." loading="lazy" style="margin: var(--space-3) 0; width:100%; max-height:360px; object-fit:cover;">
     <div class="feature-tiles">
       <div class="feature-tile">
         <h3>Verhaalgedreven leren</h3>
@@ -253,6 +278,7 @@
     <p style="max-width:60ch;">Wilt u de AI-lessenreeks bij uw organisatie inzetten? Vraag vrijblijvend meer informatie aan via het formulier.</p>
 
     <div class="cta-card" style="max-width:640px;">
+      <img class="logo-watermark" src="/assets/logo.png" alt="" aria-hidden="true" style="--wm-w:220px; --wm-opacity:0.1; --wm-right:-30px; --wm-top:-30px; --wm-bottom:auto;">
       <span class="eyebrow" style="color:var(--color-yellow);">Volgende stap</span>
       <h3>Vraag meer informatie aan</h3>
       <p>Vul het formulier in en we nemen contact met u op om de mogelijkheden voor uw groep te bespreken.</p>
@@ -350,7 +376,7 @@
         <ul>
           <li>NextGen AI</li>
           <li>info@nextgen-ai.club</li>
-          <li>+31 6 11 73 60 39</li>
+          <li>Peter Brouwers: +31 6 11 73 60 39</li>
         </ul>
       </div>
       <div>
@@ -389,6 +415,18 @@
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  })();
+
+  // Mobiel submenu bij "Organisaties": tik om uit/in te klappen
+  (function () {
+    document.querySelectorAll('.nav-dropdown-toggle').forEach(function (toggle) {
+      var submenu = document.getElementById(toggle.getAttribute('aria-controls'));
+      if (!submenu) return;
+      toggle.addEventListener('click', function () {
+        var open = submenu.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
   })();
 
   // Toegankelijk dropdown-submenu bij "Organisaties" (desktop): stuurt aria-expanded mee

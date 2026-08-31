@@ -253,8 +253,21 @@ nav.main-nav a:hover, nav.main-nav a.is-active { border-color: var(--color-yello
 }
 .nav-dropdown a:hover, .nav-dropdown a:focus-visible { background: rgba(255,255,255,0.1); color: var(--color-yellow); }
 
-/* ---- Submenu bij "Organisaties" in het mobiele menu: altijd zichtbaar, ingesprongen ---- */
-.mobile-menu .nav-dropdown-mobile { list-style: none; margin: 0; padding: 0 0 0.4em var(--space-3); display: grid; gap: 0; }
+/* ---- Submenu bij "Organisaties" in het mobiele menu: standaard verborgen,
+   tik op het pijltje om het uit/in te klappen (vergelijkbaar met de hamburger) ---- */
+.mobile-menu .nav-mobile-parent { display: flex; align-items: stretch; border-bottom: 1px solid rgba(255,255,255,0.14); }
+.mobile-menu .nav-mobile-parent .nav-link { flex: 1; border-bottom: none; }
+.nav-dropdown-toggle {
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  width: 44px; background: none; border: none; color: #fff; cursor: pointer; padding: 0;
+}
+.nav-dropdown-toggle svg { width: 20px; height: 20px; transition: transform var(--transition); }
+.nav-dropdown-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.mobile-menu .nav-dropdown-mobile {
+  list-style: none; margin: 0; padding: 0 0 0 var(--space-3); display: grid; gap: 0;
+  max-height: 0; overflow: hidden; transition: max-height 320ms ease;
+}
+.mobile-menu .nav-dropdown-mobile.is-open { max-height: 220px; padding-bottom: 0.4em; }
 .mobile-menu .nav-dropdown-mobile a.nav-sublink {
   font-size: 0.92rem; font-weight: 500; color: rgba(255,255,255,0.78);
   padding: 0.6em 0.2em; border-bottom: 1px solid rgba(255,255,255,0.1);

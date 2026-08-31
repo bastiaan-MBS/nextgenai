@@ -106,6 +106,44 @@
     background: var(--color-bg-alt); border: 2px solid var(--color-line); border-radius: var(--radius-lg);
     padding: var(--space-4);
   }
+
+  /* ---- Licentiehouders-carrousel (zelfde stijl als de reviews-carrousel elders) ---- */
+  .testi-carousel { display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-5); }
+  .testi-arrow {
+    flex-shrink: 0; width: 46px; height: 46px; border-radius: 50%;
+    border: 2px solid var(--color-navy); background: #fff; color: var(--color-navy);
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    transition: background var(--transition), color var(--transition), transform var(--transition);
+  }
+  .testi-arrow:hover { background: var(--color-navy); color: #fff; }
+  .testi-arrow:active { transform: scale(0.94); }
+  .testi-arrow svg { width: 20px; height: 20px; }
+  .testi-viewport { flex: 1; position: relative; height: 360px; overflow: visible; touch-action: pan-y; padding-bottom: 12px; }
+  .testi-track { position: relative; width: 100%; height: 100%; }
+  .testi-slide {
+    position: absolute; bottom: 12px; left: 50%; width: min(440px, 84vw);
+    background: var(--color-navy); border-radius: var(--radius-lg); padding: var(--space-4);
+    box-shadow: var(--shadow-soft); cursor: pointer; transform-origin: bottom center;
+    transition: transform 450ms cubic-bezier(.4,0,.2,1), opacity 450ms;
+  }
+  .testi-slide .partner-region {
+    display: inline-block; font-family: var(--font-display); font-weight: 700; font-size: 0.72rem;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-navy); background: var(--color-cyan);
+    padding: 0.25em 0.7em; border-radius: var(--radius-pill); margin-bottom: 0.6em;
+  }
+  .testi-slide .quote { color: #fff; font-size: 0.98rem; }
+  .testi-slide .partner-blurb { color: rgba(255,255,255,0.65); font-size: 0.85rem; margin-top: 0.4em; }
+  .testi-meta { display: flex; align-items: center; justify-content: space-between; gap: 0.7em; margin-top: var(--space-2); }
+  .testi-avatar {
+    width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--color-navy);
+  }
+  .testi-name { font-weight: 600; font-size: 0.92rem; color: #fff; }
+  .partner-link { font-size: 0.82rem; color: var(--color-cyan); text-decoration: none; font-weight: 600; }
+  .partner-link:hover { text-decoration: underline; }
+
+  @media (max-width: 700px) { .testi-viewport { height: 400px; } }
 </style>
 </head>
 <body>
@@ -146,9 +184,14 @@
       <ul>
         <li><a class="nav-link" href="/">Home</a></li>
         <li><a class="nav-link" href="/ai-workshops/">Workshops</a></li>
-        <li class="nav-has-dropdown">
-          <a class="nav-link" href="/organisaties/">Organisaties</a>
-          <ul class="nav-dropdown-mobile">
+        <li class="nav-has-dropdown nav-has-dropdown-mobile">
+          <div class="nav-mobile-parent">
+            <a class="nav-link" href="/organisaties/">Organisaties</a>
+            <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-controls="mobileSubOrganisaties" aria-label="Submenu Organisaties tonen">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <ul class="nav-dropdown-mobile" id="mobileSubOrganisaties">
             <li><a class="nav-link nav-sublink" href="/licentie/">Licentie</a></li>
             <li><a class="nav-link nav-sublink" href="/ai-lessenreeks/">Lessenreeks</a></li>
           </ul>
@@ -193,43 +236,97 @@
     </div>
   </section>
 
-  <!-- LOGOSLIDER: ORGANISATIES MET WORKSHOP OF LICENTIE -->
-  <section class="section-tight container" style="padding-top: 0;">
-    <span class="eyebrow">Met veel plezier</span>
-    <h2>Organisaties die al een workshop of licentie hebben afgenomen.</h2>
-    <p style="max-width:60ch;">Dit zijn organisaties die al met veel plezier een workshop of licentie bij ons hebben afgenomen.</p>
-    <div class="logo-ticker" style="margin-top: var(--space-4);">
-      <div class="logo-ticker-track">
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20logo%20bollenstreek.jpeg" alt="Bibliotheek Bollenstreek"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/Bredata_Logo_GeelVlak.png" alt="Bredata"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20logo%20groene%20hart.jpeg" alt="Bibliotheek Groene Hart"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/Discovery%20museum%20logo.png" alt="Discovery Museum"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20logo%20ijmond%20noord.png" alt="Bibliotheek IJmond Noord"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/Montessori%20nieuwekerk%20ad%20ijssel%20logo.png" alt="Montessori Nieuwerkerk aan den IJssel"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20logo%20rijk%20en%20venen.png" alt="Bibliotheek Rijn en Venen"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/Ontdekstation-logo.png" alt="Ontdekstation"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20logo%20venlo.jpeg" alt="Bibliotheek Venlo"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/Tech4kids%20logo.png" alt="Tech4Kids"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/bibliotheek%20westland%20logo.png" alt="Bibliotheek Westland"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/de%20overlaat%20logo.png" alt="De Overlaat"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/petje%20af%20logo.png" alt="Petje Af"></span>
-        <span class="logo-ticker-item"><img src="/assets/Organisaties/zomerschool%20maks%20logo.png" alt="Zomerschool MAKS"></span>
-        <!-- lijst herhaald voor naadloze loop -->
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20logo%20bollenstreek.jpeg"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/Bredata_Logo_GeelVlak.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20logo%20groene%20hart.jpeg"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/Discovery%20museum%20logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20logo%20ijmond%20noord.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/Montessori%20nieuwekerk%20ad%20ijssel%20logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20logo%20rijk%20en%20venen.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/Ontdekstation-logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20logo%20venlo.jpeg"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/Tech4kids%20logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/bibliotheek%20westland%20logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/de%20overlaat%20logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/petje%20af%20logo.png"></span>
-        <span class="logo-ticker-item" aria-hidden="true"><img src="/assets/Organisaties/zomerschool%20maks%20logo.png"></span>
+  <!-- LICENTIEHOUDERS (verplaatst vanaf /organisaties/, hier aangepast naar licentie-context) -->
+  <section class="section container" style="padding-top: 0;">
+    <span class="eyebrow">Licentiehouders</span>
+    <h2>Bibliotheken en jeugdorganisaties die al met onze licentie werken.</h2>
+    <p style="max-width:60ch;">Een greep uit de bibliotheken en jeugdorganisaties die met een NextGen AI-licentie zelfstandig AI-educatie aanbieden.</p>
+
+    <div class="testi-carousel">
+      <button type="button" class="testi-arrow" id="partnerPrev" aria-label="Vorige partner">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="testi-viewport">
+        <div class="testi-track" id="partnerTrack">
+          <article class="testi-slide">
+            <span class="partner-region">Zuid-Holland</span>
+            <p class="quote">"Dankzij dit programma kunnen we AI-educatie nu structureel aanbieden, met onze eigen mensen."</p>
+            <p class="partner-blurb">Licentiehouder sinds 2024, organiseert maandelijks workshops voor de hele regio.</p>
+            <div class="testi-meta">
+              <div style="display:flex; align-items:center; gap:0.7em;">
+                <span class="testi-avatar" style="background:var(--color-cyan);">BR</span>
+                <div class="testi-name">Bibliotheek Rijnland</div>
+              </div>
+              <a href="#" class="partner-link">Bezoek website →</a>
+            </div>
+          </article>
+          <article class="testi-slide">
+            <span class="partner-region">Groningen</span>
+            <p class="quote">"We kunnen het programma nu structureel aanbieden, zonder dat we zelf AI-experts hoeven te zijn."</p>
+            <p class="partner-blurb">Licentiehouder sinds 2025, actief in drie gemeenten in de regio.</p>
+            <div class="testi-meta">
+              <div style="display:flex; align-items:center; gap:0.7em;">
+                <span class="testi-avatar" style="background:var(--color-yellow);">JN</span>
+                <div class="testi-name">Jeugdorganisatie Noord</div>
+              </div>
+              <a href="#" class="partner-link">Bezoek website →</a>
+            </div>
+          </article>
+          <article class="testi-slide">
+            <span class="partner-region">Overijssel</span>
+            <p class="quote">"Veilig, begrijpelijk en verrassend leuk. Ouders vroegen achteraf zelf om meer AI-activiteiten voor hun kinderen."</p>
+            <p class="partner-blurb">Licentiehouder sinds 2024, organiseert workshops voor de hele bibliotheekregio.</p>
+            <div class="testi-meta">
+              <div style="display:flex; align-items:center; gap:0.7em;">
+                <span class="testi-avatar" style="background:var(--color-green);">BD</span>
+                <div class="testi-name">Bibliotheek Deventer</div>
+              </div>
+              <a href="#" class="partner-link">Bezoek website →</a>
+            </div>
+          </article>
+          <article class="testi-slide">
+            <span class="partner-region">Utrecht</span>
+            <p class="quote">"Onze begeleiders konden zonder technische kennis meteen aan de slag. Precies de drempel die we nodig hadden weg te nemen."</p>
+            <p class="partner-blurb">Licentiehouder sinds 2025, met een eigen Train-de-Trainer-team.</p>
+            <div class="testi-meta">
+              <div style="display:flex; align-items:center; gap:0.7em;">
+                <span class="testi-avatar" style="background:var(--color-pink);">BU</span>
+                <div class="testi-name">Bibliotheek Utrecht</div>
+              </div>
+              <a href="#" class="partner-link">Bezoek website →</a>
+            </div>
+          </article>
+          <article class="testi-slide">
+            <span class="partner-region">Zuid-Holland</span>
+            <p class="quote">"Een programma dat serieus met veiligheid omgaat, zonder dat het saai wordt voor de kinderen. Precies de balans die we zochten."</p>
+            <p class="partner-blurb">Licentiehouder sinds 2025, actief in meerdere jeugdcentra.</p>
+            <div class="testi-meta">
+              <div style="display:flex; align-items:center; gap:0.7em;">
+                <span class="testi-avatar" style="background:var(--color-cyan);">JZ</span>
+                <div class="testi-name">Jeugdorganisatie Zuid-Holland</div>
+              </div>
+              <a href="#" class="partner-link">Bezoek website →</a>
+            </div>
+          </article>
+          <article class="testi-slide">
+            <span class="partner-region">Drenthe</span>
+            <p class="quote">"We zijn gestart met één workshop en binnen een half jaar overgestapt op de licentie. De opbouw voelde nergens geforceerd."</p>
+            <p class="partner-blurb">Licentiehouder sinds 2024, organiseert het programma provinciebreed.</p>
+            <div class="testi-meta">
+              <div style="display:flex; align-items:center; gap:0.7em;">
+                <span class="testi-avatar" style="background:var(--color-yellow);">BD2</span>
+                <div class="testi-name">Bibliotheek Drenthe</div>
+              </div>
+              <a href="#" class="partner-link">Bezoek website →</a>
+            </div>
+          </article>
+        </div>
       </div>
+
+      <button type="button" class="testi-arrow" id="partnerNext" aria-label="Volgende partner">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
     </div>
   </section>
 
@@ -247,13 +344,13 @@
   </section>
 
   <!-- WAT KUN JE ZELFSTANDIG ORGANISEREN -->
-  <section class="section-tight on-dark" id="wat-je-kunt" style="position:relative; overflow:hidden;">
-    <img class="logo-watermark" src="/assets/logo.png" alt="" aria-hidden="true" style="--wm-w:340px; --wm-opacity:0.08; --wm-right:-60px; --wm-bottom:-60px;">
+  <section class="section-tight on-dark" id="wat-je-kunt">
     <div class="container usp-grid">
       <div>
         <span class="eyebrow">Wat je zelfstandig kunt organiseren</span>
         <h2>Alle tools om zelf AI-educatie aan te bieden.</h2>
         <p>Met een licentie beheert u uw eigen programma volledig zelfstandig, onder uw eigen naam, met de kindveilige NextGen AI-leeromgeving als basis.</p>
+        <img src="/assets/logo.png" alt="NextGen AI logo" style="width:110px; height:auto; display:block; margin-top: var(--space-3);">
       </div>
       <div class="usp-list">
         <div class="usp-row">
@@ -412,10 +509,10 @@
       <img class="logo-watermark" src="/assets/logo.png" alt="" aria-hidden="true" style="--wm-w:220px; --wm-opacity:0.1; --wm-right:-30px; --wm-top:-30px; --wm-bottom:auto;">
       <span class="eyebrow" style="color:var(--color-yellow);">Kies wat bij u past</span>
       <h3>Twee manieren om te starten</h3>
-      <p>Wilt u eerst meer weten over de licentie? Of liever direct zien hoe BotBuilder werkt in een demo? Beide kan via het formulier.</p>
+      <p>Wilt u eerst meer weten over de licentie? Of liever direct zien hoe BotBuilder werkt in een demo? Beide kan.</p>
       <div class="cta-options">
         <button type="button" class="btn btn-outline-light js-open-intro-form" data-pagina="licentie-info">Vraag informatie aan</button>
-        <button type="button" class="btn btn-outline-light js-open-intro-form" data-pagina="licentie-demo">Vraag een demo aan</button>
+        <button type="button" class="btn btn-outline-light" id="toggleDemoBlock">Vraag een demo aan</button>
       </div>
     </div>
 
@@ -443,6 +540,19 @@
             <p class="form-note">We reageren doorgaans binnen twee werkdagen.</p>
             <div class="form-error" id="introError"><span>!</span><span>Er ging iets mis bij het versturen. Mail ons direct op <a href="mailto:info@nextgen-ai.club">info@nextgen-ai.club</a>.</span></div>
           </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo-blok: opent i.p.v. het formulier, met directe Calendly-link naar de agenda van Peter Brouwers -->
+    <div class="intro-fields" id="demoFields">
+      <div>
+        <div class="intro-fields-inner intro-fields-inner-wide">
+          <span class="eyebrow">Demo aanvragen</span>
+          <h3>Plan direct een demo in bij Peter Brouwers.</h3>
+          <p>Peter Brouwers verzorgt persoonlijk de demo's van BotBuilder. Plan rechtstreeks een moment in zijn agenda dat u uitkomt, dan laat hij u tijdens een kort gesprek zien hoe het platform werkt.</p>
+          <!-- TODO: bevestig of dit specifiek Peter Brouwers' eigen Calendly-link is, of vervang door zijn persoonlijke Calendly-link -->
+          <a href="https://calendly.com/nextgen-ai/kennismaking" target="_blank" rel="noopener" class="btn btn-primary">Plan een demo bij Peter</a>
         </div>
       </div>
     </div>
@@ -508,7 +618,7 @@
         <ul>
           <li>NextGen AI</li>
           <li>info@nextgen-ai.club</li>
-          <li>+31 6 11 73 60 39</li>
+          <li>Peter Brouwers: +31 6 11 73 60 39</li>
         </ul>
       </div>
       <div>
@@ -549,6 +659,18 @@
     menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
   })();
 
+  // Mobiel submenu bij "Organisaties": tik om uit/in te klappen
+  (function () {
+    document.querySelectorAll('.nav-dropdown-toggle').forEach(function (toggle) {
+      var submenu = document.getElementById(toggle.getAttribute('aria-controls'));
+      if (!submenu) return;
+      toggle.addEventListener('click', function () {
+        var open = submenu.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+  })();
+
   // Toegankelijk dropdown-submenu bij "Organisaties" (desktop): stuurt aria-expanded mee
   (function () {
     document.querySelectorAll('.nav-has-dropdown').forEach(function (item) {
@@ -565,14 +687,18 @@
     });
   })();
 
-  // Aanvraagformulier tonen/verbergen, met _pagina op "licentie-info" of "licentie-demo"
+  // Aanvraagformulier en demo-blok tonen/verbergen, wederzijds exclusief:
+  // "Vraag informatie aan" opent het formulier, "Vraag een demo aan" opent het Calendly-demo-blok.
   (function () {
     var fields = document.getElementById('introFields');
+    var demoFields = document.getElementById('demoFields');
+    var demoToggle = document.getElementById('toggleDemoBlock');
     if (!fields) return;
     var tokenField = document.getElementById('pf-token');
     var paginaField = document.getElementById('pf-pagina');
 
     function openForm(pagina) {
+      if (demoFields) demoFields.classList.remove('is-open');
       if (!fields.classList.contains('is-open')) {
         fields.classList.add('is-open');
       }
@@ -582,6 +708,14 @@
           .catch(function () {});
       }
       if (pagina) paginaField.value = pagina;
+    }
+
+    if (demoToggle && demoFields) {
+      demoToggle.addEventListener('click', function () {
+        fields.classList.remove('is-open');
+        demoFields.classList.add('is-open');
+        demoFields.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
     }
 
     document.querySelectorAll('.js-open-intro-form').forEach(function (btn) {
@@ -616,6 +750,62 @@
           errorEl.classList.add('is-visible');
         });
     });
+  })();
+
+  // Partners-carrousel (zelfde gedrag als de reviews-carrousel)
+  (function () {
+    var track = document.getElementById('partnerTrack');
+    if (!track) return;
+    var slides = Array.prototype.slice.call(track.querySelectorAll('.testi-slide'));
+    var n = slides.length;
+    var current = 0;
+
+    function normalize(rel) {
+      rel = ((rel % n) + n) % n;
+      if (rel > n / 2) rel -= n;
+      return rel;
+    }
+
+    function update() {
+      slides.forEach(function (slide, i) {
+        var rel = normalize(i - current);
+        var abs = Math.abs(rel);
+        var x, scale, opacity, z, pointer;
+        if (rel === 0) { x = 0; scale = 1; opacity = 1; z = 10; pointer = 'auto'; }
+        else if (abs === 1) { x = rel * 62; scale = 0.74; opacity = 0.5; z = 5; pointer = 'auto'; }
+        else { x = rel * 62; scale = 0.6; opacity = 0; z = 1; pointer = 'none'; }
+        slide.style.transform = 'translateX(-50%) translateX(' + x + '%) scale(' + scale + ')';
+        slide.style.opacity = opacity;
+        slide.style.zIndex = z;
+        slide.style.pointerEvents = pointer;
+      });
+    }
+
+    function go(dir) { current = ((current + dir) % n + n) % n; update(); }
+
+    document.getElementById('partnerPrev').addEventListener('click', function () { go(-1); });
+    document.getElementById('partnerNext').addEventListener('click', function () { go(1); });
+
+    slides.forEach(function (slide, i) {
+      slide.addEventListener('click', function (e) {
+        if (e.target.closest('a')) return;
+        var rel = normalize(i - current);
+        if (rel !== 0) { current = i; update(); }
+      });
+    });
+
+    var startX = null;
+    var viewport = track.parentElement;
+    viewport.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+    viewport.addEventListener('touchend', function (e) {
+      if (startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      if (dx > 40) go(-1); else if (dx < -40) go(1);
+      startX = null;
+    });
+
+    window.addEventListener('resize', update);
+    update();
   })();
 </script>
 </body>

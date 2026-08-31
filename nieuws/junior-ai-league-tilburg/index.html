@@ -110,9 +110,14 @@
       <ul>
         <li><a class="nav-link" href="/">Home</a></li>
         <li><a class="nav-link" href="/ai-workshops/">Workshops</a></li>
-        <li class="nav-has-dropdown">
-          <a class="nav-link" href="/organisaties/">Organisaties</a>
-          <ul class="nav-dropdown-mobile">
+        <li class="nav-has-dropdown nav-has-dropdown-mobile">
+          <div class="nav-mobile-parent">
+            <a class="nav-link" href="/organisaties/">Organisaties</a>
+            <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-controls="mobileSubOrganisaties" aria-label="Submenu Organisaties tonen">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <ul class="nav-dropdown-mobile" id="mobileSubOrganisaties">
             <li><a class="nav-link nav-sublink" href="/licentie/">Licentie</a></li>
             <li><a class="nav-link nav-sublink" href="/ai-lessenreeks/">Lessenreeks</a></li>
           </ul>
@@ -222,7 +227,7 @@
         <ul>
           <li>NextGen AI</li>
           <li>info@nextgen-ai.club</li>
-          <li>+31 6 11 73 60 39</li>
+          <li>Peter Brouwers: +31 6 11 73 60 39</li>
         </ul>
       </div>
       <div>
@@ -260,6 +265,18 @@
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  })();
+
+  // Mobiel submenu bij "Organisaties": tik om uit/in te klappen
+  (function () {
+    document.querySelectorAll('.nav-dropdown-toggle').forEach(function (toggle) {
+      var submenu = document.getElementById(toggle.getAttribute('aria-controls'));
+      if (!submenu) return;
+      toggle.addEventListener('click', function () {
+        var open = submenu.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
   })();
 
   // Toegankelijk dropdown-submenu bij "Organisaties" (desktop): stuurt aria-expanded mee
