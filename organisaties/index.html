@@ -166,6 +166,7 @@
       <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Eigen medewerkers kunnen na training zelfstandig workshops geven</li>
       <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Klein beginnen en later opschalen</li>
     </ul>
+    <button type="button" class="btn btn-secondary js-open-intro-form" style="margin-top: var(--space-3);">Vraag vrijblijvend informatie aan</button>
   </section>
 
   <!-- LOGOSLIDER: ORGANISATIES MET WORKSHOP OF LICENTIE (hoort hier, niet op /licentie/) -->
@@ -260,6 +261,8 @@
         <a href="/ai-lessenreeks/" class="btn btn-secondary">Bekijk de AI-lessenreeks</a>
       </div>
     </div>
+    <p style="max-width:60ch; margin-top: var(--space-4);">Weet je het nog niet zeker? Peter Brouwers laat je persoonlijk zien hoe het platform werkt.</p>
+    <a href="https://calendly.com/peter-impact" target="_blank" rel="noopener" class="btn btn-primary">Plan direct een demo bij Peter</a>
   </section>
 
   <!-- KENNISMAKING -->
@@ -273,7 +276,7 @@
       <h3>Kies wat bij jou past</h3>
       <p>Liever nu meteen een afspraak in de agenda? Peter Brouwers verzorgt de demo's persoonlijk en denkt graag met u mee. Of eerst informatie, een demo, of een voorbeeld van Train-de-Trainer ontvangen via het formulier? Beide kan.</p>
       <div class="cta-options">
-        <a href="https://calendly.com/nextgen-ai/kennismaking" target="_blank" rel="noopener" class="btn btn-ghost">
+        <a href="https://calendly.com/peter-impact" target="_blank" rel="noopener" class="btn btn-ghost">
           Plan direct in de agenda
         </a>
         <button type="button" class="btn btn-outline-light" id="toggleIntroForm">Of vul het formulier in</button>
@@ -369,6 +372,9 @@
         </div>
       </div>
     </div>
+    <div class="container" style="margin-top: var(--space-4); position: relative; z-index: 1;">
+      <button type="button" class="btn btn-outline-light js-open-intro-form">Vraag vrijblijvend informatie aan</button>
+    </div>
   </section>
 
 </main>
@@ -431,6 +437,7 @@
           <li>info@nextgen-ai.club</li>
           <li>Peter Brouwers: +31 6 11 73 60 39</li>
         </ul>
+        <div class="footer-org-badge" title="Founding member van BRAIN Nederland"><img src="/assets/brain-nederland-logo.png" alt="BRAIN Nederland"></div>
       </div>
       <div>
         <h4>Juridisch</h4>
@@ -445,7 +452,6 @@
       <span>&copy; 2026 NextGen AI | website by <a href="https://www.mrbluesky.nl" target="_blank" rel="noopener">Mr. Blue Sky</a></span>
       <span class="footer-bottom-right">
         <a href="https://www.linkedin.com/company/nextgeneration-ai" target="_blank" rel="noopener" class="footer-social-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.7c0-1.36-.02-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3v5.8h-4V9Z"/></svg><span>Bezoek onze bedrijfspagina</span></a>
-        <span class="footer-badge-mini" title="Founding member van BRAIN Nederland"><img src="/assets/brain-nederland-logo.png" alt="BRAIN Nederland"></span>
       </span>
     </div>
   </div>
@@ -536,7 +542,11 @@
           ? 'De complete lessenreeks'
           : 'Een kennismakingsgesprek plannen';
         openForm(interesse);
-        document.getElementById('kennismaking').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Vertraagd tot na de uitklap-animatie (420ms) van het formulier eronder,
+        // zodat niet wordt gescrold op basis van de nog niet volledig uitgeklapte hoogte.
+        setTimeout(function () {
+          document.getElementById('kennismaking').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 450);
       });
     });
 

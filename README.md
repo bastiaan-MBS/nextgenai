@@ -176,8 +176,8 @@ dezelfde kindveilige-software-boodschap als op de homepage, maar herschreven
 vanuit het perspectief van de bezoeker (wat ze krijgen, niet wat ons
 onderscheidt).
 
-**Let op:** vervang de Calendly-link (`https://calendly.com/nextgen-ai/kennismaking`)
-door de echte agenda-link van Peter zodra die bekend is.
+De Calendly-link (`https://calendly.com/peter-impact`) is de echte agenda-link
+van Peter Brouwers en staat al verwerkt op deze pagina en op `/licentie/`.
 
 Onder de partners-carrousel staat nu ook een blok over de Junior AI League
 (gelieerd programma), met een link naar junioraileague.nl.
@@ -270,7 +270,8 @@ demo), niet op het uiteindelijke domein. Zodra de site live gaat op het echte do
   League-website (`junioraileague.nl`).
 
 ## Volgende stappen
-1. Calendly-link en partnerlogo's/links vervangen door de echte gegevens.
+1. Partnerlogo's/links vervangen door de echte gegevens (de Calendly-link is
+   al de echte agenda-link van Peter Brouwers).
 2. Teksten laten uitschrijven en aanscherpen.
 3. Eigen CMS bouwen zodat teksten, impactcijfers en testimonials buiten de
    code om aan te passen zijn.

@@ -379,6 +379,9 @@
         </div>
       </div>
     </div>
+    <div class="container" style="margin-top: var(--space-4); position: relative; z-index: 1;">
+      <button type="button" class="btn btn-outline-light js-open-intro-form" data-pagina="licentie-info">Vraag informatie aan over de licentie</button>
+    </div>
   </section>
 
   <!-- WAT LEVERT EEN LICENTIE OP (voorheen prijzensectie) -->
@@ -401,7 +404,7 @@
         <span class="benefit-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7l-9-5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         <h3>Benieuwd wat het kost?</h3>
         <p>Vraag vrijblijvend de kosten voor uw organisatie op via het aanvraagformulier verderop op deze pagina.</p>
-        <a href="#aanvragen" class="btn btn-secondary" style="margin-top:var(--space-2);">Vraag informatie aan</a>
+        <button type="button" class="btn btn-secondary js-open-intro-form" data-pagina="licentie-info" style="margin-top:var(--space-2);">Vraag informatie aan</button>
       </div>
     </div>
     <!-- TODO: ontbrekende info, aan te vullen door klant: exacte contractduur, opzegtermijn en facturatiewijze van de licentie. -->
@@ -447,6 +450,7 @@
         <p>Bij elke stap staat u er niet alleen voor: professionele ondersteuning is inbegrepen.</p>
       </div>
     </div>
+    <button type="button" class="btn btn-primary js-open-demo-block" style="margin-top: var(--space-4);">Vraag een demo van BotBuilder aan</button>
   </section>
 
   <!-- VERGELIJKING -->
@@ -469,7 +473,7 @@
         <span class="plan-tag">Aanbevolen</span>
         <h3>NextGen AI-licentie</h3>
         <p>De meest structurele manier om met NextGen AI te werken: zelfstandig AI-educatie organiseren, onder eigen naam, met volledige ondersteuning.</p>
-        <a href="#aanvragen" class="btn btn-primary">Vraag informatie aan</a>
+        <button type="button" class="btn btn-primary js-open-intro-form" data-pagina="licentie-info">Vraag informatie aan</button>
       </div>
     </div>
   </section>
@@ -497,6 +501,10 @@
       </div>
     </div>
     <!-- TODO: ontbrekende info, aan te vullen door klant: exacte aanvraagprocedure en doorlooptijd tot de licentie ingaat. -->
+    <div style="display:flex; gap:var(--space-2); flex-wrap:wrap; margin-top: var(--space-4);">
+      <button type="button" class="btn btn-primary js-open-intro-form" data-pagina="licentie-info">Vraag informatie aan</button>
+      <button type="button" class="btn btn-secondary js-open-demo-block">Vraag een demo aan</button>
+    </div>
   </section>
 
   <!-- AANVRAGEN -->
@@ -512,7 +520,7 @@
       <p>Wilt u eerst meer weten over de licentie? Of liever direct zien hoe BotBuilder werkt in een demo? Beide kan.</p>
       <div class="cta-options">
         <button type="button" class="btn btn-outline-light js-open-intro-form" data-pagina="licentie-info">Vraag informatie aan</button>
-        <button type="button" class="btn btn-outline-light" id="toggleDemoBlock">Vraag een demo aan</button>
+        <button type="button" class="btn btn-outline-light js-open-demo-block">Vraag een demo aan</button>
       </div>
     </div>
 
@@ -551,8 +559,7 @@
           <span class="eyebrow">Demo aanvragen</span>
           <h3>Plan direct een demo in bij Peter Brouwers.</h3>
           <p>Peter Brouwers verzorgt persoonlijk de demo's van BotBuilder. Plan rechtstreeks een moment in zijn agenda dat u uitkomt, dan laat hij u tijdens een kort gesprek zien hoe het platform werkt.</p>
-          <!-- TODO: bevestig of dit specifiek Peter Brouwers' eigen Calendly-link is, of vervang door zijn persoonlijke Calendly-link -->
-          <a href="https://calendly.com/nextgen-ai/kennismaking" target="_blank" rel="noopener" class="btn btn-primary">Plan een demo bij Peter</a>
+          <a href="https://calendly.com/peter-impact" target="_blank" rel="noopener" class="btn btn-primary">Plan een demo bij Peter</a>
         </div>
       </div>
     </div>
@@ -620,6 +627,7 @@
           <li>info@nextgen-ai.club</li>
           <li>Peter Brouwers: +31 6 11 73 60 39</li>
         </ul>
+        <div class="footer-org-badge" title="Founding member van BRAIN Nederland"><img src="/assets/brain-nederland-logo.png" alt="BRAIN Nederland"></div>
       </div>
       <div>
         <h4>Juridisch</h4>
@@ -634,7 +642,6 @@
       <span>&copy; 2026 NextGen AI | website by <a href="https://www.mrbluesky.nl" target="_blank" rel="noopener">Mr. Blue Sky</a></span>
       <span class="footer-bottom-right">
         <a href="https://www.linkedin.com/company/nextgeneration-ai" target="_blank" rel="noopener" class="footer-social-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.7c0-1.36-.02-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3v5.8h-4V9Z"/></svg><span>Bezoek onze bedrijfspagina</span></a>
-        <span class="footer-badge-mini" title="Founding member van BRAIN Nederland"><img src="/assets/brain-nederland-logo.png" alt="BRAIN Nederland"></span>
       </span>
     </div>
   </div>
@@ -689,10 +696,11 @@
 
   // Aanvraagformulier en demo-blok tonen/verbergen, wederzijds exclusief:
   // "Vraag informatie aan" opent het formulier, "Vraag een demo aan" opent het Calendly-demo-blok.
+  // De scroll wordt vertraagd tot na de uitklap-animatie (420ms), zodat niet wordt
+  // gescrold op basis van de nog niet volledig uitgeklapte (dus te kleine) hoogte.
   (function () {
     var fields = document.getElementById('introFields');
     var demoFields = document.getElementById('demoFields');
-    var demoToggle = document.getElementById('toggleDemoBlock');
     if (!fields) return;
     var tokenField = document.getElementById('pf-token');
     var paginaField = document.getElementById('pf-pagina');
@@ -710,11 +718,15 @@
       if (pagina) paginaField.value = pagina;
     }
 
-    if (demoToggle && demoFields) {
-      demoToggle.addEventListener('click', function () {
-        fields.classList.remove('is-open');
-        demoFields.classList.add('is-open');
-        demoFields.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (demoFields) {
+      document.querySelectorAll('.js-open-demo-block').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          fields.classList.remove('is-open');
+          demoFields.classList.add('is-open');
+          setTimeout(function () {
+            demoFields.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 450);
+        });
       });
     }
 
@@ -722,7 +734,9 @@
       btn.addEventListener('click', function (e) {
         e.preventDefault();
         openForm(btn.getAttribute('data-pagina'));
-        fields.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(function () {
+          fields.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 450);
       });
     });
 

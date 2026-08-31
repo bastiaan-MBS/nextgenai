@@ -209,6 +209,7 @@
         <p>Leerlingen lossen de uitdagingen niet alleen op: samenwerken en met elkaar meedenken staat steeds centraal.</p>
       </div>
     </div>
+    <button type="button" class="btn btn-secondary js-open-intro-form" data-pagina="ai-lessenreeks" style="margin-top: var(--space-4);">Vraag meer informatie aan</button>
   </section>
 
   <!-- LEERDOELEN -->
@@ -230,6 +231,7 @@
           <p>Verantwoord gebruik van AI, privacy en databescherming, en digitaal burgerschap.</p>
         </div>
       </div>
+      <button type="button" class="btn btn-outline-light js-open-intro-form" data-pagina="ai-lessenreeks" style="margin-top: var(--space-4);">Vraag meer informatie aan</button>
     </div>
   </section>
 
@@ -245,6 +247,7 @@
     </div>
     <p style="max-width:64ch; margin-top: var(--space-3);">De lessenreeks kent geen vast aantal lessen of vaste lesduur: de opzet is flexibel en wordt passend gemaakt binnen uw onderwijs, projectperiode of planning.</p>
     <!-- TODO: ontbrekende info, aan te vullen door klant: exacte prijsopgave en aanvraagprocedure voor de AI-lessenreeks. -->
+    <button type="button" class="btn btn-secondary js-open-intro-form" data-pagina="ai-lessenreeks" style="margin-top: var(--space-3);">Vraag meer informatie aan</button>
   </section>
 
   <!-- ANDERE MANIEREN -->
@@ -281,9 +284,10 @@
       <img class="logo-watermark" src="/assets/logo.png" alt="" aria-hidden="true" style="--wm-w:220px; --wm-opacity:0.1; --wm-right:-30px; --wm-top:-30px; --wm-bottom:auto;">
       <span class="eyebrow" style="color:var(--color-yellow);">Volgende stap</span>
       <h3>Vraag meer informatie aan</h3>
-      <p>Vul het formulier in en we nemen contact met u op om de mogelijkheden voor uw groep te bespreken.</p>
+      <p>Vul het formulier in en we nemen contact met u op om de mogelijkheden voor uw groep te bespreken. Liever eerst zelf zien hoe BotBuilder werkt? Peter Brouwers verzorgt de demo's persoonlijk.</p>
       <div class="cta-options">
         <button type="button" class="btn btn-outline-light js-open-intro-form" data-pagina="ai-lessenreeks">Vraag meer informatie aan</button>
+        <a href="https://calendly.com/peter-impact" target="_blank" rel="noopener" class="btn btn-outline-light">Plan een demo bij Peter</a>
       </div>
     </div>
 
@@ -378,6 +382,7 @@
           <li>info@nextgen-ai.club</li>
           <li>Peter Brouwers: +31 6 11 73 60 39</li>
         </ul>
+        <div class="footer-org-badge" title="Founding member van BRAIN Nederland"><img src="/assets/brain-nederland-logo.png" alt="BRAIN Nederland"></div>
       </div>
       <div>
         <h4>Juridisch</h4>
@@ -392,7 +397,6 @@
       <span>&copy; 2026 NextGen AI | website by <a href="https://www.mrbluesky.nl" target="_blank" rel="noopener">Mr. Blue Sky</a></span>
       <span class="footer-bottom-right">
         <a href="https://www.linkedin.com/company/nextgeneration-ai" target="_blank" rel="noopener" class="footer-social-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.7c0-1.36-.02-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3v5.8h-4V9Z"/></svg><span>Bezoek onze bedrijfspagina</span></a>
-        <span class="footer-badge-mini" title="Founding member van BRAIN Nederland"><img src="/assets/brain-nederland-logo.png" alt="BRAIN Nederland"></span>
       </span>
     </div>
   </div>
@@ -468,7 +472,11 @@
       btn.addEventListener('click', function (e) {
         e.preventDefault();
         openForm(btn.getAttribute('data-pagina'));
-        fields.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Vertraagd tot na de uitklap-animatie (420ms), zodat niet wordt gescrold
+        // op basis van de nog niet volledig uitgeklapte (dus te kleine) hoogte.
+        setTimeout(function () {
+          fields.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 450);
       });
     });
 

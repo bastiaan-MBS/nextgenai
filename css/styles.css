@@ -440,7 +440,7 @@ nav.main-nav a:hover, nav.main-nav a.is-active { border-color: var(--color-yello
 .compare-card.is-current { border-color: var(--color-navy); background: var(--color-bg-alt); }
 .compare-card h3 { margin: 0; }
 .compare-card p { margin: 0; color: var(--color-ink-soft); font-size: 0.95rem; flex: 1; }
-.compare-card a { margin-top: auto; }
+.compare-card a, .compare-card button { margin-top: auto; }
 .compare-card .plan-tag {
   background: var(--color-green); color: #fff; display: inline-block; width: fit-content;
   padding: 0.3em 0.9em; border-radius: var(--radius-pill); font-family: var(--font-display);
@@ -513,14 +513,17 @@ nav.main-nav a:hover, nav.main-nav a.is-active { border-color: var(--color-yello
 .footer-social-btn {
   display: inline-flex; align-items: center; gap: 0.55em;
   padding: 0.5em 1em; border-radius: var(--radius-pill);
-  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.3);
-  color: #fff; font-size: 0.82rem; font-weight: 600; text-decoration: none;
-  transition: background var(--transition), border-color var(--transition);
+  background: var(--color-yellow); border: 1px solid var(--color-yellow);
+  color: var(--color-navy); font-size: 0.82rem; font-weight: 700;
+  transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
-.footer-social-btn:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.55); }
+/* Specificiteit gelijk aan .footer-legal .footer-bottom a (2 classes + 1 tag), zodat text-decoration: none wint. */
+.footer-legal .footer-bottom a.footer-social-btn { text-decoration: none; }
+.footer-social-btn:hover { background: #ffd968; border-color: #ffd968; box-shadow: var(--shadow-soft); }
 .footer-social-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
-.footer-badge-mini { display: inline-flex; align-items: center; }
-.footer-badge-mini img { height: 20px; width: auto; background: #fff; border-radius: 4px; padding: 2px 4px; }
+/* Organisatie-kolom in de footer: badge staat nu onder de contactgegevens i.p.v. in de onderste balk (zie .footer-org-badge). */
+.footer-org-badge { display: inline-flex; align-items: center; margin-top: var(--space-2); }
+.footer-org-badge img { height: 60px; width: auto; background: #fff; border-radius: 6px; padding: 4px 8px; }
 
 @media (max-width: 760px) {
   .contact-choice, .field-grid, .workshop-options { grid-template-columns: 1fr; }
