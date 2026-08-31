@@ -2,13 +2,15 @@
 
 ## Structuur
 ```
-index.html             → homepage
-workshops.html         → workshoppagina met alle workshops en boeken per workshop
-organisaties.html      → aanbod voor organisaties (workshop/lessenreeks/licentie), kennismaking en huidige klanten
-inbeeld.html           → mediapagina: nieuwsoverzicht, fotobibliotheek en impacttijdlijn
-nieuws/                → losse artikelpagina's, één per mijlpaal uit inbeeld.html
-overons.html           → team, missie en ontstaansgeschiedenis
-bedankt.html           → bedankpagina na een succesvolle aanvraag
+index.html             → homepage (/)
+ai-workshops/          → boekingspagina voor AI-workshops (/ai-workshops/)
+organisaties/          → aanbod voor organisaties: workshop/lessenreeks/licentie (/organisaties/)
+licentie/              → NextGen AI-licentie: prijzen, voordelen, aanvragen (/licentie/, niet in hoofdnav)
+ai-lessenreeks/        → AI-lessenreeks digitale geletterdheid groep 7/8 (/ai-lessenreeks/, niet in hoofdnav)
+in-beeld/              → mediapagina: nieuwsoverzicht, fotobibliotheek en impacttijdlijn (/in-beeld/)
+nieuws/<slug>/         → losse artikelpagina's, één per mijlpaal uit in-beeld/ (/nieuws/<slug>/)
+over-ons/              → team, missie en ontstaansgeschiedenis (/over-ons/)
+bedankt/               → bedankpagina na een succesvolle aanvraag (/bedankt/, noindex)
 css/styles.css         → sitewide design tokens en componenten (kleur, typografie, header, footer, ticker)
 assets/                → logo, merk-blobs en foto's
 assets/nieuws/         → foto's per nieuwsartikel (zie assets/nieuws/LEESMIJ.md voor de naamgeving)
@@ -43,8 +45,8 @@ zolang ze dezelfde header-markup gebruiken.
 ## Footer (sitewide, identiek op elke pagina)
 De footer heeft geen contactformulier. In plaats daarvan staan er twee
 duidelijke kaarten met een geel rond knopje: "Ik wil partner worden" (linkt
-naar `organisaties.html`) en "Ik wil een workshop boeken" (linkt naar
-`workshops.html`). Onder de witte kaarten volgt de donkerblauwe balk met
+naar `/organisaties/`) en "Ik wil een workshop boeken" (linkt naar
+`/ai-workshops/`). Onder de witte kaarten volgt de donkerblauwe balk met
 sitemap, organisatiegegevens en juridische links.
 
 ## Homepage
@@ -54,7 +56,7 @@ en een gele stip die ook direct op de grafiek te verslepen is; bij het
 scrollen naar de sectie loopt alles rustig op tot vandaag.
 
 ## Workshoppagina
-`workshops.html` toont de vijf themaworkshops (basis, muziek, verhaal, game,
+`/ai-workshops/` toont de vijf themaworkshops (basis, muziek, verhaal, game,
 kunst) elk als een volledige rij onder elkaar, met genoeg ruimte voor het
 boekingsformulier dat eronder uitklapt. Elke rij heeft een eigen kleur voor
 kader, icoon, boekingsmodule en knop:
@@ -84,7 +86,7 @@ tekst voor voldoende contrast.
 
 Verder op deze pagina: dezelfde reviews-carrousel als op de homepage, en een
 blok dat bezoekers die vaker een workshop willen organiseren uitnodigt om
-partner te worden (met link naar `organisaties.html`).
+partner te worden (met link naar `/organisaties/`).
 
 Foto's: AI for Kids, AI Hackathon en AI Family Festival gebruiken echte
 foto's. Voor AI Music, AI Story, AI Game en AI Arts is nog geen passende
@@ -92,7 +94,7 @@ foto beschikbaar; die tonen een duidelijk gelabelde placeholder met het
 bijpassende icoon in de themakleur.
 
 ## In beeld-pagina
-`inbeeld.html` is de mediapagina van de site, met echte content (geen
+`/in-beeld/` is de mediapagina van de site, met echte content (geen
 voorbeeldcontent meer):
 - Filtertabs (Alles, Nieuws, In de media) die de mediagrid filteren op
   `data-category`.
@@ -109,7 +111,7 @@ De interactieve impacttijdlijn staat niet meer op deze pagina (hoort hier
 niet thuis) en blijft alleen op de homepage staan.
 
 ## Nieuwsartikelen (`nieuws/`)
-Elke tegel op `inbeeld.html` linkt naar een eigen artikelpagina in
+Elke tegel op `/in-beeld/` linkt naar een eigen artikelpagina in
 `nieuws/`, opgebouwd met dezelfde header/footer als de rest van de site.
 Elk artikel bevat een uitgebreide, in eigen bewoording geschreven tekst
 (gebaseerd op de feiten uit de bronnen, met korte letterlijke citaten waar
@@ -120,7 +122,7 @@ beschermd. Voor het overnemen van tekst geldt het citaatrecht (kort en met
 bronvermelding), voor beeldmateriaal is toestemming van de rechthebbende
 nodig.
 
-**Foto's staan nog op placeholder.** Zowel de tegels in `inbeeld.html` als
+**Foto's staan nog op placeholder.** Zowel de tegels in `/in-beeld/` als
 de artikelpagina's zelf tonen nu een placeholder-blok
 (`data-nieuws-foto="<slug>"`). Zodra er eigen foto's per artikel
 beschikbaar zijn: zet ze in `assets/nieuws/` met de bestandsnaam die
@@ -136,7 +138,7 @@ Alle 18 pagina's hebben nu:
 - `favicon-32.png` en `apple-touch-icon.png` (gegenereerd uit `assets/logo.png`).
 - Structured data (JSON-LD): `Organization` op de homepage, `NewsArticle` op
   elke pagina in `nieuws/`.
-- `bedankt.html` staat op `noindex` (dankpagina's horen niet in zoekresultaten)
+- `/bedankt/` staat op `noindex` (dankpagina's horen niet in zoekresultaten)
   en is uitgesloten in `robots.txt`.
 
 `robots.txt` en `sitemap.xml` staan in de root en verwijzen naar elkaar.
@@ -150,7 +152,7 @@ niet op dat domein) — dat lost zichzelf op zodra de site live gaat op
 laat dat dan weten, dan zet ik de URL's tijdelijk om.
 
 ## Over ons-pagina
-`overons.html` bevat, ook geïnspireerd op de Junior AI League-opzet:
+`/over-ons/` bevat, ook geïnspireerd op de Junior AI League-opzet:
 - Het ontstaan: NextGen AI komt voort uit ACTNOW B.V., dat sinds 2016 werkt
   aan digitale jeugdeducatie (10+ jaar ervaring).
 - De volledige merkmissie, overgenomen uit het merkdocument (THE_NEXTGEN.pdf).
@@ -162,7 +164,7 @@ laat dat dan weten, dan zet ik de URL's tijdelijk om.
   echte foto's vervangen worden.
 
 ## Organisaties-pagina
-`organisaties.html` beschrijft het aanbod (licentie, volledig
+`/organisaties/` beschrijft het aanbod (licentie, volledig
 programma, Train-de-Trainer) met een CTA-kaart die twee opties biedt: direct
 een afspraak plannen via een Calendly-link, of een kennismakingsformulier
 uitklappen. Dat formulier staat nu als volledige-breedte-blok onder de
@@ -186,7 +188,7 @@ websitelinks staan nu op `#` als placeholder; vul de echte adressen in
 zodra die bekend zijn, en vervang de voorbeeldpartners door de echte namen.
 
 ## Bedankpagina
-`bedankt.html` verschijnt automatisch na een succesvol verzonden formulier
+`/bedankt/` verschijnt automatisch na een succesvol verzonden formulier
 (boekingsformulier op de workshoppagina, of het kennismakingsformulier op de
 partnerpagina). De pagina leest de meegegeven gegevens uit de link
 (workshopnaam, voornaam, type aanvraag) en past de inhoud daarop aan:
@@ -197,14 +199,14 @@ partnerpagina). De pagina leest de meegegeven gegevens uit de link
 
 Zodra er een echte server is: laat de `fetch(...)` in de submit-handlers
 afwachten of de aanvraag echt is gelukt voordat je doorstuurt naar
-`bedankt.html` (dit staat als commentaar bij de code). Nu, zonder server,
+`/bedankt/` (dit staat als commentaar bij de code). Nu, zonder server,
 stuurt het formulier door zodra het geldig is ingevuld, en wordt de data op
 de achtergrond verstuurd.
 
 ## Formulieren
 Er zijn twee formulieren, allebei aangesloten op dezelfde verwerker:
-- Het boekingsformulier per workshop op `workshops.html`.
-- Het kennismakingsformulier op `organisaties.html`.
+- Het boekingsformulier per workshop op `/ai-workshops/`.
+- Het kennismakingsformulier op `/organisaties/`.
 
 Beide posten naar `formulier/send.php` (PHP-script, zie
 "Mailverwerking" hieronder). Voor beide geldt verder:
@@ -259,9 +261,13 @@ demo), niet op het uiteindelijke domein. Zodra de site live gaat op het echte do
   moeten komen.
 - De bestaande mailto-links in de code (`info@nextgen-ai.club`) kunnen
   blijven staan, die verwijzen al naar het toekomstige domein.
-- **`.htaccess`**: de redirect van de oude paginanaam (`partnerprogramma.html`
-  → `organisaties.html`) heeft het domein hardcoded (`nextgen.mbscs.nl`).
-  Aanpassen naar `nextgen-ai.club` bij livegang.
+- **`.htaccess`**: bevat al de definitieve 301-redirects van de bestaande
+  live NextGen AI-site (`/ai-for-kids`, `/licentiehouder`, `/sponsoring`,
+  `/digitale-vaardigheden`, `/digitale-geletterdheid-project-reboot`) naar
+  de nieuwe URL's, met het domein `nextgen-ai.club` hardcoded als doel. Geen
+  wijziging nodig bij livegang zolang het productiedomein `nextgen-ai.club`
+  blijft. `/junior-ai-league` redirect direct naar de zelfstandige Junior AI
+  League-website (`junioraileague.nl`).
 
 ## Volgende stappen
 1. Calendly-link en partnerlogo's/links vervangen door de echte gegevens.
